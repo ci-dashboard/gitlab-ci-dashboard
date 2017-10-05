@@ -1,28 +1,75 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <div class="ui four column grid">
+      <logo></logo>
+      <hello></hello>
+    </div>
   </div>
 </template>
 
 <script>
 import Hello from './components/Hello'
+import Logo from './components/Logo'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    Hello,
+    Logo
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  background:#3C454D;
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.builds {
+  margin: 0 50px;
+}
+.project-name {
+  color: white !important;
+  text-shadow: 1px 1px rgba(0,0,0,0.2);
+}
+
+.project-name a {
+  color: inherit;
+}
+
+.ui.card>.extra a:not(.ui):hover, .ui.cards>.card>.extra a:not(.ui):hover {
+  color: rgba(0,0,0,.4);
+}
+
+.ui.card, .ui.cards>.card {
+  box-shadow: none !important;
+}
+
+.ui.card, .ui.cards>.card.success {
+  background-color: #00AD68;
+}
+
+.ui.card, .ui.cards>.card.failed {
+  background-color: #E7484D;
+}
+
+.ui.card, .ui.cards>.card.pending {
+  background-color: #e75e40;
+}
+
+.ui.card, .ui.cards>.card.running{
+  background-color: #2d9fd8;
+}
+
+.ui.card, .ui.cards>.card.canceled{
+  background-color: #aaaaaa;
 }
 </style>
