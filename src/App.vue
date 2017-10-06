@@ -6,7 +6,6 @@
       <invalid-config v-bind:onInvalid="onInvalid" />
       <loading v-bind:onLoading="onLoading" />
       <builds v-bind:onBuilds="onBuilds" />
-      <p>{{ gitlabUrl }}</p>
     </div>
   </div>
 </template>
@@ -27,17 +26,10 @@ export default {
     Loading,
     Builds
   },
-  props: ['data', 'gitlabUrl'],
+  props: ['onLoading', 'onInvalid', 'onError', 'onBuilds'],
   data () {
     return {
-      projects: [],
-      onBuilds: [],
-      token: null,
-      gitlab: null,
-      repositories: null,
-      onLoading: this.data.onLoading,
-      onInvalid: this.data.onInvalid,
-      onError: null
+      projects: []
     }
   }
 }

@@ -1,13 +1,11 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import Vuex from 'vuex'
 import moment from 'moment'
 import axios from 'axios'
 
 import App from './App'
 
-Vue.use(Vuex)
 Vue.config.productionTip = false
 
 const getParameterByName = (name, url) => {
@@ -39,10 +37,10 @@ const onError = (error) => {
 }
 
 /* eslint-disable no-new */
-const store = new Vuex.Store({
-  strict: true,
-  state: {
-    data: {
+new Vue({
+  el: '#app',
+  data () {
+    return {
       projects: [],
       onBuilds: [],
       token: null,
@@ -50,34 +48,15 @@ const store = new Vuex.Store({
       repositories: null,
       onLoading: false,
       onInvalid: false,
-      onError: null
-    }
-  },
-  mutations: {
-    updateData: (state, data) => {
-      Object.assign(state.data, data)
-    }
-  },
-  getters: {
-    gitlabUrl: state => {
-      return 'http://' + state.data.gitlab
-    }
-  }
-})
-
-new Vue({
-  el: '#app',
-  store: store,
-  data () {
-    return {
-      data: this.$store.state.data
+      onError: null,
+      debug: ''
     }
   },
   created () {
     this.loadConfig()
 
     if (!this.configValid()) {
-      this.updateField('onInvalid', true)
+      this.onInvalid = true
       return
     }
 
@@ -85,29 +64,25 @@ new Vue({
 
     this.fetchProjects()
 
-    // setInterval(() => {
-    this.fetchBuilds()
-    // }, 60000)
+    setInterval(() => {
+      this.fetchBuilds()
+    }, 60000)
   },
   methods: {
-    updateField (field, value) {
-      this.$store.commit('updateData', {
-        [field]: value
-      })
-    },
     loadConfig () {
-      this.updateField('gitlab', getParameterByName('gitlab'))
-      this.updateField('token', getParameterByName('token'))
-      this.updateField('ref', getParameterByName('ref'))
+      this.gitlab = getParameterByName('gitlab')
+      this.token = getParameterByName('token')
+      this.ref = getParameterByName('ref')
       let repositoriesParams = getParameterByName('projects')
-
       if (repositoriesParams == null) {
         return
       }
       const repositories = []
-      for (const index in repositoriesParams.split(',')) {
+      const splittedRepos = repositoriesParams.split(',')
+      for (const index in splittedRepos) {
         try {
-          let repository = repositories[index].split('/')
+          let repository = splittedRepos[index].split('/')
+          this.debug += repository
           var namespace = repository[0].trim()
           var projectName = repository[1].trim()
           var nameWithNamespace = namespace + '/' + projectName
@@ -124,7 +99,7 @@ new Vue({
           onError.bind(this)({message: 'Wrong format', response: {status: 500}})
         }
       }
-      this.updateField('repositories', repositories)
+      this.repositories = repositories
     },
     configValid () {
       let valid = true
@@ -132,7 +107,7 @@ new Vue({
         repositories,
         token,
         gitlab
-      } = this.$store.state.data
+      } = this
       if (repositories == null || token == null || gitlab == null) {
         valid = false
       }
@@ -143,7 +118,7 @@ new Vue({
       const {
         gitlab,
         token
-      } = this.$store.state.data
+      } = this
       axios.defaults.baseURL = 'https://' + gitlab + '/api/v3'
       axios.defaults.headers.common['PRIVATE-TOKEN'] = token
     },
@@ -151,16 +126,16 @@ new Vue({
       const {
         repositories,
         projects
-      } = this.$store.state.data
+      } = this
       if (!repositories) {
         return
       }
 
       repositories.forEach((p) => {
-        this.updateField('onLoading', true)
+        this.onLoading = true
         axios.get('/projects/' + p.nameWithNamespace.replace('/', '%2F'))
           .then((response) => {
-            this.updateField('onLoading', true)
+            this.onLoading = false
             projects.push({project: p, data: response.data})
             this.fetchBuilds()
           })
@@ -171,7 +146,7 @@ new Vue({
       const {
         projects,
         onBuilds
-      } = this.$store.state.data
+      } = this
       if (!projects) {
         return
       }
@@ -203,7 +178,7 @@ new Vue({
                 })
 
                 if (!updated) {
-                  self.onBuilds.push({
+                  onBuilds.push({
                     project: p.project.projectName,
                     id: build.id,
                     status: build.status,
@@ -214,9 +189,9 @@ new Vue({
                   })
                 }
               })
-              .catch(onError.bind(self))
+              .catch(onError.bind(this))
           })
-          .catch(onError.bind(self))
+          .catch(onError.bind(this))
       })
     },
     filterLastBuild (builds) {
@@ -226,11 +201,12 @@ new Vue({
       return builds[0]
     }
   },
-  computed: {
-    dataState () {
-      return this.$store.state.data
-    }
-  },
-  template: '<App v-bind:data="data" v-bind:gitlabUrl="gitlabUrl" />',
+  template: '' +
+  '<App ' +
+  'v-bind:onLoading="onLoading" ' +
+  'v-bind:onInvalid="onInvalid" ' +
+  'v-bind:onError="onError" ' +
+  'v-bind:onBuilds="onBuilds" ' +
+  '/>',
   components: { App }
 })
