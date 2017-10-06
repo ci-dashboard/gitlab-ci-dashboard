@@ -1,5 +1,5 @@
 <template>
-  <div v-show="invalidConfig" class="row" id="gcim-invalid-config">
+  <div v-show="onInvalid" class="row" id="gcim-invalid-config">
     <div class="eight wide column centered ">
       <div class="ui attached message">
         <div class="header">{{ headerText }}</div>
@@ -25,6 +25,7 @@
 <script>
   export default {
     name: 'invalidConfig',
+    props: ['onInvalid'],
     data () {
       return {
         headerText: 'Invalid Configuration'

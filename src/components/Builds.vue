@@ -2,7 +2,7 @@
   <div class="row builds" id="gcim-builds">
     <div class="sixteen wide column">
       <div class="ui stackable cards">
-        <div v-for="build in builds" v-bind:key="build" v-bind:class="builds.statusClass">
+        <div v-for="build in builds" v-bind:key="build.id" v-bind:class="builds.statusClass">
           <div class="content">
             <div class="header project-name">
               <a target="_blank" v-bind:href="build.project_url">{{ build.project }} ({{ build.branch }})</a>
