@@ -6,13 +6,11 @@
       <invalidConfig />
       <loading />
       <builds />
-      <hello />
     </div>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
 import Logo from './components/Logo'
 import Error from './components/Error'
 import InvalidConfig from './components/InvalidConfig'
@@ -22,7 +20,6 @@ import Builds from './components/Builds'
 export default {
   name: 'app',
   components: {
-    Hello,
     Logo,
     Error,
     InvalidConfig,
