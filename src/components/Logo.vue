@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" id="gcim-logo">
     <img class="logo" src="./assets/gitlab-logo.svg" v-bind:alt="altText" />
   </div>
 </template>

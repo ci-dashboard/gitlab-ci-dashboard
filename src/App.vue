@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <div class="ui four column grid">
-      <logo></logo>
-      <hello></hello>
+      <logo />
+      <error />
+      <invalidConfig />
+      <loading />
+      <builds />
+      <hello />
     </div>
   </div>
 </template>
@@ -10,12 +14,20 @@
 <script>
 import Hello from './components/Hello'
 import Logo from './components/Logo'
+import Error from './components/Error'
+import InvalidConfig from './components/InvalidConfig'
+import Loading from './components/Loading'
+import Builds from './components/Builds'
 
 export default {
   name: 'app',
   components: {
     Hello,
-    Logo
+    Logo,
+    Error,
+    InvalidConfig,
+    Loading,
+    Builds
   }
 }
 </script>
