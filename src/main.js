@@ -57,6 +57,11 @@ const store = new Vuex.Store({
     updateData: (state, data) => {
       Object.assign(state.data, data)
     }
+  },
+  getters: {
+    gitlabUrl: state => {
+      return 'http://' + state.data.gitlab
+    }
   }
 })
 
@@ -90,7 +95,7 @@ new Vue({
         [field]: value
       })
     },
-    loadConfig: () => {
+    loadConfig () {
       this.updateField('gitlab', getParameterByName('gitlab'))
       this.updateField('token', getParameterByName('token'))
       this.updateField('ref', getParameterByName('ref'))
@@ -121,7 +126,7 @@ new Vue({
       }
       this.updateField('repositories', repositories)
     },
-    configValid: () => {
+    configValid () {
       let valid = true
       const {
         repositories,
@@ -134,7 +139,7 @@ new Vue({
 
       return valid
     },
-    setupDefaults: () => {
+    setupDefaults () {
       const {
         gitlab,
         token
@@ -142,7 +147,7 @@ new Vue({
       axios.defaults.baseURL = 'https://' + gitlab + '/api/v3'
       axios.defaults.headers.common['PRIVATE-TOKEN'] = token
     },
-    fetchProjects: (page) => {
+    fetchProjects (page) {
       const {
         repositories,
         projects
@@ -162,7 +167,7 @@ new Vue({
           .catch(onError.bind(this))
       })
     },
-    fetchBuilds: () => {
+    fetchBuilds () {
       const {
         projects,
         onBuilds
@@ -214,7 +219,7 @@ new Vue({
           .catch(onError.bind(self))
       })
     },
-    filterLastBuild: (builds) => {
+    filterLastBuild (builds) {
       if (!Array.isArray(builds) || builds.length === 0) {
         return
       }
@@ -226,6 +231,6 @@ new Vue({
       return this.$store.state.data
     }
   },
-  template: '<App />',
+  template: '<App v-bind:data="data" v-bind:gitlabUrl="gitlabUrl" />',
   components: { App }
 })
