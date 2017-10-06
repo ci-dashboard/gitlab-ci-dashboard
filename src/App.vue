@@ -3,7 +3,7 @@
     <div class="ui four column grid" id="gcim-app">
       <logo />
       <error v-bind:onError="onError" />
-      <invalidConfig v-bind:onInvalid="onInvalid" />
+      <invalid-config v-bind:onInvalid="onInvalid" />
       <loading v-bind:onLoading="onLoading" />
       <builds v-bind:onBuilds="onBuilds" />
       <p>{{ gitlabUrl }}</p>

@@ -24,7 +24,7 @@
 
 <script>
   export default {
-    name: 'invalidConfig',
+    name: 'invalid-config',
     props: ['onInvalid'],
     data () {
       return {
