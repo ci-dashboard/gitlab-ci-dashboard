@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <div class="ui four column grid">
+    <div class="ui four column grid" id="gcim-app">
       <logo />
       <error v-bind:onError="onError" />
       <invalidConfig v-bind:onInvalid="onInvalid" />
       <loading v-bind:onLoading="onLoading" />
-      <builds v-bind:builds="builds" />
+      <builds v-bind:onBuilds="onBuilds" />
     </div>
   </div>
 </template>
@@ -60,7 +60,7 @@ export default {
   data () {
     return {
       projects: [],
-      builds: [],
+      onBuilds: [],
       token: null,
       gitlab: null,
       repositories: null,
@@ -84,7 +84,6 @@ export default {
     var self = this
     setInterval(() => {
       self.fetchBuilds()
-      console.info('setInterval')
     }, 60000)
   },
   methods: {
@@ -135,10 +134,14 @@ export default {
     fetchProjects: (page) => {
       var self = this
 
+      if (!this.repositories) {
+        return
+      }
+
       this.repositories.forEach((p) => {
         self.onLoading = true
         axios.get('/projects/' + p.nameWithNamespace.replace('/', '%2F'))
-          .then(function (response) {
+          .then((response) => {
             self.onLoading = false
             self.projects.push({project: p, data: response.data})
             self.fetchBuilds()
@@ -148,6 +151,9 @@ export default {
     },
     fetchBuilds: () => {
       var self = this
+      if (!this.projects) {
+        return
+      }
       this.projects.forEach((p) => {
         axios.get('/projects/' + p.data.id + '/repository/branches/' + p.project.branch)
           .then(function (response) {
@@ -162,7 +168,7 @@ export default {
                 }
                 let startedFromNow = moment(build.started_at).fromNow()
 
-                self.builds.forEach((b) => {
+                self.onBuilds.forEach((b) => {
                   if (b.project === p.project.projectName && b.branch === p.project.branch) {
                     updated = true
 
@@ -176,7 +182,7 @@ export default {
                 })
 
                 if (!updated) {
-                  self.builds.push({
+                  self.onBuilds.push({
                     project: p.project.projectName,
                     id: build.id,
                     status: build.status,
