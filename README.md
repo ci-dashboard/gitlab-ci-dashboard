@@ -45,7 +45,7 @@ npm run dev
 npm run build
 
 # run http server to access the monitor
-npm run serer
+npm run server
 
 # build for production and view the bundle analyzer report
 npm run build --report
