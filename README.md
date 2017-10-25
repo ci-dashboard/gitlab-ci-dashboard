@@ -44,6 +44,9 @@ npm run dev
 # build for production with minification
 npm run build
 
+# run http server to access the monitor
+npm run serer
+
 # build for production and view the bundle analyzer report
 npm run build --report
 
