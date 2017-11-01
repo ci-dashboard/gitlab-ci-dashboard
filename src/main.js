@@ -18,6 +18,16 @@ const getParameterByName = (name, url) => {
   return decodeURIComponent(results[2].replace(/\+/g, ' '))
 }
 
+function getProjectByFile (fileUrl, callback) {
+  axios.get(fileUrl)
+  .then((response) => {
+    callback(response.data)
+  })
+  .catch(() => {
+    return []
+  })
+}
+
 const onError = (error) => {
   this.onLoading = false
 
@@ -45,6 +55,8 @@ new Vue({
       onBuilds: [],
       token: null,
       gitlab: null,
+      fileUrl: null,
+      repositoriesParams: [],
       repositories: null,
       onLoading: false,
       onInvalid: false,
@@ -60,55 +72,53 @@ new Vue({
       return
     }
 
-    this.setupDefaults()
-
-    this.fetchProjects()
-
-    setInterval(() => {
-      this.fetchBuilds()
-    }, 60000)
-  },
-  methods: {
-    loadConfig () {
-      this.gitlab = getParameterByName('gitlab')
-      this.token = getParameterByName('token')
-      this.ref = getParameterByName('ref')
-      let repositoriesParams = getParameterByName('projects')
-      if (repositoriesParams == null) {
+    getProjectByFile(this.fileUrl, (repos) => {
+      if (repos == null) {
         return
       }
       const repositories = []
-      const splittedRepos = repositoriesParams.split(',')
-      for (const index in splittedRepos) {
+      for (const index in repos) {
         try {
-          let repository = splittedRepos[index].split('/')
+          const repository = repos[index]
           this.debug += repository
-          var namespace = repository[0].trim()
-          var projectName = repository[1].trim()
-          var nameWithNamespace = namespace + '/' + projectName
-          var branch = 'master'
-          if (repository.length > 2) {
-            branch = repository[2].trim()
-          }
+          const {
+            nameWithNamespace,
+            branch,
+            projectName
+          } = repository
           repositories.push({
-            nameWithNamespace: nameWithNamespace,
-            projectName: projectName,
-            branch: branch
+            nameWithNamespace,
+            projectName,
+            branch: branch || 'master'
           })
         } catch (err) {
           onError.bind(this)({message: 'Wrong format', response: {status: 500}})
         }
       }
       this.repositories = repositories
+
+      this.setupDefaults()
+      this.fetchProjects()
+      setInterval(() => {
+        this.fetchBuilds()
+      }, 60000)
+    })
+  },
+  methods: {
+    loadConfig () {
+      this.gitlab = getParameterByName('gitlab')
+      this.token = getParameterByName('token')
+      this.ref = getParameterByName('ref')
+      this.fileUrl = getParameterByName('fileUrl')
     },
     configValid () {
       let valid = true
       const {
-        repositories,
+        fileUrl,
         token,
         gitlab
       } = this
-      if (repositories == null || token == null || gitlab == null) {
+      if (fileUrl == null || token == null || gitlab == null) {
         valid = false
       }
 

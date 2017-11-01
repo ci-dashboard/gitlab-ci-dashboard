@@ -18,12 +18,25 @@ in the query string:
 
 - **gitlab**: your gitlab server address
 - **token**: your gitlab token
-- **projects**: a list of projects you want to monitor, separated with commas
+- **fileUrl**: a url to file that contains a list of projects you want to monitor, separated with commas
+
+### json file pattern
+
+```
+[
+  {
+    "nameWithNamespace": "native/gitlab-ci-monitor",
+    "projectName": "gitlab-ci-monitor",
+    "branch": "hackday"
+  },
+  (...)
+]
+```
 
 Example:
 
 ```
-http://gitlab-ci-monitor.example.com/?gitlab=gitlab.example.com&token=12345&projects=namespace/project1,namespace/project1/branch,namespace/project2
+http://gitlab-ci-monitor.example.com/?gitlab=gitlab.example.com&token=12345&fileUrl=http://gitlab-ci-monitor.example.com/file.json
 ```
 
 With these parameters, it will try to fetch the list of projects that this

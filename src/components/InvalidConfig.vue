@@ -12,11 +12,22 @@
         <ul>
           <li>gitlab</li>
           <li>token</li>
-          <li>projects</li>
+          <li>fileUrl</li>
         </ul>
+        <p>fileURL json pattern</p>
+        <pre>
+[
+  {
+    "nameWithNamespace": "native/gitlab-ci-monitor",
+    "projectName": "gitlab-ci-monitor",
+    "branch": "hackday"
+  },
+  (...)
+]
+        </pre>
       </div>
       <div class="ui bottom attached warning message">
-        <p>Ex: http://gitlab-ci-monitor.example.com?gitlab=gitlab.example.com&token=some-token&projects=namespace/project1/branch,namespace/project2/branch,namespace/project3/branch</p>
+        <p>Ex: http://gitlab-ci-monitor.example.com?gitlab=gitlab.example.com&token=some-token&fileUrl=http://gitlab-ci-monitor.example.com/file.json</p>
       </div>
     </div>
   </div>
