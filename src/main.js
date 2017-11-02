@@ -64,6 +64,22 @@ new Vue({
       debug: ''
     }
   },
+  computed: {
+    sortedBuilds () {
+      if (this.onBuilds == null) {
+        return []
+      }
+      return this.onBuilds.sort((a, b) => {
+        if (a.id < b.id) {
+          return 1
+        }
+        if (a.id > b.id) {
+          return -1
+        }
+        return 0
+      })
+    }
+  },
   created () {
     this.loadConfig()
 
@@ -217,6 +233,7 @@ new Vue({
   'v-bind:onInvalid="onInvalid" ' +
   'v-bind:onError="onError" ' +
   'v-bind:onBuilds="onBuilds" ' +
+  'v-bind:sortedBuilds="sortedBuilds" ' +
   '/>',
   components: { App }
 })

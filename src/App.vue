@@ -5,7 +5,10 @@
       <error v-bind:onError="onError" />
       <invalid-config v-bind:onInvalid="onInvalid" />
       <loading v-bind:onLoading="onLoading" />
-      <builds v-bind:onBuilds="onBuilds" />
+      <builds
+        v-bind:onBuilds="onBuilds"
+        v-bind:sortedBuilds="sortedBuilds"
+      />
     </div>
   </div>
 </template>
@@ -26,7 +29,7 @@ export default {
     Loading,
     Builds
   },
-  props: ['onLoading', 'onInvalid', 'onError', 'onBuilds'],
+  props: ['onLoading', 'onInvalid', 'onError', 'onBuilds', 'sortedBuilds'],
   data () {
     return {
       projects: []
