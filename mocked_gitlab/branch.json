@@ -1,0 +1,19 @@
+{
+  "name": "hackday",
+  "commit": {
+      "id": "20327e8f4abcb170a42874c8623ab753126f2ebe",
+      "message": "MINERVA\n",
+      "parent_ids": [
+          "24e2fd4c0e3f33cd31f4f9388cdb5db3789eb0b5"
+      ],
+      "authored_date": "2017-10-06T14:40:36.000-03:00",
+      "author_name": "Emiliano Barbosa",
+      "author_email": "emilianoeloi@gmail.com",
+      "committed_date": "2017-10-06T14:40:36.000-03:00",
+      "committer_name": "Emiliano Barbosa",
+      "committer_email": "emilianoeloi@gmail.com"
+  },
+  "protected": false,
+  "developers_can_push": false,
+  "developers_can_merge": false
+}

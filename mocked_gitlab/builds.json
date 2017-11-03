@@ -1,0 +1,46 @@
+[
+    {
+        "id": 60216,
+        "status": "success",
+        "stage": "test",
+        "name": "validateBuild",
+        "ref": "hackday",
+        "tag": false,
+        "coverage": null,
+        "created_at": "2017-10-06T17:41:38.000Z",
+        "started_at": "2017-10-06T17:41:41.000Z",
+        "finished_at": "2017-10-06T17:46:40.000Z",
+        "user": {
+            "name": "Emiliano E. S. Barbosa",
+            "username": "emiliano.barbosa",
+            "id": 280,
+            "state": "active",
+            "avatar_url": "http://www.gravatar.com/avatar/847196b8f25aea693f6332a2e2dec8e3?s=80&d=identicon",
+            "web_url": "http://localhost:8089/u/emiliano.barbosa",
+            "created_at": "2015-04-01T21:30:46.000Z",
+            "is_admin": false,
+            "bio": "",
+            "location": "",
+            "skype": "emiliano_eloi",
+            "linkedin": "emilianoeloi",
+            "twitter": "@emilianoeloi",
+            "website_url": "http://emiliano.bocamuchas.org/"
+        },
+        "commit": {
+            "id": "20327e8f4abcb170a42874c8623ab753126f2ebe",
+            "short_id": "20327e8f",
+            "title": "MINERVA",
+            "author_name": "Emiliano Barbosa",
+            "author_email": "emilianoeloi@gmail.com",
+            "created_at": "2017-10-06T14:40:36.000-03:00",
+            "message": "MINERVA\n"
+        },
+        "runner": {
+            "id": 74,
+            "description": "Native",
+            "active": true,
+            "is_shared": false,
+            "name": "gitlab-ci-multi-runner"
+        }
+    }
+]
