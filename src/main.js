@@ -122,7 +122,7 @@ new Vue({
       this.fetchProjects()
       setInterval(() => {
         this.fetchProjects()
-      }, 60000)
+      }, 5000)
       this.handlerStatus()
     })
   },
@@ -243,6 +243,7 @@ new Vue({
                     this.addStatusQueue(build.status, INCREASE_ACTION)
                   }
                   b.status = build.status
+                  b.lastStatus = b.status
 
                   b.id = build.id
                   b.started_at = startedFromNow

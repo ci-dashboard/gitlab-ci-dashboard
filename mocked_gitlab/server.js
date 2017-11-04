@@ -12,11 +12,19 @@ const counter = {
   projects: 0,
   branchs: 0,
   builds: 0,
-  running: 1,
-  failed: 1,
-  pending: 1,
-  canceled: 1
+  running: 0,
+  failed: 0,
+  pending: 0,
+  canceled: 0
 }
+
+const statusList = [
+  'canceled',
+  'failed',
+  'pending',
+  'running',
+  'success'
+]
 
 const app = express()
 app.use((req, res, next) => {
@@ -65,6 +73,25 @@ app.get('/api/v3/projects/:param1/repository/branches/:param2', (req, res, next)
   }
 })
 
+const statePersistence = {
+  running: 0,
+  failed: 0,
+  pending: 0,
+  canceled: 0
+}
+const stateMachine = (build, projectId, status, div) => {
+  if (build.project_id === projectId) {
+    counter[status]++
+    if (counter[status] % div === 0) {
+      statePersistence[status] = statusList.indexOf(status)
+      build.status = status
+    } else {
+      const index = statePersistence[status]++
+      build.status = statusList[index >= 4 ? 4 : index]
+    }
+  }
+}
+
 // https://(...)/api/v3/projects/5060/repository/commits/20327e8f4abcb170a42874c8623ab753126f2ebe/builds
 app.get('/api/v3/projects/:param1/repository/commits/:param2/builds', (req, res, next) => {
   counter.builds++
@@ -79,38 +106,10 @@ app.get('/api/v3/projects/:param1/repository/commits/:param2/builds', (req, res,
     )
   })
   if (build && build.length > 0) {
-    if (build[0].project_id === '8') {
-      counter.running++
-      if (counter.running % 2 === 0) {
-        build[0].status = 'running'
-      } else {
-        build[0].status = 'success'
-      }
-    }
-    if (build[0].project_id === '3') {
-      counter.failed++
-      if (counter.failed % 3 === 0) {
-        build[0].status = 'failed'
-      } else {
-        build[0].status = 'success'
-      }
-    }
-    if (build[0].project_id === '10') {
-      counter.canceled++
-      if (counter.canceled % 15 === 0) {
-        build[0].status = 'canceled'
-      } else {
-        build[0].status = 'success'
-      }
-    }
-    if (build[0].project_id === '1') {
-      counter.pending++
-      if (counter.pending % 15 === 0) {
-        build[0].status = 'pending'
-      } else {
-        build[0].status = 'success'
-      }
-    }
+    stateMachine(build[0], '8', 'running', 5)
+    stateMachine(build[0], '3', 'failed', 10)
+    stateMachine(build[0], '10', 'canceled', 15)
+    stateMachine(build[0], '1', 'pending', 18)
     res.json(build)
   } else {
     res.sendStatus(404)
