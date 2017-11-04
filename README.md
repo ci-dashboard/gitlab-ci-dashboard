@@ -1,7 +1,6 @@
 # GitLab CI Monitor
 
 A simple dashboard for monitoring [GitLab CI][gitlab-ci] builds.
-**Alpha version**.
 
 [gitlab-ci]: https://about.gitlab.com/gitlab-ci/
 
@@ -59,6 +58,9 @@ npm run build
 
 # run http server to access the monitor
 npm run server
+
+# run http server to access mocked gitlab-ci api
+npm run gitlab-mocked-server
 
 # build for production and view the bundle analyzer report
 npm run build --report
