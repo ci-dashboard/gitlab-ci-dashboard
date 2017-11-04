@@ -63,5 +63,95 @@
     "authorName": "勾三股四",
     "authorEmail": "zhaojinjiang@me.com",
     "username": "Jinjiang"
+  },
+  {
+    "projectId": "4",
+    "projectName": "vue",
+    "projectDescription": "A progressive, incrementally-adoptable JavaScript framework for building UI on the web.",
+    "namespaceName": "vuejs",
+    "branchName": "dev",
+    "commitId": "2acc12c9edb03329c4d9cddcca26e46c672a77bc",
+    "commitMessage": "build: release 2.5.3\n",
+    "authorName": "Evan You",
+    "username": "yyx990803"
+  },
+  {
+    "projectId": "5",
+    "projectName": "cdnjs",
+    "projectDescription": "Open Source Web front-end resource CDN for free, managed by @PeterDaveHello",
+    "namespaceName": "froala",
+    "branchName": "master",
+    "commitId": "f3ad4d4cc8e648c9b63f7d1095929f2ce24ae76c",
+    "commitMessage": "Add handlebars.js v4.0.11\n",
+    "authorName": "Bot of PeterDaveHello",
+    "username": "PeterBot"
+  },
+  {
+    "projectId": "6",
+    "projectName": "tensorflow",
+    "projectDescription": "Computation using data flow graphs for scalable machine learning ",
+    "namespaceName": "tensorflow",
+    "branchName": "master",
+    "commitId": "318e071f7cb9fd51ddf0dda1e285e140167b4b56",
+    "commitMessage": "Disable flaky prefetching_ops_test\n",
+    "authorName": "gunan"
+  },
+  {
+    "projectId": "7",
+    "projectName": "infrastructure-puppet",
+    "projectDescription": "Apache Infrastructure Puppet",
+    "namespaceName": "apache",
+    "branchName": "deployment",
+    "commitId": "92ca7faf7f8a4992116260e872fb6c078ffd53e7",
+    "commitMessage": "Merge pull request #543 from apache/gm/bval-svn\n",
+    "authorName": "Daniel Gruno",
+    "username": "Humbedooh"
+  },
+  {
+    "projectId": "8",
+    "projectName": "shadowsocks-libev",
+    "projectDescription": "libev port of shadowsocks",
+    "namespaceName": "shadowsocks",
+    "branchName": "master",
+    "commitId": "87e4119c96547bd765401a4c419f180fdf0c10c0",
+    "commitMessage": "Merge pull request #1772 from rogers0/PR/artful\n",
+    "authorName": "Max Lv",
+    "authorEmail": "max.c.lv@gmail.com",
+    "username": "madeye"
+  },
+  {
+    "projectId": "9",
+    "projectName": "tsuru",
+    "projectDescription": "Open source, extensible and Docker-based Platform as a Service (PaaS).",
+    "namespaceName": "tsuru",
+    "branchName": "master",
+    "commitId": "89a402145842b6f1a7a6c1d071cfe6bb0133a267",
+    "commitMessage": "provision/swarm: handle UpdateStatus nil on DeployService\n",
+    "authorName": "André Carvalho",
+    "authorEmail": "asantostc@gmail.com",
+    "username": "andrestc"
+  },
+  {
+    "projectId": "10",
+    "projectName": "thumbor",
+    "projectDescription": "thumbor is an open-source photo thumbnail service by globo.com",
+    "namespaceName": "thumbor",
+    "branchName": "master",
+    "commitId": "2f1529604a0f5b2d6d87132b5616841842313215",
+    "commitMessage": "Looks like skipped test is fixed now; uncommenting\n",
+    "authorName": "Konstantin Kopachev",
+    "username": "kkopachev"
+  },
+  {
+    "projectId": "11",
+    "projectName": "GloboDNS",
+    "projectDescription": "Api to manage Bind Name Server",
+    "namespaceName": "globocom",
+    "branchName": "master",
+    "commitId": "3f106df37f6887040be3fd5c64e56df15fb4821a",
+    "commitMessage": "update setup doc\n",
+    "authorName": "Luis Henrique Okama",
+    "authorEmail": "lokama@gmail.com",
+    "username": "lokama"
   }
 ]
