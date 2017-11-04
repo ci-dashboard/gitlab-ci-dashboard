@@ -46,6 +46,9 @@ const onError = (error) => {
   }
 }
 
+const INCREASE_ACTION = 'increase'
+const DECREASE_ACTION = 'decrease'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -53,6 +56,7 @@ new Vue({
     return {
       projects: [],
       onBuilds: [],
+      statusQueue: [],
       status: [],
       token: null,
       gitlab: null,
@@ -117,8 +121,9 @@ new Vue({
       this.setupDefaults()
       this.fetchProjects()
       setInterval(() => {
-        this.fetchBuilds()
-      }, 60000)
+        this.fetchProjects()
+      }, 5000)
+      this.handlerStatus()
     })
   },
   methods: {
@@ -151,89 +156,118 @@ new Vue({
     },
     fetchProjects (page) {
       const {
-        repositories,
-        projects
+        repositories
       } = this
       if (!repositories) {
         return
       }
 
-      repositories.forEach((p) => {
+      repositories.forEach((repo) => {
         this.onLoading = true
-        axios.get('/projects/' + p.nameWithNamespace.replace('/', '%2F'))
+        axios.get('/projects/' + repo.nameWithNamespace.replace('/', '%2F'))
           .then((response) => {
             this.onLoading = false
-            projects.push({project: p, data: response.data})
-            this.fetchBuilds()
+            this.fetchBuilds({repo, project: response.data})
           })
           .catch(onError.bind(this))
       })
     },
-    accStatus (selected) {
-      const acc = this.status.filter((s) => {
-        return s.text === selected
+    addStatusQueue (status, action) {
+      this.statusQueue.push({
+        status,
+        action
       })
-      if (acc && acc.length > 0) {
-        acc[0].total++
-      } else {
+    },
+    handlerStatus (statusItem) {
+      if (statusItem) {
+        this.updateStatus(statusItem)
+      }
+      setTimeout(() => {
+        this.handlerStatus(this.statusQueue.shift())
+      }, 500)
+    },
+    updateStatus (statusItem) {
+      const s = this.status.filter((s) => {
+        return statusItem.status === s.text
+      })
+      if (s.length === 0) {
         this.status.push({
-          text: selected,
+          text: statusItem.status,
           total: 1
         })
-      }
-    },
-    fetchBuilds () {
-      const {
-        projects,
-        onBuilds
-      } = this
-      if (!projects) {
         return
       }
-      projects.forEach((p) => {
-        axios.get('/projects/' + p.data.id + '/repository/branches/' + p.project.branch)
-          .then((response) => {
-            const lastCommit = response.data.commit.id
-            axios.get('/projects/' + p.data.id + '/repository/commits/' + lastCommit + '/builds')
-              .then((response) => {
-                let updated = false
+      const selectedItem = s[0]
+      if (statusItem.action === INCREASE_ACTION) {
+        selectedItem.total++
+      } else if (statusItem.action === DECREASE_ACTION) {
+        selectedItem.total--
+      }
+      if (selectedItem.total === 0) {
+        this.status = this.status.filter(r => r.text !== selectedItem.text)
+      }
+    },
+    fetchBuilds (selectedProjects) {
+      const {
+        onBuilds
+      } = this
+      if (!selectedProjects) {
+        return
+      }
+      const {
+        repo,
+        project
+      } = selectedProjects
+      axios.get('/projects/' + project.id + '/repository/branches/' + repo.branch)
+        .then((response) => {
+          const lastCommit = response.data.commit.id
+          axios.get('/projects/' + project.id + '/repository/commits/' + lastCommit + '/builds')
+            .then((response) => {
+              let updated = false
 
-                let build = this.filterLastBuild(response.data)
-                if (!build) {
-                  return
-                }
-                let startedFromNow = moment(build.started_at).fromNow()
+              let build = this.filterLastBuild(response.data)
+              if (!build) {
+                return
+              }
+              let startedFromNow = moment(build.started_at).fromNow()
 
-                onBuilds.forEach((b) => {
-                  if (b.project === p.project.projectName && b.branch === p.project.branch) {
-                    updated = true
+              onBuilds.forEach((b) => {
+                if (
+                  b.project === repo.projectName &&
+                  b.branch === repo.branch
+                ) {
+                  updated = true
 
-                    b.id = build.id
-                    b.status = build.status
-                    b.started_at = startedFromNow
-                    b.author = build.commit.author_name
-                    b.project_path = p.data.path_with_namespace
-                    b.branch = p.project.branch
+                  if (b.status !== build.status) {
+                    this.addStatusQueue(b.status, DECREASE_ACTION)
+                    this.addStatusQueue(build.status, INCREASE_ACTION)
                   }
-                })
+                  b.status = build.status
 
-                if (!updated) {
-                  this.accStatus(build.status)
-                  onBuilds.push({
-                    project: p.project.projectName,
-                    id: build.id,
-                    status: build.status,
-                    started_at: startedFromNow,
-                    author: build.commit.author_name,
-                    project_path: p.data.path_with_namespace,
-                    branch: p.project.branch
-                  })
+                  b.id = build.id
+                  b.started_at = startedFromNow
+                  b.author = build.commit.author_name
+                  b.project_path = project.path_with_namespace
+                  b.branch = repo.branch
                 }
               })
-              .catch(onError.bind(this))
-          })
-          .catch(onError.bind(this))
-      })
+
+              if (!updated) {
+                this.addStatusQueue(build.status, INCREASE_ACTION)
+                onBuilds.push({
+                  project: repo.projectName,
+                  id: build.id,
+                  status: build.status,
+                  started_at: startedFromNow,
+                  author: build.commit.author_name,
+                  project_path: project.path_with_namespace,
+                  branch: repo.branch
+                })
+              }
+            })
+            .catch(onError.bind(this))
+        })
+        .catch(onError.bind(this))
     },
     filterLastBuild (builds) {
       if (!Array.isArray(builds) || builds.length === 0) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="sixteen wide column centered" style="margin-top: 1.1em; margin-bottom: 1.1em">
+  <div id="summary-id" class="sixteen wide column centered" style="margin-top: 1.1em; margin-bottom: 1.1em">
     <div class="ui message">
       <ul class="ui red stackable menu">
         <li class="item">
@@ -19,7 +19,13 @@
     props: ['status'],
     data () {
       return {
-        messsage: 'Nothing'
+        statusColors: {
+          'success': '#00AD68',
+          'failed': '#E7484D',
+          'pending': '#e75e40',
+          'running': '#2d9fd8',
+          'canceled': '#aaaaaa'
+        }
       }
     }
   }
