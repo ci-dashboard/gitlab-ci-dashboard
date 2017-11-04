@@ -53,6 +53,7 @@ new Vue({
     return {
       projects: [],
       onBuilds: [],
+      status: [],
       token: null,
       gitlab: null,
       fileUrl: null,
@@ -168,6 +169,19 @@ new Vue({
           .catch(onError.bind(this))
       })
     },
+    accStatus (selected) {
+      const acc = this.status.filter((s) => {
+        return s.text === selected
+      })
+      if (acc && acc.length > 0) {
+        acc[0].total++
+      } else {
+        this.status.push({
+          text: selected,
+          total: 1
+        })
+      }
+    },
     fetchBuilds () {
       const {
         projects,
@@ -204,6 +218,7 @@ new Vue({
                 })
 
                 if (!updated) {
+                  this.accStatus(build.status)
                   onBuilds.push({
                     project: p.project.projectName,
                     id: build.id,
@@ -234,6 +249,7 @@ new Vue({
   'v-bind:onError="onError" ' +
   'v-bind:onBuilds="onBuilds" ' +
   'v-bind:sortedBuilds="sortedBuilds" ' +
+  'v-bind:status="status" ' +
   '/>',
   components: { App }
 })

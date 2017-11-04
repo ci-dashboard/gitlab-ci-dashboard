@@ -1,20 +1,19 @@
 <template>
   <div id="app">
     <div class="ui four column grid" id="gcim-app">
-      <logo />
       <error v-bind:onError="onError" />
       <invalid-config v-bind:onInvalid="onInvalid" />
       <loading v-bind:onLoading="onLoading" />
       <builds
         v-bind:onBuilds="onBuilds"
         v-bind:sortedBuilds="sortedBuilds"
+        v-bind:status="status"
       />
     </div>
   </div>
 </template>
 
 <script>
-import Logo from './components/Logo'
 import Error from './components/Error'
 import InvalidConfig from './components/InvalidConfig'
 import Loading from './components/Loading'
@@ -23,13 +22,12 @@ import Builds from './components/Builds'
 export default {
   name: 'app',
   components: {
-    Logo,
     Error,
     InvalidConfig,
     Loading,
     Builds
   },
-  props: ['onLoading', 'onInvalid', 'onError', 'onBuilds', 'sortedBuilds'],
+  props: ['onLoading', 'onInvalid', 'onError', 'onBuilds', 'sortedBuilds', 'status'],
   data () {
     return {
       projects: []

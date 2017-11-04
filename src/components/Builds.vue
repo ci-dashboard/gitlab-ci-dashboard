@@ -1,5 +1,6 @@
 <template>
   <div class="row builds" id="gcim-builds">
+    <Summary v-bind:status="status" />
     <div class="sixteen wide column">
       <div class="ui stackable cards">
         <div v-for="build in sortedBuilds" v-bind:key="build.id" v-bind:class="statusClass(build)">
@@ -30,9 +31,14 @@
 </template>
 
 <script>
+  import Summary from './Summary'
+
   export default {
     name: 'builds',
-    props: ['onBuilds', 'sortedBuilds'],
+    components: {
+      Summary
+    },
+    props: ['onBuilds', 'sortedBuilds', 'status'],
     data () {
       return {
         gitlab: ''

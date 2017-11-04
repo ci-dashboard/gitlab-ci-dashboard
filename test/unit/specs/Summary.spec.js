@@ -1,15 +1,15 @@
 import Vue from 'vue'
-import Loading from '@/components/Loading'
+import Summary from '@/components/Summary'
 
-describe('Loading.vue', () => {
+describe('Summary.vue', () => {
   it('has a data hook', () => {
-    const type = typeof Loading.data
+    const type = typeof Summary.data
     expect(type).to.equal('function')
   })
   it('should render correct contents', () => {
-    const Constructor = Vue.extend(Loading)
+    const Constructor = Vue.extend(Summary)
     const vm = new Constructor().$mount()
-    expect(vm.$el.querySelector('.loader').textContent)
+    expect(vm.$el.querySelector('.summary').textContent)
       .to.equal('')
   })
 })
