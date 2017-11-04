@@ -1,0 +1,32 @@
+[
+  {
+    "projectId": "5060",
+    "projectName": "gitlab-ci-monitor",
+    "projectDescription": "A simple dashboard for monitoring GitLab CI builds. Alpha version.",
+    "sslUrl": "gitlab@localhost:8089:native/gitlab-ci-monitor.git",
+    "httpUrl": "http://localhost:8089/native/gitlab-ci-monitor.git",
+    "webUrl": "http://localhost:8089/native/gitlab-ci-monitor",
+    "namespaceName": "native",
+    "namespaceAvatar": "/uploads/group/avatar/519/photo_2016-05-03_11-30-25.jpg",
+    "branchName": "hackday",
+    "commitId": "20327e8f4abcb170a42874c8623ab753126f2ebe",
+    "commitMessage": "MINERVA\n",
+    "commitParentId": "24e2fd4c0e3f33cd31f4f9388cdb5db3789eb0b5",
+    "authorName": "Emiliano Barbosa",
+    "authorEmail": "emilianoeloi@gmail.com",
+    "username": "emilianoeloi"
+  },
+  {
+    "projectId": "0",
+    "projectName": "vscode",
+    "projectDescription": "Visual Studio Code",
+    "namespaceName": "Microsoft",
+    "branchName": "master",
+    "commitId": "098bb776d2e5fdf3cc9ea27a233754acf4309857",
+    "commitMessage": "Update distro hash\n",
+    "commitParentId": "af6b8302fae66a2898ac8180c98221892d6c765f",
+    "authorName": "Ramya Rao",
+    "authorEmail": "ramyar@microsoft.com",
+    "username": "ramya-rao-a"
+  }
+]

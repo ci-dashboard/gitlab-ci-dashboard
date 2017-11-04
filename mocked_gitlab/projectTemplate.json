@@ -1,0 +1,55 @@
+{
+    "id": 5060,
+    "description": "PROJECT_DESCRIPTION",
+    "default_branch": "master",
+    "tag_list": [],
+    "public": false,
+    "archived": false,
+    "visibility_level": 10,
+    "ssh_url_to_repo": "SSL_URL",
+    "http_url_to_repo": "HTTP_URL",
+    "web_url": "WEB_URL",
+    "name": "PROJECT_NAME",
+    "name_with_namespace": "NAMESPACE_NAME / PROJECT_NAME",
+    "path": "PROJECT_NAME",
+    "path_with_namespace": "NAMESPACE_NAME/PROJECT_NAME",
+    "issues_enabled": true,
+    "merge_requests_enabled": true,
+    "wiki_enabled": true,
+    "builds_enabled": true,
+    "snippets_enabled": false,
+    "container_registry_enabled": true,
+    "created_at": "2017-10-05T16:34:28.000Z",
+    "last_activity_at": "2017-10-06T17:41:38.000Z",
+    "shared_runners_enabled": true,
+    "creator_id": 280,
+    "namespace": {
+        "id": 519,
+        "name": "NAMESPACE_NAME",
+        "path": "NAMESPACE_NAME",
+        "owner_id": null,
+        "created_at": "2016-01-26T17:33:52.000Z",
+        "updated_at": "2016-05-03T14:30:53.000Z",
+        "description": "NAMESPACE_DESCRIPTION",
+        "avatar": {
+            "url": "NAMESPACE_AVATAR"
+        },
+        "share_with_group_lock": false,
+        "visibility_level": 20,
+        "request_access_enabled": true
+    },
+    "avatar_url": null,
+    "star_count": 0,
+    "forks_count": 0,
+    "open_issues_count": 0,
+    "runners_token": "nR1FyZo2JUx7nzF_bHsw",
+    "public_builds": true,
+    "shared_with_groups": [],
+    "permissions": {
+        "project_access": null,
+        "group_access": {
+            "access_level": 50,
+            "notification_level": 3
+        }
+    }
+}

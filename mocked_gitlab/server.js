@@ -1,9 +1,12 @@
 var express = require('express')
 
 // mocked jsons
-var projects = require('./projects.json')
-var branchs = require('./branchs.json')
-var builds = require('./builds.json')
+var data = require('./data')
+const {
+  projects,
+  branchs,
+  builds
+} = data
 
 const app = express()
 app.use((req, res, next) => {

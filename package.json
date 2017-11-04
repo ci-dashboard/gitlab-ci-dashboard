@@ -12,7 +12,8 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "server": "http-server ./dist"
+    "server": "http-server ./dist",
+    "gitlab-mocked-server": "node mocked_gitlab/server.js"
   },
   "dependencies": {
     "axios": "^0.16.2",
