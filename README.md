@@ -75,6 +75,19 @@ npm run e2e
 npm test
 ```
 
+## How to develop
+
+```bash
+# run dev
+npm run dev
+
+# run gitlab-ci mock server
+npm run gitlab-mocked-server
+
+# open on browser
+http://localhost:8080/?gitlab=localhost:8089&token=_&fileUrl=http://localhost:8080/static/file.json
+
+``` 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ## License
