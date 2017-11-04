@@ -3,5 +3,15 @@
     "nameWithNamespace": "native/gitlab-ci-monitor",
     "projectName": "gitlab-ci-monitor",
     "branch": "hackday"
+  },
+  {
+    "nameWithNamespace": "Microsoft/vscode",
+    "projectName": "vscode",
+    "branch": "master"
+  },
+  {
+    "nameWithNamespace": "facebook/buck",
+    "projectName": "buck",
+    "branch": "master"
   }
 ]
