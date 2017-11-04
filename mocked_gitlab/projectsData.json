@@ -28,5 +28,40 @@
     "authorName": "Ramya Rao",
     "authorEmail": "ramyar@microsoft.com",
     "username": "ramya-rao-a"
+  },
+  {
+    "projectId": "1",
+    "projectName": "react",
+    "projectDescription": "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
+    "namespaceName": "facebook",
+    "branchName": "master",
+    "commitId": "028691b43d74d009c394cde16072d2b468dd88ef",
+    "commitMessage": "Update changelog\n",
+    "commitParentId": "8de8be07a89f55ebfcaaccf1499e03f22d90bad5",
+    "authorName": "Dan Abramov",
+    "authorEmail": "dan.abramov@me.com",
+    "username": "gaearon"
+  },
+  {
+    "projectId": "2",
+    "projectName": "breakpad",
+    "projectDescription": "Mirror of Google Breakpad project",
+    "namespaceName": "google",
+    "branchName": "master",
+    "commitId": "8e9080bc533e6fe8602629ede8a2d866a1f7f1eb",
+    "commitMessage": "Create LongStringDictionary and replace SimpleStringDictionary on iOS\n",
+    "authorName": "Yi Wang"
+  },
+  {
+    "projectId": "3",
+    "projectName": "weex",
+    "projectDescription": "A framework for building Mobile cross-platform UI",
+    "namespaceName": "alibaba",
+    "branchName": "deprecated",
+    "commitId": "e7106613ce0f4b430d7fa5aaf4a43a77e20ade84",
+    "commitMessage": "Update PULL_REQUEST_TEMPLATE.md\n",
+    "authorName": "勾三股四",
+    "authorEmail": "zhaojinjiang@me.com",
+    "username": "Jinjiang"
   }
 ]

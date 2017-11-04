@@ -10,8 +10,18 @@
     "branch": "master"
   },
   {
-    "nameWithNamespace": "facebook/buck",
-    "projectName": "buck",
+    "nameWithNamespace": "facebook/react",
+    "projectName": "react",
     "branch": "master"
+  },
+  {
+    "nameWithNamespace": "google/breakpad",
+    "projectName": "breakpad",
+    "branch": "master"
+  },
+  {
+    "nameWithNamespace": "alibaba/weex",
+    "projectName": "weex",
+    "branch": "deprecated"
   }
 ]
