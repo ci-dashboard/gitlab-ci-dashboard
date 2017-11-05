@@ -17,9 +17,10 @@ in the query string:
 
 - **gitlab**: your gitlab server address
 - **token**: your gitlab token
-- **fileUrl**: a url to file that contains a list of projects you want to monitor, separated with commas
+- **projectsFile**: a url to file that contains a list of projects you want to monitor, see below how to create it
+- **gitlabciProtocol** (optional): protocol to access gitlabci api.  default: https
 
-### json file pattern
+### json projectsFile pattern
 
 ```
 [
