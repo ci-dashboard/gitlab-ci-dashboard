@@ -88,7 +88,13 @@ npm run gitlab-mocked-server
 http://localhost:8080/?gitlab=localhost:8089&token=_&fileUrl=http://localhost:8080/static/file.json
 
 ``` 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Using 
+
+***VueJS:*** For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+***Animista:*** ANIMISTA IS A PLACE WHERE YOU CAN PLAY WITH A COLLECTION OF PRE-MADE CSS ANIMATIONS, TWEAK THEM AND GET ONLY THOSE YOU WILL ACTUALLY USE.
+[Play](http://animista.net/about)
 
 ## License
 

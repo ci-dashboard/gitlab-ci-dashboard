@@ -56,6 +56,7 @@ new Vue({
     return {
       projects: [],
       onBuilds: [],
+      nonSuccessBuilds: [],
       statusQueue: [],
       status: [],
       token: null,
@@ -74,7 +75,7 @@ new Vue({
       if (this.onBuilds == null) {
         return []
       }
-      return this.onBuilds.sort((a, b) => {
+      const sorted = this.onBuilds.sort((a, b) => {
         if (a.id < b.id) {
           return 1
         }
@@ -82,6 +83,9 @@ new Vue({
           return -1
         }
         return 0
+      })
+      return sorted.filter((s) => {
+        return s.status !== 'success'
       })
     }
   },
@@ -242,8 +246,8 @@ new Vue({
                     this.addStatusQueue(b.status, DECREASE_ACTION)
                     this.addStatusQueue(build.status, INCREASE_ACTION)
                   }
-                  b.status = build.status
                   b.lastStatus = b.status
+                  b.status = build.status
 
                   b.id = build.id
                   b.started_at = startedFromNow
@@ -255,15 +259,17 @@ new Vue({
 
               if (!updated) {
                 this.addStatusQueue(build.status, INCREASE_ACTION)
-                onBuilds.push({
+                const buildToAdd = {
                   project: repo.projectName,
                   id: build.id,
                   status: build.status,
+                  lastStatus: '',
                   started_at: startedFromNow,
                   author: build.commit.author_name,
                   project_path: project.path_with_namespace,
                   branch: repo.branch
-                })
+                }
+                onBuilds.push(buildToAdd)
               }
             })
             .catch(onError.bind(this))

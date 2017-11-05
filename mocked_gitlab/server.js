@@ -106,10 +106,10 @@ app.get('/api/v3/projects/:param1/repository/commits/:param2/builds', (req, res,
     )
   })
   if (build && build.length > 0) {
-    stateMachine(build[0], '8', 'running', 5)
-    stateMachine(build[0], '3', 'failed', 10)
-    stateMachine(build[0], '10', 'canceled', 15)
-    stateMachine(build[0], '1', 'pending', 18)
+    stateMachine(build[0], '8', 'running', 15)
+    stateMachine(build[0], '3', 'failed', 3)
+    stateMachine(build[0], '10', 'canceled', 5)
+    stateMachine(build[0], '1', 'pending', 10)
     res.json(build)
   } else {
     res.sendStatus(404)
