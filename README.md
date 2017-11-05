@@ -18,7 +18,8 @@ in the query string:
 - **gitlab**: your gitlab server address
 - **token**: your gitlab token
 - **projectsFile**: a url to file that contains a list of projects you want to monitor, see below how to create it
-- **gitlabciProtocol** (optional): protocol to access gitlabci api.  default: https
+- **gitlabciProtocol** (optional): protocol to access gitlabci api. Default: https
+- **hideSuccessCards** (optional): hide cards when change to success status. Default: true
 
 ### json projectsFile pattern
 
@@ -86,7 +87,7 @@ npm run dev
 npm run gitlab-mocked-server
 
 # open on browser
-http://localhost:8080/?gitlab=localhost:8089&token=_&fileUrl=http://localhost:8080/static/file.json
+http://localhost:8080/?gitlab=localhost:8089&token=_&projectsFile=http://localhost:8080/static/file.json&gitlabciProtocol=http
 
 ``` 
 

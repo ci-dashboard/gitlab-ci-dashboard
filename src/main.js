@@ -63,6 +63,7 @@ new Vue({
       gitlab: null,
       projectsFile: null,
       gitlabciProtocol: 'https',
+      hideSuccessCards: true,
       repositoriesParams: [],
       repositories: null,
       onLoading: false,
@@ -85,9 +86,12 @@ new Vue({
         }
         return 0
       })
-      return sorted.filter((s) => {
-        return s.status !== 'success'
-      })
+      if (this.hideSuccessCards === true || this.hideSuccessCards === 'true') {
+        return sorted.filter((s) => {
+          return s.status !== 'success'
+        })
+      }
+      return sorted
     }
   },
   created () {
@@ -138,6 +142,7 @@ new Vue({
       this.ref = getParameterByName('ref')
       this.projectsFile = getParameterByName('projectsFile')
       this.gitlabciProtocol = getParameterByName('gitlabciProtocol') || 'https'
+      this.hideSuccessCards = getParameterByName('hideSuccessCards') || true
     },
     configValid () {
       let valid = true
@@ -293,6 +298,7 @@ new Vue({
   'v-bind:onBuilds="onBuilds" ' +
   'v-bind:sortedBuilds="sortedBuilds" ' +
   'v-bind:status="status" ' +
+  'v-bind:hideSuccessCards="hideSuccessCards"' +
   '/>',
   components: { App }
 })

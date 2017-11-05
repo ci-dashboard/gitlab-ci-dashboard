@@ -36,7 +36,7 @@
 <script>
   export default {
     name: 'builds',
-    props: ['onBuilds', 'sortedBuilds'],
+    props: ['onBuilds', 'sortedBuilds', 'hideSuccessCards'],
     data () {
       return {
         gitlab: ''
@@ -47,6 +47,9 @@
         return `card ${build.status} ${this.positionClass(build)}`
       },
       positionClass ({ lastStatus, status }) {
+        if (!this.hideSuccessCards) {
+          return ''
+        }
         return status === 'success' ? 'bounce-out-top' : 'bounce-in-top'
       }
     }
