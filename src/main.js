@@ -155,7 +155,7 @@ new Vue({
         gitlab,
         token
       } = this
-      axios.defaults.baseURL = 'http://' + gitlab + '/api/v3'
+      axios.defaults.baseURL = 'https://' + gitlab + '/api/v3'
       axios.defaults.headers.common['PRIVATE-TOKEN'] = token
     },
     fetchProjects (page) {
