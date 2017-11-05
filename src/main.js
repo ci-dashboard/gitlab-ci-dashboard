@@ -61,7 +61,8 @@ new Vue({
       status: [],
       token: null,
       gitlab: null,
-      fileUrl: null,
+      projectsFile: null,
+      gitlabciProtocol: 'https',
       repositoriesParams: [],
       repositories: null,
       onLoading: false,
@@ -97,7 +98,7 @@ new Vue({
       return
     }
 
-    getProjectByFile(this.fileUrl, (repos) => {
+    getProjectByFile(this.projectsFile, (repos) => {
       if (repos == null) {
         return
       }
@@ -135,16 +136,17 @@ new Vue({
       this.gitlab = getParameterByName('gitlab')
       this.token = getParameterByName('token')
       this.ref = getParameterByName('ref')
-      this.fileUrl = getParameterByName('fileUrl')
+      this.projectsFile = getParameterByName('projectsFile')
+      this.gitlabciProtocol = getParameterByName('gitlabciProtocol') || 'https'
     },
     configValid () {
       let valid = true
       const {
-        fileUrl,
+        projectsFile,
         token,
         gitlab
       } = this
-      if (fileUrl == null || token == null || gitlab == null) {
+      if (projectsFile == null || token == null || gitlab == null) {
         valid = false
       }
 
@@ -155,7 +157,7 @@ new Vue({
         gitlab,
         token
       } = this
-      axios.defaults.baseURL = 'https://' + gitlab + '/api/v3'
+      axios.defaults.baseURL = `${this.gitlabciProtocol}://${gitlab}/api/v3`
       axios.defaults.headers.common['PRIVATE-TOKEN'] = token
     },
     fetchProjects (page) {

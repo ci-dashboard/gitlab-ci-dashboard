@@ -12,9 +12,10 @@
         <ul>
           <li>gitlab</li>
           <li>token</li>
-          <li>fileUrl</li>
+          <li>projectsFile</li>
+          <li>gitlabciProtocol (optional)</li>
         </ul>
-        <p>fileURL json pattern</p>
+        <p>projectsFile json pattern</p>
         <pre>
 [
   {
@@ -27,7 +28,7 @@
         </pre>
       </div>
       <div class="ui bottom attached warning message">
-        <p>Ex: http://gitlab-ci-monitor.example.com?gitlab=gitlab.example.com&token=some-token&fileUrl=http://gitlab-ci-monitor.example.com/file.json</p>
+        <p>Ex: http://gitlab-ci-monitor.example.com?gitlab=gitlab.example.com&token=some-token&projectsFile=http://gitlab-ci-monitor.example.com/file.json&gitlabciProtocol=http</p>
       </div>
     </div>
   </div>
