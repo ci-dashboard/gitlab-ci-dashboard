@@ -7,7 +7,7 @@ A simple dashboard for monitoring [GitLab CI][gitlab-ci] builds.
 
 ![Example][example]
 
-[example]: gitlab-ci-monitor-example.gif
+[example]: gitlab-ci-monitor-example-3.1.gif
 
 
 ## Usage
