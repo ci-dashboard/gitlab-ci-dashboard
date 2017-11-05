@@ -36,7 +36,7 @@ in the query string:
 Example:
 
 ```
-http://gitlab-ci-monitor.example.com/?gitlab=gitlab.example.com&token=12345&fileUrl=http://gitlab-ci-monitor.example.com/file.json
+http://gitlab-ci-monitor.example.com/?gitlab=gitlab.example.com&token=12345&projectsFile=http://gitlab-ci-monitor.example.com/file.json
 ```
 
 With these parameters, it will try to fetch the list of projects that this
