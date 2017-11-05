@@ -28,24 +28,6 @@ function getProjectByFile (fileUrl, callback) {
   })
 }
 
-const onError = (error) => {
-  this.onLoading = false
-
-  this.onError = {message: 'Something went wrong. Make sure the configuration is ok and your Gitlab is up and running.'}
-
-  if (error.message === 'Wrong format') {
-    this.onError = { message: 'Wrong projects format! Try: \'namespace/project\' or \'namespace/project/branch\'' }
-  }
-
-  if (error.message === 'Network Error') {
-    this.onError = { message: 'Network Error. Please check the Gitlab domain.' }
-  }
-
-  if (error.response && error.response.status === 401) {
-    this.onError = { message: 'Unauthorized Access. Please check your token.' }
-  }
-}
-
 const INCREASE_ACTION = 'increase'
 const DECREASE_ACTION = 'decrease'
 
@@ -122,7 +104,7 @@ new Vue({
             branch: branch || 'master'
           })
         } catch (err) {
-          onError.bind(this)({message: 'Wrong format', response: {status: 500}})
+          this.handlerError.bind(this)({message: 'Wrong format', response: {status: 500}})
         }
       }
       this.repositories = repositories
@@ -143,6 +125,24 @@ new Vue({
       this.projectsFile = getParameterByName('projectsFile')
       this.gitlabciProtocol = getParameterByName('gitlabciProtocol') || 'https'
       this.hideSuccessCards = getParameterByName('hideSuccessCards') || true
+    },
+    handlerError (error) {
+      console.info('handlerErro', error)
+      this.onLoading = false
+
+      this.onError = {message: 'Something went wrong. Make sure the configuration is ok and your Gitlab is up and running.'}
+
+      if (error.message === 'Wrong format') {
+        this.onError = { message: 'Wrong projects format! Try: \'namespace/project\' or \'namespace/project/branch\'' }
+      }
+
+      if (error.message === 'Network Error') {
+        this.onError = { message: 'Network Error. Please check the Gitlab domain.' }
+      }
+
+      if (error.response && error.response.status === 401) {
+        this.onError = { message: 'Unauthorized Access. Please check your token.' }
+      }
     },
     configValid () {
       let valid = true
@@ -180,7 +180,7 @@ new Vue({
             this.onLoading = false
             this.fetchBuilds({repo, project: response.data})
           })
-          .catch(onError.bind(this))
+          .catch(this.handlerError.bind(this))
       })
     },
     addStatusQueue (status, action) {
@@ -279,9 +279,9 @@ new Vue({
                 onBuilds.push(buildToAdd)
               }
             })
-            .catch(onError.bind(this))
+            .catch(this.handlerError.bind(this))
         })
-        .catch(onError.bind(this))
+        .catch(this.handlerError.bind(this))
     },
     filterLastBuild (builds) {
       if (!Array.isArray(builds) || builds.length === 0) {
