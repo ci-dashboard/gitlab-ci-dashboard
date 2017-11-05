@@ -1,5 +1,5 @@
 <template>
-  <div v-show="onError" class="row" id="gcim-error">
+  <div v-show="onError.message" class="row" id="gcim-error">
     <div class="eight wide column centered ">
       <div class="ui red message">{{ onError.message }}</div>
     </div>

@@ -112,6 +112,7 @@ new Vue({
       this.setupDefaults()
       this.fetchProjects()
       setInterval(() => {
+        this.handlerError()
         this.fetchProjects()
       }, 60000)
       this.handlerStatus()
@@ -127,9 +128,10 @@ new Vue({
       this.hideSuccessCards = getParameterByName('hideSuccessCards') || true
     },
     handlerError (error) {
-      console.info('handlerErro', error)
-      this.onLoading = false
-
+      if (error == null) {
+        this.onError = { message: '' }
+        return
+      }
       this.onError = {message: 'Something went wrong. Make sure the configuration is ok and your Gitlab is up and running.'}
 
       if (error.message === 'Wrong format') {
