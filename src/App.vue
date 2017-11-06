@@ -9,6 +9,7 @@
         v-bind:onBuilds="onBuilds"
         v-bind:sortedBuilds="sortedBuilds"
         v-bind:status="status"
+        v-bind:hideSuccessCards="hideSuccessCards"
       />
     </div>
   </div>
@@ -30,7 +31,15 @@ export default {
     Loading,
     Builds
   },
-  props: ['onLoading', 'onInvalid', 'onError', 'onBuilds', 'sortedBuilds', 'status'],
+  props: [
+    'onLoading',
+    'onInvalid',
+    'onError',
+    'onBuilds',
+    'sortedBuilds',
+    'status',
+    'hideSuccessCards'
+  ],
   data () {
     return {
       projects: []

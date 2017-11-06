@@ -15,7 +15,14 @@ const getParameterByName = (name, url) => {
   var results = regex.exec(url)
   if (!results) return null
   if (!results[2]) return ''
-  return decodeURIComponent(results[2].replace(/\+/g, ' '))
+  const parameter = decodeURIComponent(results[2].replace(/\+/g, ' '))
+  if (parameter === 'true') {
+    return true
+  }
+  if (parameter === 'false') {
+    return false
+  }
+  return parameter
 }
 
 function getProjectByFile (fileUrl, callback) {
@@ -68,7 +75,7 @@ new Vue({
         }
         return 0
       })
-      if (this.hideSuccessCards === true || this.hideSuccessCards === 'true') {
+      if (this.hideSuccessCards) {
         return sorted.filter((s) => {
           return s.status !== 'success'
         })
@@ -125,7 +132,10 @@ new Vue({
       this.ref = getParameterByName('ref')
       this.projectsFile = getParameterByName('projectsFile')
       this.gitlabciProtocol = getParameterByName('gitlabciProtocol') || 'https'
-      this.hideSuccessCards = getParameterByName('hideSuccessCards') || true
+      this.hideSuccessCards = getParameterByName('hideSuccessCards')
+      if (this.hideSuccessCards == null) {
+        this.hideSuccessCards = true
+      }
     },
     handlerError (error) {
       if (error == null) {
