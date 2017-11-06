@@ -3,6 +3,11 @@
     <div class="ui message">
       <ul class="ui red stackable menu">
         <li class="item">
+          <div class="wrapper">
+            <div class="pie spinner"></div>
+            <div class="pie filler"></div>
+            <div class="mask"></div>
+          </div>
           <img class="logo" src="./assets/gitlab-logo.svg" v-bind:alt="altText" />
         </li>
         <li v-for="s in localStatus" v-bind:key="s.color" class="item">
