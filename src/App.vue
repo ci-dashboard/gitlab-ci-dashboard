@@ -72,7 +72,7 @@ export default {
   transform-origin: 100% 50%;
   position: absolute;
   background: #fc6d26;
-  border: 5px solid rgba(0,0,0,0.5);
+  border: 5px solid #fca326;
 }
 
 .wrapper .spinner {
