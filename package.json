@@ -1,6 +1,6 @@
 {
   "name": "gitlab-ci-monitor",
-  "version": "3.3.3",
+  "version": "3.4.0",
   "description": "A simple dashboard for monitoring GitLab CI builds. Alpha version.",
   "author": "Globo.com <globo.com>",
   "private": true,
