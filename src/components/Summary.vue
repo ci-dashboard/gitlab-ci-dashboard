@@ -6,7 +6,7 @@
           <img class="logo" src="./assets/gitlab-logo.svg" v-bind:alt="altText" />
         </li>
         <li v-for="s in localStatus" v-bind:key="s.color" class="item">
-          <h2>{{ s.total }} {{ s.text }}</h2>
+          <h1>{{ s.total }} {{ s.text }}</h1>
         </li>
       </ul>
     </div>
