@@ -8,7 +8,7 @@
             <div class="pie filler"></div>
             <div class="mask"></div>
           </div>
-          <img class="logo" src="./assets/gitlab-logo.svg" v-bind:alt="altText" />
+          <img class="logo" src="./assets/gitlab-logo.svg" />
         </li>
         <li v-for="s in localStatus" v-bind:key="s.color" class="item">
           <h1>{{ s.total }} {{ s.text }}</h1>
