@@ -43,7 +43,7 @@ body {
 }
 
 .ui.card, .ui.cards>.card.running{
-  background-color: #2d9fd8;
+  background-color: #FFB541;
 }
 
 .ui.card, .ui.cards>.card.canceled{

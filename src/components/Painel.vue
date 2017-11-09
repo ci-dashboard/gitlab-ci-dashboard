@@ -45,10 +45,10 @@
     data () {
       return {
         statusColors: {
-          'success': '#00AD68',
-          'failed': '#E7484D',
+          'success': '#00ad68',
+          'failed': '#e7484d',
           'pending': '#e75e40',
-          'running': '#2d9fd8',
+          'running': '#3EC8FF',
           'canceled': '#aaaaaa'
         }
       }
