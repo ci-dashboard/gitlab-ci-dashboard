@@ -1,5 +1,5 @@
 <template>
-  <div id="gcim-summary" class="sixteen wide column centered" style="margin: 1.1em 1.1em 0 1.1em">
+  <div id="gcim-painel" class="sixteen wide column centered" style="margin: 1.1em 1.1em 0 1.1em">
     <div class="ui message">
       <ul class="ui red stackable menu">
         <li class="item">
@@ -20,7 +20,7 @@
 
 <script>
   export default {
-    name: 'summary',
+    name: 'painel',
     props: ['status'],
     computed: {
       localStatus () {

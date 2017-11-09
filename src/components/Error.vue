@@ -1,7 +1,7 @@
 <template>
-  <div v-show="onError.message" class="row" id="gcim-error">
+  <div v-show="this.show" class="row" id="gcim-error">
     <div class="eight wide column centered ">
-      <div class="ui red message">{{ onError.message }}</div>
+      <div class="ui red message">{{ this.message }}</div>
     </div>
   </div>
 </template>
@@ -10,9 +10,12 @@
   export default {
     name: 'error',
     props: ['onError'],
-    data () {
-      return {
-        message: ''
+    computed: {
+      show () {
+        return (this.onError && this.onError.message != null)
+      },
+      message () {
+        return this.onError && this.onError.message ? this.onError.message : ''
       }
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="ui four column grid" id="gcim-app">
-      <Summary v-bind:status="status" />
+      <painel v-bind:status="status" />
       <error v-bind:onError="onError" />
       <invalid-config v-bind:onInvalid="onInvalid" />
       <loading v-bind:onLoading="onLoading" />
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import Summary from './components/Summary'
+import Painel from './components/Painel'
 import Error from './components/Error'
 import InvalidConfig from './components/InvalidConfig'
 import Loading from './components/Loading'
@@ -25,7 +25,7 @@ import Builds from './components/Builds'
 export default {
   name: 'app',
   components: {
-    Summary,
+    Painel,
     Error,
     InvalidConfig,
     Loading,
