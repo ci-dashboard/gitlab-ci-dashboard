@@ -1,20 +1,29 @@
 <template>
-  <div id="gcim-painel" class="sixteen wide column centered" style="margin: 1.1em 1.1em 0 1.1em">
-    <div class="ui message">
-      <ul class="ui red stackable menu">
-        <li class="item">
-          <div class="wrapper">
-            <div class="pie spinner"></div>
-            <div class="pie filler"></div>
-            <div class="mask"></div>
+  <div id="gcim-painel" class="column centered">
+    <ul class="ui red stackable vertical menu">
+      <li class="item">
+        <div class="ui grid">
+          <div class="row">
+            <div class="column wide eight" style="padding-top: 8px">
+              <div class="wrapper">
+                <div class="pie spinner"></div>
+                <div class="pie filler"></div>
+                <div class="mask"></div>
+              </div>
+            </div>
+            <div class="column wide eight" style="width: 100px">
+              <img class="logo" src="./assets/gitlab-logo.svg" />
+            </div>
           </div>
-          <img class="logo" src="./assets/gitlab-logo.svg" />
-        </li>
-        <li v-for="s in localStatus" v-bind:key="s.color" class="item">
-          <h1>{{ s.total }} {{ s.text }}</h1>
-        </li>
-      </ul>
-    </div>
+        </div>
+      </li>
+      <li v-for="s in localStatus" v-bind:key="s.color" class="item">
+        <div>
+          <span style="font-size: 5em">{{ s.total }}</span>
+          <span style="font-size: 1.1em;" v-bind:style="{ color: s.color }" x>{{ s.text }}</span>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -25,7 +34,10 @@
     computed: {
       localStatus () {
         if (this.status && this.status.length > 0) {
-          return this.status
+          return this.status.map((s) => {
+            s.color = this.statusColors[s.text]
+            return s
+          })
         }
         return [{text: 'gitlab-ci-monitor'}]
       }
