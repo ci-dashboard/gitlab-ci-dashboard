@@ -12,4 +12,23 @@ describe('Builds.vue', () => {
     expect(vm.gitlab)
     .to.equal('')
   })
+  it('should return class "card failed" to failed status', () => {
+    const Constructor = Vue.extend(Builds)
+    const vm = new Constructor().$mount()
+    const statusClass = vm.statusClass({
+      status: 'failed'
+    })
+    expect('card failed ')
+    .to.equal(statusClass)
+  })
+  it('should return class "bounce-out-top" when status is success and hideSuccessCards is true', () => {
+    const Constructor = Vue.extend(Builds)
+    const vm = new Constructor().$mount()
+    vm.hideSuccessCards = true
+    const positionClass = vm.positionClass({
+      status: 'success'
+    })
+    expect('bounce-out-top')
+    .to.equal(positionClass)
+  })
 })

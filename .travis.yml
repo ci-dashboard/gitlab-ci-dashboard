@@ -4,4 +4,6 @@ node_js:
 before_script:
   - npm install
 script:
-  - npm unit
+  - npm run unit
+after_success:
+  - npm run report-coverage
