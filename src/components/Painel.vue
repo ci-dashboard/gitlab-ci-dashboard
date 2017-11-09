@@ -48,7 +48,7 @@
           'success': '#00ad68',
           'failed': '#e7484d',
           'pending': '#e75e40',
-          'running': '#3EC8FF',
+          'running': '#2d9fd8',
           'canceled': '#aaaaaa'
         }
       }

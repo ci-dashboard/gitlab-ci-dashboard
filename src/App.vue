@@ -516,7 +516,7 @@ body {
 }
 
 .ui.card, .ui.cards>.card.running{
-  background-color: #3EC8FF;
+  background-color: #2d9fd8;
 }
 
 .ui.card, .ui.cards>.card.canceled{
