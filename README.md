@@ -1,5 +1,7 @@
 # GitLab CI Monitor
 
+[![Build Status](https://travis-ci.org/emilianoeloi/gitlab-ci-monitor.svg?branch=master)](https://travis-ci.org/emilianoeloi/gitlab-ci-monitor)
+
 A simple dashboard for monitoring [GitLab CI][gitlab-ci] builds.
 
 [gitlab-ci]: https://about.gitlab.com/gitlab-ci/
