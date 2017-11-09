@@ -12,7 +12,7 @@ module.exports = {
       .url(devServer)
       .waitForElementVisible('#app', 5000)
       .assert.elementCount('img', 1)
-      .assert.elementPresent('#gcim-logo')
+      .assert.elementPresent('#gcim-painel')
       .assert.elementPresent('#gcim-error')
       .assert.elementPresent('#gcim-invalid-config')
       .assert.elementPresent('#gcim-loading')
