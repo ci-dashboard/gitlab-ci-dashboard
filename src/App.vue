@@ -512,7 +512,7 @@ body {
 }
 
 .ui.card, .ui.cards>.card.pending {
-  background-color: #e75e40;
+  background-color: #FFB541;
 }
 
 .ui.card, .ui.cards>.card.running{
