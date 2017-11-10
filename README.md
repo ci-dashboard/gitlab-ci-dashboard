@@ -97,7 +97,8 @@ http://localhost:8080/?gitlab=localhost:8089&token=_&projectsFile=http://localho
 
 ***VueJS:*** For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-***Tests*** How to Write A Unit Test for Vue.js https://github.com/emilianoeloi/gitlab-ci-monitor
+***Tests*** How to Write A Unit Test for Vue.js 
+https://scotch.io/tutorials/how-to-write-a-unit-test-for-vuejs
 
 ***Animista:*** ANIMISTA IS A PLACE WHERE YOU CAN PLAY WITH A COLLECTION OF PRE-MADE CSS ANIMATIONS, TWEAK THEM AND GET ONLY THOSE YOU WILL ACTUALLY USE.
 [Play](http://animista.net/about)

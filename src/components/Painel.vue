@@ -20,7 +20,7 @@
       <li v-for="s in localStatus" v-bind:key="s.color" class="item">
         <div>
           <span style="font-size: 5em">{{ s.total }}</span>
-          <span style="font-size: 1.1em;" v-bind:style="{ color: s.color }" x>{{ s.text }}</span>
+          <span style="font-size: 1.1em;" v-bind:style="{ color: s.color }">{{ s.text }}</span>
         </div>
       </li>
     </ul>
