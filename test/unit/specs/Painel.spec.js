@@ -19,4 +19,20 @@ describe('Painel.vue', () => {
     expect(vm.localStatus[0].text)
     .to.equal('success')
   })
+  it('should compute animation styles por mask, filter and spinner', () => {
+    const Constructor = Vue.extend(Painel)
+    const vm = new Constructor().$mount()
+    vm.interval = 5
+
+    const expectedFilter = 'opa 5s steps(1, end) infinite reverse'
+    const expectedMask = 'opa 5s steps(1, end) infinite'
+    const expectedSpinner = 'rota 5s linear infinite'
+
+    expect(expectedFilter)
+    .to.equal(vm.filterAnimation)
+    expect(expectedMask)
+    .to.equal(vm.maskAnimation)
+    expect(expectedSpinner)
+    .to.equal(vm.spinnerAnimation)
+  })
 })

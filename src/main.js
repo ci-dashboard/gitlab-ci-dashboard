@@ -58,7 +58,8 @@ new Vue({
       onLoading: false,
       onInvalid: false,
       onError: null,
-      debug: ''
+      debug: '',
+      interval: 60
     }
   },
   computed: {
@@ -121,7 +122,7 @@ new Vue({
       setInterval(() => {
         this.handlerError()
         this.fetchProjects()
-      }, 60000)
+      }, this.interval * 1000)
       this.handlerStatus()
     })
   },
@@ -136,6 +137,7 @@ new Vue({
       if (this.hideSuccessCards == null) {
         this.hideSuccessCards = true
       }
+      this.interval = getParameterByName('interval') || 60
     },
     handlerError (error) {
       if (error == null) {
@@ -311,6 +313,7 @@ new Vue({
   'v-bind:sortedBuilds="sortedBuilds" ' +
   'v-bind:status="status" ' +
   'v-bind:hideSuccessCards="hideSuccessCards"' +
+  'v-bind:interval="interval"' +
   '/>',
   components: { App }
 })
