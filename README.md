@@ -22,7 +22,7 @@ in the query string:
 - **projectsFile**: a url to file that contains a list of projects you want to monitor, see below how to create it
 - **gitlabciProtocol** (optional): protocol to access gitlabci api. Default: https
 - **hideSuccessCards** (optional): hide cards when change to success status. Default: true
-- **interval** (optional): interval, in seconds, that monitor go to gitlab server take a new data
+- **interval** (optional): interval, in seconds, that monitor go to gitlab server take a new data. Default 60
 
 ### json projectsFile pattern
 
