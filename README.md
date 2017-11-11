@@ -1,15 +1,15 @@
-# GitLab CI Monitor
+# GitLab CI Dashboard
 
-[![Build Status](https://travis-ci.org/emilianoeloi/gitlabci-monitor.svg?branch=master)](https://travis-ci.org/emilianoeloi/gitlabci-monitor) [![codecov](https://codecov.io/gh/emilianoeloi/gitlab-ci-monitor/branch/master/graph/badge.svg)](https://codecov.io/gh/emilianoeloi/gitlab-ci-monitor)
+[![Build Status](https://travis-ci.org/emilianoeloi/gitlab-ci-dashboard.svg?branch=master)](https://travis-ci.org/emilianoeloi/gitlabci-dashboard) [![codecov](https://codecov.io/gh/emilianoeloi/gitlab-ci-dashboard/branch/master/graph/badge.svg)](https://codecov.io/gh/emilianoeloi/gitlab-ci-dashboard)
 
-A simple dashboard for monitoring [GitLab CI][gitlab-ci] builds.
+A simple dashboard for monitoring [GitLab CI][gitlab-ci] builds. This project is based on [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor) by globo.com
 
 [gitlab-ci]: https://about.gitlab.com/gitlab-ci/
 
 
 ![Example][example]
 
-[example]: gitlab-ci-monitor-example-3.1.gif
+[example]: gitlab-ci-dashboard-example.gif
 
 
 ## Usage
@@ -28,9 +28,9 @@ in the query string:
 ```
 [
   {
-    "nameWithNamespace": "native/gitlab-ci-monitor",
-    "projectName": "gitlab-ci-monitor",
-    "branch": "hackday"
+    "nameWithNamespace": "native/gitlab-ci-dashboard",
+    "projectName": "gitlab-ci-dashboard",
+    "branch": "dashboard"
   },
   (...)
 ]
@@ -39,7 +39,7 @@ in the query string:
 Example:
 
 ```
-http://gitlab-ci-monitor.example.com/?gitlab=gitlab.example.com&token=12345&projectsFile=http://gitlab-ci-monitor.example.com/file.json
+http://gitlab-ci-dashboard.example.com/?gitlab=gitlab.example.com&token=12345&projectsFile=http://gitlab-ci-dashboard.example.com/file.json
 ```
 
 With these parameters, it will try to fetch the list of projects that this
@@ -105,4 +105,4 @@ https://scotch.io/tutorials/how-to-write-a-unit-test-for-vuejs
 
 ## License
 
-GitLab CI Monitor is licensed under the [MIT license](LICENSE).
+GitLab CI Dashboard is licensed under the [MIT license](LICENSE).
