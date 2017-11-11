@@ -1,6 +1,6 @@
 {
   "name": "gitlab-ci-dashboard",
-  "version": "3.7.2",
+  "version": "3.7.3",
   "description": "A simple dashboard for monitoring GitLab CI builds.",
   "author": "Emiliano Barbosa <emilianoeloi@gmail.com>",
   "scripts": {
