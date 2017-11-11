@@ -1,6 +1,6 @@
 # GitLab CI Monitor
 
-[![Build Status](https://travis-ci.org/emilianoeloi/gitlab-ci-monitor.svg?branch=master)](https://travis-ci.org/emilianoeloi/gitlab-ci-monitor) [![codecov](https://codecov.io/gh/emilianoeloi/gitlab-ci-monitor/branch/master/graph/badge.svg)](https://codecov.io/gh/emilianoeloi/gitlab-ci-monitor)
+[![Build Status](https://travis-ci.org/emilianoeloi/gitlabci-monitor.svg?branch=master)](https://travis-ci.org/emilianoeloi/gitlabci-monitor) [![codecov](https://codecov.io/gh/emilianoeloi/gitlab-ci-monitor/branch/master/graph/badge.svg)](https://codecov.io/gh/emilianoeloi/gitlab-ci-monitor)
 
 A simple dashboard for monitoring [GitLab CI][gitlab-ci] builds.
 
