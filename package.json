@@ -2,8 +2,7 @@
   "name": "gitlab-ci-monitor",
   "version": "3.7.0",
   "description": "A simple dashboard for monitoring GitLab CI builds. Alpha version.",
-  "author": "Globo.com <globo.com>",
-  "private": true,
+  "author": "Emiliano Barbosa <emilianoeloi@gmail.com>",
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
