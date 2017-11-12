@@ -21,6 +21,13 @@
     "type": "git",
     "url": "https://github.com/emilianoeloi/gitlab-ci-dashboard"
   },
+  "keywords": [
+    "gitlab",
+    "ci",
+    "gitlab-ci",
+    "dashboard",
+    "monitor"
+  ],
   "bin": {
     "gitlab-ci-dashboard": "./bin/gitlab-ci-dashboard"
   },
