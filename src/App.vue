@@ -1,18 +1,16 @@
 <template>
-  <div id="app" class="ui grid">
+  <div id="app" class="ui grid" style="margin: 1em">
     <div class="two column row" id="gcim-app">
-      <div class="thirteen wide column" style="padding: 1.1em 1.1em 0 1.1em">
-        <div class="ui four column grid" id="gcim-app">
-          <error v-bind:onError="onError" />
-          <invalid-config v-bind:onInvalid="onInvalid" />
-          <loading v-bind:onLoading="onLoading" />
-          <builds
-            v-bind:onBuilds="onBuilds"
-            v-bind:sortedBuilds="sortedBuilds"
-            v-bind:status="status"
-            v-bind:hideSuccessCards="hideSuccessCards"
-          />
-        </div>
+      <div class="thirteen wide column" id="gcim-app">
+        <error v-bind:onError="onError" />
+        <invalid-config v-bind:onInvalid="onInvalid" />
+        <loading v-bind:onLoading="onLoading" />
+        <builds
+          v-bind:onBuilds="onBuilds"
+          v-bind:sortedBuilds="sortedBuilds"
+          v-bind:status="status"
+          v-bind:hideSuccessCards="hideSuccessCards"
+        />
       </div>
       <div class="three wide column">
         <painel

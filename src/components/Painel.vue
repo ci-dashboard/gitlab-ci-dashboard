@@ -1,6 +1,6 @@
 <template>
   <div id="gcim-painel" class="column centered">
-    <ul class="ui red stackable vertical menu">
+    <ul class="ui vertical menu">
       <li class="item">
         <div class="ui grid">
           <div class="row">
