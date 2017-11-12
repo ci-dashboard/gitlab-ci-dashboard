@@ -49,6 +49,29 @@ and show only the ones that have builds (i.e., that have GitLab CI enabled).
 Finally, it will show the status from the most recent build in **master**
 or the branch you have specified.
 
+## Standalone
+
+``` bash
+# install globally
+npm install -g gitlab-ci-dashboard
+
+# run standalone http server
+gitlab-ci-dashboard --port 8081
+
+```
+
+## Distribute to a server
+
+``` bash
+# install dependencies
+npm install
+
+# build for production with minification
+npm run build
+
+# Copy content of dist folder to your server
+```
+
 ## Build Setup
 
 ``` bash

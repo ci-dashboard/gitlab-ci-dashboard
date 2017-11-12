@@ -15,13 +15,14 @@
           <li>projectsFile</li>
           <li>gitlabciProtocol (optional)</li>
           <li>hideSuccessCards (optional)</li>
+          <li>interval (optional)</li>
         </ul>
         <p>projectsFile json pattern</p>
         <pre>
 [
   {
-    "nameWithNamespace": "native/gitlab-ci-monitor",
-    "projectName": "gitlab-ci-monitor",
+    "nameWithNamespace": "native/gitlab-ci-dashboard",
+    "projectName": "gitlab-ci-dashboard",
     "branch": "hackday"
   },
   (...)
@@ -29,7 +30,7 @@
         </pre>
       </div>
       <div class="ui bottom attached warning message">
-        <p>Ex: http://gitlab-ci-monitor.example.com?gitlab=gitlab.example.com&token=some-token&projectsFile=http://gitlab-ci-monitor.example.com/file.json&gitlabciProtocol=http&hideSuccessCards=false</p>
+        <p>Ex: http://gitlab-ci-dashboard.example.com?gitlab=gitlab.example.com&token=some-token&projectsFile=http://gitlab-ci-dashboard.example.com/file.json&gitlabciProtocol=http&hideSuccessCards=false</p>
       </div>
     </div>
   </div>

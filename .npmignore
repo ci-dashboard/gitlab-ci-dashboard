@@ -1,0 +1,15 @@
+build
+config
+mocked_gitlab
+src
+static
+test
+.babelrc
+.editorconfig
+.eslintignore
+.eslintrc.js
+.gitignore
+.postcssrc.js
+.travis.yml
+gitlab-ci-dashboard-example
+index.html
