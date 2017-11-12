@@ -1,5 +1,7 @@
 # GitLab CI Dashboard
 
+[![NPM](https://nodei.co/npm/gitlab-ci-dashboard.png)](https://npmjs.org/package/gitlab-ci-dashboard)
+
 [![Build Status](https://travis-ci.org/emilianoeloi/gitlabci-monitor.svg?branch=master)](https://travis-ci.org/emilianoeloi/gitlabci-monitor) [![codecov](https://codecov.io/gh/emilianoeloi/gitlabci-monitor/branch/master/graph/badge.svg)](https://codecov.io/gh/emilianoeloi/gitlabci-monitor)
 
 A simple dashboard for monitoring [GitLab CI][gitlab-ci] builds. This project is based on [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor) by globo.com
