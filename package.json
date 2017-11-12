@@ -15,12 +15,18 @@
     "server": "http-server ./dist",
     "gitlab-mocked-server": "node mocked_gitlab/server.js"
   },
+  "homepage": "https://github.com/emilianoeloi/gitlab-ci-dashboard",
+  "bugs": "https://github.com/emilianoeloi/gitlab-ci-dashboard/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emilianoeloi/gitlab-ci-dashboard"
+  },
   "bin": {
     "gitlab-ci-dashboard": "./bin/gitlab-ci-dashboard"
   },
   "dependencies": {
     "axios": "0.16.2",
-    "commander": "^2.11.0",
+    "commander": "2.11.0",
     "cors": "2.8.4",
     "express": "4.16.2",
     "http-server": "0.10.0",

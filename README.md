@@ -58,6 +58,8 @@ npm install -g gitlab-ci-dashboard
 # run standalone http server
 gitlab-ci-dashboard --port 8081
 
+# access https://localhost:8081 on browser
+
 ```
 
 ## Distribute to a server
