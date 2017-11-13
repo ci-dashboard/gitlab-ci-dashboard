@@ -273,6 +273,7 @@ new Vue({
                   b.id = build.id
                   b.started_at = startedFromNow
                   b.author = build.commit.author_name
+                  b.commit_message = build.commit.message
                   b.project_path = project.path_with_namespace
                   b.branch = repo.branch
                 }
@@ -287,6 +288,7 @@ new Vue({
                   lastStatus: '',
                   started_at: startedFromNow,
                   author: build.commit.author_name,
+                  commit_message: build.commit.message,
                   project_path: project.path_with_namespace,
                   branch: repo.branch
                 }

@@ -13,6 +13,7 @@
             </div>
             <div class="meta">{{ build.author }}</div>
             <div class="description">
+              {{ build.commit_message }}
             </div>
           </div>
           <div class="extra content">
