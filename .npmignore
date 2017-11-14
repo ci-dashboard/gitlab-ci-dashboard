@@ -2,7 +2,6 @@ build
 config
 mocked_gitlab
 src
-static
 test
 .babelrc
 .editorconfig
@@ -12,4 +11,3 @@ test
 .postcssrc.js
 .travis.yml
 gitlab-ci-dashboard-example
-index.html
