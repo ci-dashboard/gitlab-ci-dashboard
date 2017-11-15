@@ -1,38 +1,30 @@
 <template>
-  <div id="gcim-painel" class="column centered">
-    <ul class="ui vertical menu">
-      <li class="item">
-        <div class="ui grid">
-          <div class="row">
-            <div class="column wide eight" style="padding-top: 8px">
-              <div class="wrapper">
-                <div
-                  class="pie spinner"
-                  v-bind:style="{ animation: spinnerAnimation }"
-                ></div>
-                <div
-                  class="pie filler"
-                  v-bind:style="{ animation: filterAnimation }"
-                ></div>
-                <div
-                  class="mask"
-                  v-bind:style="{ animation: maskAnimation }"
-                ></div>
-              </div>
-            </div>
-            <div class="column wide eight" style="width: 100px">
-              <img class="logo" src="./assets/gitlab-logo.svg" />
-            </div>
-          </div>
-        </div>
-      </li>
-      <li v-for="s in localStatus" v-bind:key="s.color" class="item">
-        <div>
-          <span style="font-size: 5em">{{ s.total }}</span>
-          <span style="font-size: 1.1em;" v-bind:style="{ color: s.color }">{{ s.text }}</span>
-        </div>
-      </li>
-    </ul>
+  <div id="gcim-painel" class="ui grid card" style="background-color: white">
+    <div class="ui row centered" style="padding-bottom: 2em">
+      <img class="logo" src="./assets/gitlab-logo.svg" />
+    </div>
+    <div v-for="s in localStatus" v-bind:key="s.color" class="ui row">
+      <div style="margin: 1em">
+        <span style="font-size: 5em">{{ s.total }}</span>
+        <span style="font-size: 1.1em;" v-bind:style="{ color: s.color }">{{ s.text }}</span>
+      </div>
+    </div>
+    <div class="ui row centered">
+      <div class="wrapper">
+        <div
+          class="pie spinner"
+          v-bind:style="{ animation: spinnerAnimation }"
+        ></div>
+        <div
+          class="pie filler"
+          v-bind:style="{ animation: filterAnimation }"
+        ></div>
+        <div
+          class="mask"
+          v-bind:style="{ animation: maskAnimation }"
+        ></div>
+      </div>
+    </div>
   </div>
 </template>
 

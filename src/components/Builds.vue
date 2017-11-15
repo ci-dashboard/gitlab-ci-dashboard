@@ -1,5 +1,5 @@
 <template>
-  <div class="row" id="gcim-builds">
+  <div class="row" style="margin: 1em 0 1em 1em" id="gcim-builds">
     <div class="sixteen wide column">
       <div class="ui stackable cards">
         <div

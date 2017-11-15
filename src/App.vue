@@ -1,7 +1,7 @@
 <template>
-  <div id="app" class="ui grid" style="margin: 1em">
+  <div id="app" class="ui grid">
     <div class="two column row" id="gcim-app">
-      <div class="thirteen wide column" id="gcim-app">
+      <div class="thirteen wide column">
         <error v-bind:onError="onError" />
         <invalid-config v-bind:onInvalid="onInvalid" />
         <loading v-bind:onLoading="onLoading" />
