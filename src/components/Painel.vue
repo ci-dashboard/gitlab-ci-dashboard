@@ -35,6 +35,9 @@
     computed: {
       localStatus () {
         return this.painelStatus.map((ps) => {
+          if (this.status == null) {
+            return ps
+          }
           const arr = this.status.filter((s) => {
             return s.text === ps.text
           })
