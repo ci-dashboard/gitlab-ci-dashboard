@@ -1,9 +1,43 @@
+import moxios from 'moxios'
+
 import {
   getParameterByName
-  // getProjectByFile,
 } from '@/main.js'
 
 describe('main.js', () => {
+  describe('Projects File', () => {
+    beforeEach(() => {
+      // import and pass your custom axios instance to this method
+      moxios.install()
+    })
+
+    afterEach(() => {
+      // import and pass your custom axios instance to this method
+      moxios.uninstall()
+    })
+    it('should get valid list of projects to test', (done) => {
+      // getProjectByFile('http://localhost:8080/static/file.json', (data) => {
+      //   console.info('getProjectByFile')
+      //   done()
+      // })
+      // moxios.wait(() => {
+      //   let request = moxios.requests.mostRecent()
+      //   request.respondWith({
+      //     status: 200,
+      //     response: [
+      //       {
+      //         nameWithNamespace: 'native/gitlab-ci-monitor',
+      //         projectName: 'gitlab-ci-monitor',
+      //         branch: 'hackday'
+      //       }
+      //     ]
+      //   }).then((data) => {
+      //     return data
+      //   })
+      // })
+      done()
+    })
+  })
   describe('Get querystring params', () => {
     const url = 'http://localhost:8080/?gitlab=localhost:8089&token=_&projectsFile=http://localhost:8080/static/file.json&gitlabciProtocol=http&interval=5&hideSuccessCards=false'
     it('Should get non-optional params from url', () => {
