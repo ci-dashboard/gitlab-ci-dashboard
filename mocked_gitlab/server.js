@@ -79,6 +79,26 @@ const statePersistence = {
   pending: 0,
   canceled: 0
 }
+const buildPersistence = {}
+let lastBuildId = null
+const incrementBuildId = (build) => {
+  if (!buildPersistence[build.projectId]) {
+    buildPersistence[build.projectId] = build
+  }
+  if (lastBuildId == null) {
+    lastBuildId = buildPersistence[build.projectId].id
+  }
+  build.id = lastBuildId++
+}
+const updateCommitMessage = ({ status, commit }) => {
+  commit.message = commit.message
+    .replace('success', '')
+    .replace('running', '')
+    .replace('pending', '')
+    .replace('canceled', '')
+    .replace('failed', '')
+  commit.message = `${status} ${commit.message}`
+}
 const stateMachine = (build, projectId, status, div) => {
   if (build.project_id === projectId) {
     counter[status]++
@@ -87,7 +107,14 @@ const stateMachine = (build, projectId, status, div) => {
       build.status = status
     } else {
       const index = statePersistence[status]++
-      build.status = statusList[index >= 4 ? 4 : index]
+      const statusListSize = statusList.length
+      build.status = statusList[index >= statusListSize - 1 ? statusListSize - 1 : index]
+    }
+    if (status !== 'success') {
+      const d = new Date()
+      build.started_at = d.toISOString()
+      updateCommitMessage(build)
+      incrementBuildId(build)
     }
   }
 }

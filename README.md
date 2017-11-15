@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/emilianoeloi/gitlab-ci-dashboard.svg?branch=v3.7.0)](https://travis-ci.org/emilianoeloi/gitlab-ci-dashboard) [![codecov](https://codecov.io/gh/emilianoeloi/gitlabci-monitor/branch/master/graph/badge.svg)](https://codecov.io/gh/emilianoeloi/gitlabci-monitor)
 
-A simple dashboard for monitoring [GitLab CI][gitlab-ci] builds. This project is based on [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor) by globo.com
+Dashboard for monitoring [GitLab CI][gitlab-ci] builds. This project is based on [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor) by globo.com
 
 [gitlab-ci]: https://about.gitlab.com/gitlab-ci/
 
