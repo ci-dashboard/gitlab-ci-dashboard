@@ -11,7 +11,7 @@ A simple dashboard for monitoring [GitLab CI][gitlab-ci] builds. This project is
 
 ![Example][example]
 
-[example]: gitlab-ci-dashboard-example.gif
+[example]: gitlab-ci-dashboard-example.png
 
 
 ## Usage

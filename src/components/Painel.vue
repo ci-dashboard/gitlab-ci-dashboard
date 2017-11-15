@@ -6,7 +6,7 @@
     <div v-for="s in localStatus" v-bind:key="s.color" class="ui row">
       <div style="margin: 1em">
         <span style="font-size: 5em">{{ s.total }}</span>
-        <span style="font-size: 1.1em;" v-bind:style="{ color: s.color }">{{ s.text }}</span>
+        <span style="font-size: 1.1em;" v-bind:style="{ color: s.color }">{{ s.text.toUpperCase() }}</span>
       </div>
     </div>
     <div class="ui row centered">
@@ -34,13 +34,16 @@
     props: ['status', 'interval'],
     computed: {
       localStatus () {
-        if (this.status && this.status.length > 0) {
-          return this.status.map((s) => {
-            s.color = this.statusColors[s.text]
-            return s
+        return this.painelStatus.map((ps) => {
+          const arr = this.status.filter((s) => {
+            return s.text === ps.text
           })
-        }
-        return [{text: 'gitlab-ci-monitor'}]
+          if (arr.length > 0) {
+            const foundStatus = arr[0]
+            ps.total = foundStatus.total
+          }
+          return ps
+        })
       },
       filterAnimation () {
         return `opa ${this.interval}s steps(1, end) infinite reverse`
@@ -54,13 +57,33 @@
     },
     data () {
       return {
-        statusColors: {
-          'success': '#00ad68',
-          'failed': '#e7484d',
-          'pending': '#ffb541',
-          'running': '#2d9fd8',
-          'canceled': '#aaaaaa'
-        }
+        painelStatus: [
+          {
+            text: 'success',
+            color: '#00ad68',
+            total: 0
+          },
+          {
+            text: 'failed',
+            color: '#e7484d',
+            total: 0
+          },
+          {
+            text: 'running',
+            color: '#2d9fd8',
+            total: 0
+          },
+          {
+            text: 'pending',
+            color: '#ffb541',
+            total: 0
+          },
+          {
+            text: 'canceled',
+            color: '#aaaaaa',
+            total: 0
+          }
+        ]
       }
     }
   }
