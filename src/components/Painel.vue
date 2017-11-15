@@ -57,7 +57,7 @@
         statusColors: {
           'success': '#00ad68',
           'failed': '#e7484d',
-          'pending': '#e75e40',
+          'pending': '#ffb541',
           'running': '#2d9fd8',
           'canceled': '#aaaaaa'
         }

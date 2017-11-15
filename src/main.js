@@ -228,9 +228,6 @@ new Vue({
       } else if (statusItem.action === DECREASE_ACTION) {
         selectedItem.total--
       }
-      if (selectedItem.total === 0) {
-        this.status = this.status.filter(r => r.text !== selectedItem.text)
-      }
     },
     fetchBuilds (selectedProjects) {
       const {
