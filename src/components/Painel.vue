@@ -25,6 +25,13 @@
         ></div>
       </div>
     </div>
+    <div class="ui row centered">
+      <h5>
+        <a target="_blank" href="https://github.com/emilianoeloi/gitlab-ci-dashboard">
+          GitLab CI Dashboard
+        </a>
+      </h5>
+    </div>
   </div>
 </template>
 
