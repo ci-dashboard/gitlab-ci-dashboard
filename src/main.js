@@ -8,7 +8,7 @@ import App from './App'
 
 Vue.config.productionTip = false
 
-const getParameterByName = (name, url) => {
+export const getParameterByName = (name, url) => {
   if (!url) url = window.location.href
   name = name.replace(/[[]]/g, '\\$&')
   var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
@@ -25,7 +25,7 @@ const getParameterByName = (name, url) => {
   return parameter
 }
 
-function getProjectByFile (fileUrl, callback) {
+export const getProjectByFile = (fileUrl, callback) => {
   axios.get(fileUrl)
   .then((response) => {
     callback(response.data)
