@@ -1,6 +1,7 @@
 const commander = require('commander')
 const express = require('express')
 const fs = require('fs')
+var opn = require('opn')
 
 commander.option('--port [port]', 'the port to run gitlab-ci-dashboard')
 commander.option('--gitlab [gitlab server host]', 'your gitlab server host')
@@ -43,7 +44,9 @@ if (projectsFile != null) {
     })
 
     const server = app.listen(port, () => {
-      console.log(`The dashboard is now available at http://localhost:${server.address().port}`)
+      const uri = `http://localhost:${server.address().port}/?standalone=true`
+      console.log(`The dashboard is now available at ${uri}`)
+      opn(uri)
     })
   })
 }

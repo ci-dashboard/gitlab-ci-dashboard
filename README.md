@@ -4,7 +4,8 @@
 
 [![Build Status](https://travis-ci.org/emilianoeloi/gitlab-ci-dashboard.svg?branch=v3.7.0)](https://travis-ci.org/emilianoeloi/gitlab-ci-dashboard) [![codecov](https://codecov.io/gh/emilianoeloi/gitlab-ci-dashboard/branch/master/graph/badge.svg)](https://codecov.io/gh/emilianoeloi/gitlab-ci-dashboard)
 
-Dashboard for monitoring [GitLab CI][gitlab-ci] builds. This project is based on [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor) by globo.com
+Dashboard for monitoring [GitLab CI][gitlab-ci] builds. This project is based on [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor) by globo.com.
+
 
 [gitlab-ci]: https://about.gitlab.com/gitlab-ci/
 
@@ -39,17 +40,22 @@ in the query string:
 ]
 ```
 
-Example:
-
-```
-http://gitlab-ci-dashboard.example.com/?gitlab=gitlab.example.com&token=12345&projectsFile=http://gitlab-ci-dashboard.example.com/file.json
-```
-
 With these parameters, it will try to fetch the list of projects that this
 token has access. Then, it will filter the list by the **projects** parameter
 and show only the ones that have builds (i.e., that have GitLab CI enabled).
 Finally, it will show the status from the most recent build in **master**
 or the branch you have specified.
+
+Standalone Example:
+```bash
+gitlab-ci-dashboard --gitlab gitlab.example.com --token 2345 --projectFiles ./example.json 
+```
+
+Server hosted Example:
+
+```
+http://gitlab-ci-dashboard.example.com/?gitlab=gitlab.example.com&token=12345&projectsFile=http://gitlab-ci-dashboard.example.com/example.json
+```
 
 ## Standalone
 
@@ -58,13 +64,13 @@ or the branch you have specified.
 npm install -g gitlab-ci-dashboard
 
 # run standalone http server
-gitlab-ci-dashboard --port 8081
+gitlab-ci-dashboard --gitlab gitlab.example.com --token 12345 --projectFiles ./file.json 
 
-# access https://localhost:8081 on browser
+# access https://localhost:8081/?standalone=true on browser
 
 ```
 
-## Distribute to a server
+## Server hosted
 
 ``` bash
 # install dependencies
@@ -76,7 +82,7 @@ npm run build
 # Copy content of dist folder to your server
 ```
 
-## Build Setup
+## Available scripts
 
 ``` bash
 # install dependencies
