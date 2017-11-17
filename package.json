@@ -39,7 +39,7 @@
     "fs": "0.0.1-security",
     "http-server": "0.10.0",
     "moment": "2.18.1",
-    "node-persist": "^2.1.0",
+    "opn": "5.1.0",
     "vue": "2.4.2",
     "vue-debug": "0.0.1",
     "vuex": "2.4.1"
