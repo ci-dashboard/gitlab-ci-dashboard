@@ -86,13 +86,29 @@ new Vue({
   },
   created () {
     this.loadConfig()
-
-    if (!this.configValid()) {
-      this.onInvalid = true
-      return
+    if (this.standalone) {
+      axios.get('/params')
+      .then(({data}) => {
+        this.gitlab = data.gitlab
+        this.token = data.token
+        this.ref = data.ref
+        this.projectsFile = 'standalone'
+        this.projects = data.projects
+        this.gitlabciProtocol = data.gitlabciProtocol
+        this.hideSuccessCards = data.hideSuccessCards
+        this.hideSuccessCards = data.hideSuccessCards
+        this.interval = data.interval
+        this.startup()
+      })
+      .catch(() => {
+        return []
+      })
+    } else {
+      this.startup()
     }
-
-    getProjectByFile(this.projectsFile, (repos) => {
+  },
+  methods: {
+    loadProjects (repos) {
       if (repos == null) {
         return
       }
@@ -124,10 +140,21 @@ new Vue({
         this.fetchProjects()
       }, this.interval * 1000)
       this.handlerStatus()
-    })
-  },
-  methods: {
+    },
+    startup () {
+      if (!this.configValid()) {
+        this.onInvalid = true
+        return
+      }
+
+      if (this.standalone) {
+        this.loadProjects(this.projects)
+      } else {
+        getProjectByFile(this.projectsFile, this.loadProjects)
+      }
+    },
     loadConfig () {
+      this.standalone = getParameterByName('standalone')
       this.gitlab = getParameterByName('gitlab')
       this.token = getParameterByName('token')
       this.ref = getParameterByName('ref')

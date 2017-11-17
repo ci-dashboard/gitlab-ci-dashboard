@@ -36,8 +36,10 @@
     "commander": "2.11.0",
     "cors": "2.8.4",
     "express": "4.16.2",
+    "fs": "0.0.1-security",
     "http-server": "0.10.0",
     "moment": "2.18.1",
+    "node-persist": "^2.1.0",
     "vue": "2.4.2",
     "vue-debug": "0.0.1",
     "vuex": "2.4.1"
