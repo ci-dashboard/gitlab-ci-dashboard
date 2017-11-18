@@ -73,6 +73,27 @@ app.get('/api/v3/projects/:param1/repository/branches/:param2', (req, res, next)
   }
 })
 
+// https://(...)/api/v3/projects/5060/repository/branches/feature/branch
+app.get('/api/v3/projects/:param1/repository/branches/:param2/:param3', (req, res, next) => {
+  counter.branchs++
+  const {
+    param1,
+    param2,
+    param3
+  } = req.params
+  const branch = branchs.filter((b) => {
+    return (
+      b.project_id === param1 &&
+      b.name === `${param2}/${param3}`
+    )
+  })
+  if (branch && branch.length > 0) {
+    res.json(branch[0])
+  } else {
+    res.sendStatus(404)
+  }
+})
+
 const statePersistence = {
   running: 0,
   failed: 0,
@@ -133,10 +154,11 @@ app.get('/api/v3/projects/:param1/repository/commits/:param2/builds', (req, res,
     )
   })
   if (build && build.length > 0) {
-    stateMachine(build[0], '8', 'running', 15)
-    stateMachine(build[0], '3', 'failed', 3)
-    stateMachine(build[0], '10', 'canceled', 5)
-    stateMachine(build[0], '1', 'pending', 10)
+    stateMachine(build[0], '14', 'running', 15)
+    stateMachine(build[0], '13', 'failed', 3)
+    stateMachine(build[0], '15', 'canceled', 5)
+    stateMachine(build[0], '16', 'pending', 10)
+    stateMachine(build[0], '12', 'pending', 2)
     res.json(build)
   } else {
     res.sendStatus(404)

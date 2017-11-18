@@ -130,7 +130,7 @@ http://localhost:8080/?gitlab=localhost:8089&token=_&projectsFile=http://localho
 
 ## projectsFile migration from earlier to 5.x
 
-If dashboard using the projectsFile pattern below:
+If your dashboard using the projectsFile pattern below:
 
 ```json
 {

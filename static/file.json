@@ -1,5 +1,35 @@
 [
   {
+    "description": "Aplicativo para organizar filmes vistos",
+    "namespace": "santoslucas",
+    "project": "guarda-filme-android",
+    "branch": "feature/welcome_with_mvp"
+  },
+  {
+    "description": "React Native render for draft.js model",
+    "namespace": "globocom",
+    "project": "react-native-draftjs-render",
+    "branch": "feature/update-rn-0-49-3"
+  },
+  {
+    "description": "Hapi route versioning using custom header",
+    "namespace": "corintho",
+    "project": "hapi-version",
+    "branch": "master"
+  },
+  {
+    "description": "A lightweight Promise based HTTP client, using Fetch API.",
+    "namespace": "raphaelpor",
+    "project": "fitch.js",
+    "branch": "master"
+  },
+  {
+    "description": "[WIP] React development for TV (Renderer for low memory applications and Packager for WebOS, Tizen, Orsay)",
+    "namespace": "raphamorim",
+    "project": "react-tv",
+    "branch": "feature/webpack-3"
+  },
+  {
     "description": "",
     "namespace": "native",
     "project": "gitlab-ci-monitor",
