@@ -1,4 +1,4 @@
-# 5.2.0 Backward compatibility
+# 5.1.0 Backward compatibility
 - command to create projectsFile file from querystring
 - compatibility mode with gitlab-ci-monitor
 
