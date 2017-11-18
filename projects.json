@@ -1,0 +1,20 @@
+[
+  {
+    "description": "",
+    "namespace": "namespace",
+    "project": "project1",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "namespace",
+    "project": "project1",
+    "branch": "branch"
+  },
+  {
+    "description": "",
+    "namespace": "namespace",
+    "project": "project2",
+    "branch": "master"
+  }
+]

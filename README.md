@@ -128,7 +128,7 @@ http://localhost:8080/?gitlab=localhost:8089&token=_&projectsFile=http://localho
 
 ``` 
 
-## projectsFile migration from earlier to 5.x
+## projectsFile migration from versions earlier to 5.x
 
 If your dashboard using the projectsFile pattern below:
 
@@ -140,12 +140,22 @@ If your dashboard using the projectsFile pattern below:
 },
 ```
 
+## projectsFile creation from gitlab-ci-monitor base project
+
+Take your url dashboard
+
+```html
+http://gitlab-ci-monitor.example.com/?gitlab=gitlab.example.com&token=12345&projects=namespace/project1,namespace/project1/branch,namespace/project2
+```
+
 Run migration command:
 
 ```bash
 # migration command
-gitlab-ci-dashboard-migration --projectsFile yourfile.json
+gitlab-ci-dashboard-migration --querystring http://gitlab-ci-monitor.example.com/?gitlab=gitlab.example.com&token=12345&projects=namespace/project1,namespace/project1/branch,namespace/project2
 ```
+
+the ***projects.json*** would be created
 
 ## Using 
 
