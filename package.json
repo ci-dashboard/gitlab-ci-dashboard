@@ -1,6 +1,6 @@
 {
   "name": "gitlab-ci-dashboard",
-  "version": "5.0.0-alpha.1",
+  "version": "5.0.0-alpha.2",
   "description": "Dashboard for monitoring GitLab CI builds. This project is based on gitlab-ci-monitor by globo.com",
   "author": "Emiliano Barbosa <emilianoeloi@gmail.com>",
   "scripts": {
@@ -29,7 +29,8 @@
     "monitor"
   ],
   "bin": {
-    "gitlab-ci-dashboard": "./bin/gitlab-ci-dashboard"
+    "gitlab-ci-dashboard": "./bin/gitlab-ci-dashboard",
+    "gitlab-ci-dashboard-migration": "./bin/gitlab-ci-dashboard-migration"
   },
   "dependencies": {
     "axios": "0.16.2",
