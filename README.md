@@ -18,7 +18,7 @@ Dashboard for monitoring [GitLab CI][gitlab-ci] builds. This project is based on
 ## Usage
 
 This project runs completely in the browser. It expects a few parameters
-in the query string:
+in the query string or using command-line on standalone mode:
 
 - **gitlab**: your gitlab server address
 - **token**: your gitlab token

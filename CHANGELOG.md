@@ -1,3 +1,7 @@
+# 5.2.0 Backward compatibility
+- command to create projectsFile file from querystring
+- compatibility mode with gitlab-ci-monitor
+
 # 5.0.1 New projectsFile pattern
 
 # 4.4.0 Complete standalone option
