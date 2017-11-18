@@ -32,10 +32,11 @@ in the query string:
 ```
 [
   {
-    "nameWithNamespace": "native/gitlab-ci-dashboard",
-    "projectName": "gitlab-ci-dashboard",
-    "branch": "dashboard"
-  },
+    "description": "React Native render for draft.js model",
+    "namespace": "globocom",
+    "project": "react-native-draftjs-render",
+    "branch": "master"
+  }
   (...)
 ]
 ```
@@ -127,6 +128,25 @@ http://localhost:8080/?gitlab=localhost:8089&token=_&projectsFile=http://localho
 
 ``` 
 
+## projectsFile migration from earlier to 5.x
+
+If dashboard using the projectsFile pattern below:
+
+```json
+{
+  "nameWithNamespace": "native/gitlab-ci-monitor",
+  "projectName": "gitlab-ci-monitor",
+  "branch": "hackday"
+},
+```
+
+Run migration command:
+
+```bash
+# migration command
+gitlab-ci-dashboard-migration --projectsFile yourfile.json
+```
+
 ## Using 
 
 ***VueJS:*** For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
@@ -137,6 +157,7 @@ https://scotch.io/tutorials/how-to-write-a-unit-test-for-vuejs
 ***Animista:*** ANIMISTA IS A PLACE WHERE YOU CAN PLAY WITH A COLLECTION OF PRE-MADE CSS ANIMATIONS, TWEAK THEM AND GET ONLY THOSE YOU WILL ACTUALLY USE.
 [Play](http://animista.net/about)
 
+***Semantic UI:*** User Interface is the language of the web [Semantic UI](https://semantic-ui.com/)
 ## License
 
 GitLab CI Dashboard is licensed under the [MIT license](LICENSE).

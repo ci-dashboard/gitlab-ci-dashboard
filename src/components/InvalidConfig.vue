@@ -21,10 +21,11 @@
         <pre>
 [
   {
-    "nameWithNamespace": "native/gitlab-ci-dashboard",
-    "projectName": "gitlab-ci-dashboard",
-    "branch": "hackday"
-  },
+    "description": "React Native render for draft.js model",
+    "namespace": "globocom",
+    "project": "react-native-draftjs-render",
+    "branch": "master"
+  }
   (...)
 ]
         </pre>
