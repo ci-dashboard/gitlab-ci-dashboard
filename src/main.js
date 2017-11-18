@@ -8,6 +8,31 @@ import App from './App'
 
 Vue.config.productionTip = false
 
+export const getProjectsByQuerystring = (projectsParam) => {
+  let newProjects = []
+  const repositories = projectsParam.split(',')
+  for (const x in repositories) {
+    try {
+      const repos = repositories[x].split('/')
+      const namespace = repos[0].trim()
+      const project = repos[1].trim()
+      let branch = 'master'
+      if (repos.length > 2) {
+        branch = repos[2].trim()
+      }
+      newProjects.push({
+        description: '',
+        namespace,
+        project,
+        branch
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  return newProjects
+}
+
 export const getParameterByName = (name, url) => {
   if (!url) url = window.location.href
   name = name.replace(/[[]]/g, '\\$&')
@@ -50,6 +75,7 @@ new Vue({
       status: [],
       token: null,
       gitlab: null,
+      projectsParam: null,
       projectsFile: null,
       gitlabciProtocol: 'https',
       hideSuccessCards: true,
@@ -108,6 +134,20 @@ new Vue({
     }
   },
   methods: {
+    loadConfig () {
+      this.standalone = getParameterByName('standalone')
+      this.gitlab = getParameterByName('gitlab')
+      this.token = getParameterByName('token')
+      this.ref = getParameterByName('ref')
+      this.projectsParam = getParameterByName('projects')
+      this.projectsFile = getParameterByName('projectsFile')
+      this.gitlabciProtocol = getParameterByName('gitlabciProtocol') || 'https'
+      this.hideSuccessCards = getParameterByName('hideSuccessCards')
+      if (this.hideSuccessCards == null) {
+        this.hideSuccessCards = true
+      }
+      this.interval = getParameterByName('interval') || 60
+    },
     loadProjects (repos) {
       if (repos == null) {
         return
@@ -151,22 +191,12 @@ new Vue({
 
       if (this.standalone) {
         this.loadProjects(this.projects)
+      } if (this.projectsParam) {
+        this.projects = getProjectsByQuerystring(this.projectsParam)
+        this.loadProjects(this.projects)
       } else {
         getProjectByFile(this.projectsFile, this.loadProjects)
       }
-    },
-    loadConfig () {
-      this.standalone = getParameterByName('standalone')
-      this.gitlab = getParameterByName('gitlab')
-      this.token = getParameterByName('token')
-      this.ref = getParameterByName('ref')
-      this.projectsFile = getParameterByName('projectsFile')
-      this.gitlabciProtocol = getParameterByName('gitlabciProtocol') || 'https'
-      this.hideSuccessCards = getParameterByName('hideSuccessCards')
-      if (this.hideSuccessCards == null) {
-        this.hideSuccessCards = true
-      }
-      this.interval = getParameterByName('interval') || 60
     },
     handlerError (error) {
       if (error == null) {
@@ -192,9 +222,10 @@ new Vue({
       const {
         projectsFile,
         token,
-        gitlab
+        gitlab,
+        projects
       } = this
-      if (projectsFile == null || token == null || gitlab == null) {
+      if ((projects == null && projectsFile == null) || token == null || gitlab == null) {
         valid = false
       }
 

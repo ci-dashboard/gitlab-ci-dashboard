@@ -1,7 +1,8 @@
 import moxios from 'moxios'
 
 import {
-  getParameterByName
+  getParameterByName,
+  getProjectsByQuerystring
 } from '@/main.js'
 
 const mockedProjectDefinition = {
@@ -52,8 +53,17 @@ describe('main.js', () => {
       done()
     })
   })
+  describe('Compatibility Mode', () => {
+    it('Should load project pattern from url param', () => {
+      const projectsParam = 'namespace1/project1/branch1'
+      const projects = getProjectsByQuerystring(projectsParam)
+      expect('namespace1').to.equal(projects[0].namespace)
+      expect('project1').to.equal(projects[0].project)
+      expect('branch1').to.equal(projects[0].branch)
+    })
+  })
   describe('Get querystring params', () => {
-    const url = 'http://localhost:8080/?gitlab=localhost:8089&token=_&projectsFile=http://localhost:8080/static/file.json&gitlabciProtocol=http&interval=5&hideSuccessCards=false'
+    const url = 'http://localhost:8080/?gitlab=localhost:8089&projects=namespace1/project1/branch1&token=_&projectsFile=http://localhost:8080/static/file.json&gitlabciProtocol=http&interval=5&hideSuccessCards=false'
     it('Should get non-optional params from url', () => {
       // gitlab
       const gitlab = getParameterByName('gitlab', url)
@@ -66,6 +76,10 @@ describe('main.js', () => {
       // projectsFile
       const projectsFile = getParameterByName('projectsFile', url)
       expect('http://localhost:8080/static/file.json').to.equal(projectsFile)
+
+      // projects
+      const projects = getParameterByName('projects', url)
+      expect('namespace1/project1/branch1').to.equal(projects)
     })
     it('Should get optional params from url', () => {
       // gitlabciProtocol
