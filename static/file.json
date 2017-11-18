@@ -1,67 +1,80 @@
 [
   {
-    "nameWithNamespace": "native/gitlab-ci-monitor",
-    "projectName": "gitlab-ci-monitor",
+    "description": "",
+    "namespace": "native",
+    "project": "gitlab-ci-monitor",
     "branch": "hackday"
   },
   {
-    "nameWithNamespace": "Microsoft/vscode",
-    "projectName": "vscode",
+    "description": "",
+    "namespace": "Microsoft",
+    "project": "vscode",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "facebook/react",
-    "projectName": "react",
+    "description": "",
+    "namespace": "facebook",
+    "project": "react",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "google/breakpad",
-    "projectName": "breakpad",
+    "description": "",
+    "namespace": "google",
+    "project": "breakpad",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "alibaba/weex",
-    "projectName": "weex",
+    "description": "",
+    "namespace": "alibaba",
+    "project": "weex",
     "branch": "deprecated"
   },
   {
-    "nameWithNamespace": "vuejs/vue",
-    "projectName": "vue",
+    "description": "",
+    "namespace": "vuejs",
+    "project": "vue",
     "branch": "dev"
   },
   {
-    "nameWithNamespace": "froala/cdnjs",
-    "projectName": "cdnjs",
+    "description": "",
+    "namespace": "froala",
+    "project": "cdnjs",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "tensorflow/tensorflow",
-    "projectName": "tensorflow",
+    "description": "",
+    "namespace": "tensorflow",
+    "project": "tensorflow",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "apache/infrastructure-puppet",
-    "projectName": "infrastructure-puppet",
+    "description": "",
+    "namespace": "apache",
+    "project": "infrastructure-puppet",
     "branch": "deployment"
   },
   {
-    "nameWithNamespace": "shadowsocks/shadowsocks-libev",
-    "projectName": "shadowsocks-libev",
+    "description": "",
+    "namespace": "shadowsocks",
+    "project": "shadowsocks-libev",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "tsuru/tsuru",
-    "projectName": "tsuru",
+    "description": "",
+    "namespace": "tsuru",
+    "project": "tsuru",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "thumbor/thumbor",
-    "projectName": "thumbor",
+    "description": "",
+    "namespace": "thumbor",
+    "project": "thumbor",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "globocom/GloboDNS",
-    "projectName": "GloboDNS",
+    "description": "",
+    "namespace": "globocom",
+    "project": "GloboDNS",
     "branch": "master"
   }
 ]
