@@ -1,67 +1,110 @@
 [
   {
-    "nameWithNamespace": "native/gitlab-ci-monitor",
-    "projectName": "gitlab-ci-monitor",
+    "description": "Aplicativo para organizar filmes vistos",
+    "namespace": "santoslucas",
+    "project": "guarda-filme-android",
+    "branch": "feature/welcome_with_mvp"
+  },
+  {
+    "description": "React Native render for draft.js model",
+    "namespace": "globocom",
+    "project": "react-native-draftjs-render",
+    "branch": "feature/update-rn-0-49-3"
+  },
+  {
+    "description": "Hapi route versioning using custom header",
+    "namespace": "corintho",
+    "project": "hapi-version",
+    "branch": "master"
+  },
+  {
+    "description": "A lightweight Promise based HTTP client, using Fetch API.",
+    "namespace": "raphaelpor",
+    "project": "fitch.js",
+    "branch": "master"
+  },
+  {
+    "description": "[WIP] React development for TV (Renderer for low memory applications and Packager for WebOS, Tizen, Orsay)",
+    "namespace": "raphamorim",
+    "project": "react-tv",
+    "branch": "feature/webpack-3"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "gitlab-ci-monitor",
     "branch": "hackday"
   },
   {
-    "nameWithNamespace": "Microsoft/vscode",
-    "projectName": "vscode",
+    "description": "",
+    "namespace": "Microsoft",
+    "project": "vscode",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "facebook/react",
-    "projectName": "react",
+    "description": "",
+    "namespace": "facebook",
+    "project": "react",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "google/breakpad",
-    "projectName": "breakpad",
+    "description": "",
+    "namespace": "google",
+    "project": "breakpad",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "alibaba/weex",
-    "projectName": "weex",
+    "description": "",
+    "namespace": "alibaba",
+    "project": "weex",
     "branch": "deprecated"
   },
   {
-    "nameWithNamespace": "vuejs/vue",
-    "projectName": "vue",
+    "description": "",
+    "namespace": "vuejs",
+    "project": "vue",
     "branch": "dev"
   },
   {
-    "nameWithNamespace": "froala/cdnjs",
-    "projectName": "cdnjs",
+    "description": "",
+    "namespace": "froala",
+    "project": "cdnjs",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "tensorflow/tensorflow",
-    "projectName": "tensorflow",
+    "description": "",
+    "namespace": "tensorflow",
+    "project": "tensorflow",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "apache/infrastructure-puppet",
-    "projectName": "infrastructure-puppet",
+    "description": "",
+    "namespace": "apache",
+    "project": "infrastructure-puppet",
     "branch": "deployment"
   },
   {
-    "nameWithNamespace": "shadowsocks/shadowsocks-libev",
-    "projectName": "shadowsocks-libev",
+    "description": "",
+    "namespace": "shadowsocks",
+    "project": "shadowsocks-libev",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "tsuru/tsuru",
-    "projectName": "tsuru",
+    "description": "",
+    "namespace": "tsuru",
+    "project": "tsuru",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "thumbor/thumbor",
-    "projectName": "thumbor",
+    "description": "",
+    "namespace": "thumbor",
+    "project": "thumbor",
     "branch": "master"
   },
   {
-    "nameWithNamespace": "globocom/GloboDNS",
-    "projectName": "GloboDNS",
+    "description": "",
+    "namespace": "globocom",
+    "project": "GloboDNS",
     "branch": "master"
   }
 ]

@@ -4,6 +4,13 @@ import {
   getParameterByName
 } from '@/main.js'
 
+const mockedProjectDefinition = {
+  description: 'React Native DraftJS Render',
+  namespace: 'globocom',
+  project: 'react-native-draftjs-render',
+  branch: 'master'
+}
+
 describe('main.js', () => {
   describe('Projects File', () => {
     beforeEach(() => {
@@ -14,6 +21,13 @@ describe('main.js', () => {
     afterEach(() => {
       // import and pass your custom axios instance to this method
       moxios.uninstall()
+    })
+    it('should be valid projects file pattern', () => {
+      const projectDef = mockedProjectDefinition
+      expect('React Native DraftJS Render').to.equal(projectDef.description)
+      expect('globocom').to.equal(projectDef.namespace)
+      expect('react-native-draftjs-render').to.equal(projectDef.project)
+      expect('master').to.equal(projectDef.branch)
     })
     it('should get valid list of projects to test', (done) => {
       // getProjectByFile('http://localhost:8080/static/file.json', (data) => {

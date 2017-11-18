@@ -153,5 +153,63 @@
     "authorName": "Luis Henrique Okama",
     "authorEmail": "lokama@gmail.com",
     "username": "lokama"
+  },
+  {
+    "projectId": "12",
+    "projectName": "react-tv",
+    "projectDescription": "[WIP] React development for TV (Renderer for low memory applications and Packager for WebOS, Tizen, Orsay)",
+    "namespaceName": "raphamorim",
+    "branchName": "feature/webpack-3",
+    "commitId": "cc8669404379b5ce5c9d7d2b12d06baabe0664f8",
+    "commitMessage": "all: migrate benchmark example to webpack3\n",
+    "authorName": "Raphael Amorim",
+    "authorEmail": "rapha850@gmail.com",
+    "username": "raphamorim"
+  },
+  {
+    "projectId": "13",
+    "projectName": "fitch.js",
+    "projectDescription": "A lightweight Promise based HTTP client, using Fetch API.",
+    "namespaceName": "raphaelpor",
+    "branchName": "master",
+    "commitId": "f08d2520ced75aa23b9bc2ee4e09583c5ddbfa99",
+    "commitMessage": "v0.11.0\n",
+    "authorName": "Raphael Porto",
+    "authorEmail": "raphaelpor@gmail.com",
+    "username": "raphaelpor"
+  },
+  {
+    "projectId": "14",
+    "projectName": "hapi-version",
+    "projectDescription": "Hapi route versioning using custom header",
+    "namespaceName": "corintho",
+    "branchName": "master",
+    "commitId": "a6596b6a7a7317961d8fec458dabbf0b7458f413",
+    "commitMessage": "Merge pull request #5 from corintho/greenkeeper-hapi-11.0.2\n",
+    "authorName": "Corintho Assunção",
+    "username": "corintho"
+  },
+  {
+    "projectId": "15",
+    "projectName": "react-native-draftjs-render",
+    "projectDescription": "React Native render for draft.js model",
+    "namespaceName": "globocom",
+    "branchName": "feature/update-rn-0-49-3",
+    "commitId": "4c4b403b094c22cdb632a6e95121ddde1ae1f16e",
+    "commitMessage": "updating eslint-plugin-flowtype\n",
+    "authorName": "Igor Berquó Canêdo",
+    "authorEmail": "igor.canedo81@gmail.com",
+    "username": "Canedo"
+  },
+  {
+    "projectId": "16",
+    "projectName": "guarda-filme-android",
+    "projectDescription": "Aplicativo para organizar filmes vistos",
+    "namespaceName": "santoslucas",
+    "branchName": "feature/welcome_with_mvp",
+    "commitId": "54250851b1d37b894689c6c4b161bfc0e36327a0",
+    "commitMessage": "Finaliza refactor da WelcomeActivity para MVP\n",
+    "authorName": "Lucas Santos Silva",
+    "username": "santoslucas"
   }
 ]

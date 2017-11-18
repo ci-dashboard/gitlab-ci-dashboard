@@ -118,10 +118,12 @@ new Vue({
           const repository = repos[index]
           this.debug += repository
           const {
-            nameWithNamespace,
-            branch,
-            projectName
+            namespace,
+            project,
+            branch
           } = repository
+          const nameWithNamespace = `${namespace}/${project}`
+          const projectName = project
           repositories.push({
             nameWithNamespace,
             projectName,
