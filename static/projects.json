@@ -1,0 +1,104 @@
+[
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-app-home",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-app-home",
+    "branch": "develop"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-backstage-video",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-related-articles",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-chart",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-cli",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "entretenimento",
+    "project": "bsn-recipes",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "entretenimento",
+    "project": "bsn-summary",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-atomic-handler",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-live",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-styles",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-backstage-photo",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-atomic-ad",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-atomic-table-plugin",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-atomic-embed-social",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "bsn-ad-item",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "native",
+    "project": "globoid-sdk-react-native",
+    "branch": "master"
+  }
+]

@@ -9,8 +9,6 @@ const {
   tags
 } = data
 
-console.info(tags)
-
 const counter = {
   projects: 0,
   branchs: 0,
