@@ -14,7 +14,8 @@
     "commitParentId": "24e2fd4c0e3f33cd31f4f9388cdb5db3789eb0b5",
     "authorName": "Emiliano Barbosa",
     "authorEmail": "emilianoeloi@gmail.com",
-    "username": "emilianoeloi"
+    "username": "emilianoeloi",
+    "tagName": "v1.0.0"
   },
   {
     "projectId": "0",
@@ -27,7 +28,8 @@
     "commitParentId": "af6b8302fae66a2898ac8180c98221892d6c765f",
     "authorName": "Ramya Rao",
     "authorEmail": "ramyar@microsoft.com",
-    "username": "ramya-rao-a"
+    "username": "ramya-rao-a",
+    "tagName": "v2.0.0"
   },
   {
     "projectId": "1",
@@ -40,7 +42,8 @@
     "commitParentId": "8de8be07a89f55ebfcaaccf1499e03f22d90bad5",
     "authorName": "Dan Abramov",
     "authorEmail": "dan.abramov@me.com",
-    "username": "gaearon"
+    "username": "gaearon",
+    "tagName": "v3.0.0"
   },
   {
     "projectId": "2",
@@ -50,7 +53,8 @@
     "branchName": "master",
     "commitId": "8e9080bc533e6fe8602629ede8a2d866a1f7f1eb",
     "commitMessage": "Create LongStringDictionary and replace SimpleStringDictionary on iOS\n",
-    "authorName": "Yi Wang"
+    "authorName": "Yi Wang",
+    "tagName": "v1.0.1"
   },
   {
     "projectId": "3",
@@ -62,7 +66,8 @@
     "commitMessage": "Update PULL_REQUEST_TEMPLATE.md\n",
     "authorName": "勾三股四",
     "authorEmail": "zhaojinjiang@me.com",
-    "username": "Jinjiang"
+    "username": "Jinjiang",
+    "tagName": "v1.10.0"
   },
   {
     "projectId": "4",
@@ -73,7 +78,8 @@
     "commitId": "2acc12c9edb03329c4d9cddcca26e46c672a77bc",
     "commitMessage": "build: release 2.5.3\n",
     "authorName": "Evan You",
-    "username": "yyx990803"
+    "username": "yyx990803",
+    "tagName": "v1.80.0"
   },
   {
     "projectId": "5",
@@ -84,7 +90,8 @@
     "commitId": "f3ad4d4cc8e648c9b63f7d1095929f2ce24ae76c",
     "commitMessage": "Add handlebars.js v4.0.11\n",
     "authorName": "Bot of PeterDaveHello",
-    "username": "PeterBot"
+    "username": "PeterBot",
+    "tagName": "v9.0.0"
   },
   {
     "projectId": "6",
@@ -94,7 +101,8 @@
     "branchName": "master",
     "commitId": "318e071f7cb9fd51ddf0dda1e285e140167b4b56",
     "commitMessage": "Disable flaky prefetching_ops_test\n",
-    "authorName": "gunan"
+    "authorName": "gunan",
+    "tagName": "v1.8.0"
   },
   {
     "projectId": "7",
@@ -105,7 +113,8 @@
     "commitId": "92ca7faf7f8a4992116260e872fb6c078ffd53e7",
     "commitMessage": "Merge pull request #543 from apache/gm/bval-svn\n",
     "authorName": "Daniel Gruno",
-    "username": "Humbedooh"
+    "username": "Humbedooh",
+    "tagName": "v80.0.0"
   },
   {
     "projectId": "8",
@@ -117,7 +126,8 @@
     "commitMessage": "Merge pull request #1772 from rogers0/PR/artful\n",
     "authorName": "Max Lv",
     "authorEmail": "max.c.lv@gmail.com",
-    "username": "madeye"
+    "username": "madeye",
+    "tagName": "v9.0.0"
   },
   {
     "projectId": "9",
@@ -129,7 +139,8 @@
     "commitMessage": "provision/swarm: handle UpdateStatus nil on DeployService\n",
     "authorName": "André Carvalho",
     "authorEmail": "asantostc@gmail.com",
-    "username": "andrestc"
+    "username": "andrestc",
+    "tagName": "v7.0.0"
   },
   {
     "projectId": "10",
@@ -140,7 +151,8 @@
     "commitId": "2f1529604a0f5b2d6d87132b5616841842313215",
     "commitMessage": "Looks like skipped test is fixed now; uncommenting\n",
     "authorName": "Konstantin Kopachev",
-    "username": "kkopachev"
+    "username": "kkopachev",
+    "tagName": "v8.2.0"
   },
   {
     "projectId": "11",
@@ -152,7 +164,8 @@
     "commitMessage": "update setup doc\n",
     "authorName": "Luis Henrique Okama",
     "authorEmail": "lokama@gmail.com",
-    "username": "lokama"
+    "username": "lokama",
+    "tagName": "v4.4.0"
   },
   {
     "projectId": "12",
@@ -164,7 +177,8 @@
     "commitMessage": "all: migrate benchmark example to webpack3\n",
     "authorName": "Raphael Amorim",
     "authorEmail": "rapha850@gmail.com",
-    "username": "raphamorim"
+    "username": "raphamorim",
+    "tagName": "v9.1.0"
   },
   {
     "projectId": "13",
@@ -176,7 +190,8 @@
     "commitMessage": "v0.11.0\n",
     "authorName": "Raphael Porto",
     "authorEmail": "raphaelpor@gmail.com",
-    "username": "raphaelpor"
+    "username": "raphaelpor",
+    "tagName": "v10.0.0"
   },
   {
     "projectId": "14",
@@ -187,7 +202,8 @@
     "commitId": "a6596b6a7a7317961d8fec458dabbf0b7458f413",
     "commitMessage": "Merge pull request #5 from corintho/greenkeeper-hapi-11.0.2\n",
     "authorName": "Corintho Assunção",
-    "username": "corintho"
+    "username": "corintho",
+    "tagName": "v1.0.10"
   },
   {
     "projectId": "15",
@@ -199,7 +215,8 @@
     "commitMessage": "updating eslint-plugin-flowtype\n",
     "authorName": "Igor Berquó Canêdo",
     "authorEmail": "igor.canedo81@gmail.com",
-    "username": "Canedo"
+    "username": "Canedo",
+    "tagName": "v9.1.2"
   },
   {
     "projectId": "16",
@@ -210,6 +227,7 @@
     "commitId": "54250851b1d37b894689c6c4b161bfc0e36327a0",
     "commitMessage": "Finaliza refactor da WelcomeActivity para MVP\n",
     "authorName": "Lucas Santos Silva",
-    "username": "santoslucas"
+    "username": "santoslucas",
+    "tagName": "v1.2.3"
   }
 ]

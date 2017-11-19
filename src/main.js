@@ -60,6 +60,13 @@ export const getProjectByFile = (fileUrl, callback) => {
   })
 }
 
+export const filterLastItem = (list) => {
+  if (!Array.isArray(list) || list.length === 0) {
+    return
+  }
+  return list[0]
+}
+
 const INCREASE_ACTION = 'increase'
 const DECREASE_ACTION = 'decrease'
 
@@ -289,6 +296,55 @@ new Vue({
         selectedItem.total--
       }
     },
+    loadBuilds (onBuilds, data, repo, project, tag) {
+      let updated = false
+
+      let build = filterLastItem(data)
+      if (!build) {
+        return
+      }
+      let startedFromNow = moment(build.started_at).fromNow()
+
+      onBuilds.forEach((b) => {
+        if (
+          b.project === repo.projectName &&
+          b.branch === repo.branch
+        ) {
+          updated = true
+
+          if (b.status !== build.status) {
+            this.addStatusQueue(b.status, DECREASE_ACTION)
+            this.addStatusQueue(build.status, INCREASE_ACTION)
+          }
+          b.lastStatus = b.status
+          b.status = build.status
+
+          b.id = build.id
+          b.started_at = startedFromNow
+          b.author = build.commit.author_name
+          b.commit_message = build.commit.message
+          b.project_path = project.path_with_namespace
+          b.branch = repo.branch
+          b.tag_message = tag.message
+        }
+      })
+
+      if (!updated) {
+        this.addStatusQueue(build.status, INCREASE_ACTION)
+        const buildToAdd = {
+          project: repo.projectName,
+          id: build.id,
+          status: build.status,
+          lastStatus: '',
+          started_at: startedFromNow,
+          author: build.commit.author_name,
+          commit_message: build.commit.message,
+          project_path: project.path_with_namespace,
+          branch: repo.branch
+        }
+        onBuilds.push(buildToAdd)
+      }
+    },
     fetchBuilds (selectedProjects) {
       const {
         onBuilds
@@ -300,67 +356,21 @@ new Vue({
         repo,
         project
       } = selectedProjects
-      axios.get('/projects/' + project.id + '/repository/branches/' + repo.branch)
+      axios.get(`/projects/${project.id}/repository/branches/${repo.branch}`)
         .then((response) => {
           const lastCommit = response.data.commit.id
-          axios.get('/projects/' + project.id + '/repository/commits/' + lastCommit + '/builds')
-            .then((response) => {
-              let updated = false
-
-              let build = this.filterLastBuild(response.data)
-              if (!build) {
-                return
-              }
-              let startedFromNow = moment(build.started_at).fromNow()
-
-              onBuilds.forEach((b) => {
-                if (
-                  b.project === repo.projectName &&
-                  b.branch === repo.branch
-                ) {
-                  updated = true
-
-                  if (b.status !== build.status) {
-                    this.addStatusQueue(b.status, DECREASE_ACTION)
-                    this.addStatusQueue(build.status, INCREASE_ACTION)
-                  }
-                  b.lastStatus = b.status
-                  b.status = build.status
-
-                  b.id = build.id
-                  b.started_at = startedFromNow
-                  b.author = build.commit.author_name
-                  b.commit_message = build.commit.message
-                  b.project_path = project.path_with_namespace
-                  b.branch = repo.branch
-                }
+          axios.get(`/projects/${project.id}/repository/commits/${lastCommit}/builds`)
+          .then((response) => {
+            axios.get(`/projects/${project.id}/repository/tags`)
+              .then((response) => {
+                const tag = filterLastItem(response.data)
+                this.loadBuilds(onBuilds, response.data, repo, project, tag)
               })
-
-              if (!updated) {
-                this.addStatusQueue(build.status, INCREASE_ACTION)
-                const buildToAdd = {
-                  project: repo.projectName,
-                  id: build.id,
-                  status: build.status,
-                  lastStatus: '',
-                  started_at: startedFromNow,
-                  author: build.commit.author_name,
-                  commit_message: build.commit.message,
-                  project_path: project.path_with_namespace,
-                  branch: repo.branch
-                }
-                onBuilds.push(buildToAdd)
-              }
-            })
-            .catch(this.handlerError.bind(this))
+              .catch(this.handlerError.bind(this))
+          })
+          .catch(this.handlerError.bind(this))
         })
         .catch(this.handlerError.bind(this))
-    },
-    filterLastBuild (builds) {
-      if (!Array.isArray(builds) || builds.length === 0) {
-        return
-      }
-      return builds[0]
     }
   },
   template: '' +
