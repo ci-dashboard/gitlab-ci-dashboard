@@ -31,11 +31,31 @@ describe('Builds.vue', () => {
     expect('bounce-out-top')
     .to.equal(positionClass)
   })
-  it('should show version card when hideVersion is false', () => {
+  it('should show version card when hideVersion is false and has tag name', () => {
     const Constructor = Vue.extend(Builds)
     const vm = new Constructor().$mount()
     vm.hideVersion = false
-    const show = vm.showVersion()
+    const show = vm.showVersion({
+      tag_name: 'v1'
+    })
     expect(true).to.equal(show)
+  })
+  it('should dont show version card when hideVersion is false and havent tag name', () => {
+    const Constructor = Vue.extend(Builds)
+    const vm = new Constructor().$mount()
+    vm.hideVersion = false
+    const show = vm.showVersion({
+      tag_name: null
+    })
+    expect(false).to.equal(show)
+  })
+  it('should hide commit message and author when was success card', () => {
+    const Constructor = Vue.extend(Builds)
+    const vm = new Constructor().$mount()
+    vm.hideVersion = false
+    const success = vm.isSuccessCard({
+      status: 'success'
+    })
+    expect(true).to.equal(success)
   })
 })

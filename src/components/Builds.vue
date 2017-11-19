@@ -12,12 +12,15 @@
               <a target="_blank" v-bind:href="build.project_url">{{ build.project }} ({{ build.branch }})</a>
             </div>
             <div class="meta">{{ build.namespace_name }}</div>
-            <div class="description">
+            <div v-if="!isSuccessCard(build)" class="description">
               {{ build.commit_message }}
             </div>
-            <div class="meta">{{ build.author }}</div>
-            <div v-if="showVersion()" class="ui right floated basic button">
-              <h2>{{ build.tag_name }}</h2>
+            <div v-if="!isSuccessCard(build)" class="meta">{{ build.author }}</div>
+            <div v-if="!isSuccessCard(build) && showVersion(build)" class="ui center floated basic button">
+              <h1 style="font-size: 1.5em">{{ build.tag_name }}</h1>
+            </div>
+            <div v-if="isSuccessCard(build) && showVersion(build)" class="ui center floated basic button">
+              <h1 style="font-size: 2.5em">{{ build.tag_name }}</h1>
             </div>
           </div>
           <div class="extra content">
@@ -48,8 +51,11 @@
       }
     },
     methods: {
-      showVersion () {
-        return !this.hideVersion
+      isSuccessCard ({status}) {
+        return status === 'success'
+      },
+      showVersion (build) {
+        return !this.hideVersion && build.tag_name != null
       },
       statusClass (build) {
         return `card ${build.status} ${this.positionClass(build)}`
