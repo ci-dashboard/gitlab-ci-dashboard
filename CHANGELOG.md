@@ -5,6 +5,7 @@
 # 5.1.0 Backward compatibility
 - command to create projectsFile file from querystring
 - compatibility mode with gitlab-ci-monitor
+- adding param to hide/show version
 
 # 5.0.1 New projectsFile pattern
 

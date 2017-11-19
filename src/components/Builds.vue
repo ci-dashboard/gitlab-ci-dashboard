@@ -16,7 +16,7 @@
               {{ build.commit_message }}
             </div>
             <div class="meta">{{ build.author }}</div>
-            <div class="ui right floated basic button">
+            <div v-if="showVersion()" class="ui right floated basic button">
               <h2>{{ build.tag_name }}</h2>
             </div>
           </div>
@@ -41,13 +41,16 @@
 <script>
   export default {
     name: 'builds',
-    props: ['onBuilds', 'sortedBuilds', 'hideSuccessCards'],
+    props: ['onBuilds', 'sortedBuilds', 'hideSuccessCards', 'hideVersion'],
     data () {
       return {
         gitlab: ''
       }
     },
     methods: {
+      showVersion () {
+        return !this.hideVersion
+      },
       statusClass (build) {
         return `card ${build.status} ${this.positionClass(build)}`
       },

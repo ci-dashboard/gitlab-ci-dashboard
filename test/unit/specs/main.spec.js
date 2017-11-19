@@ -2,7 +2,8 @@ import moxios from 'moxios'
 
 import {
   getParameterByName,
-  getProjectsByQuerystring
+  getProjectsByQuerystring,
+  getTopItem
 } from '@/main.js'
 
 const mockedProjectDefinition = {
@@ -13,6 +14,13 @@ const mockedProjectDefinition = {
 }
 
 describe('main.js', () => {
+  describe('Utilities', () => {
+    it('Should get top item of array', () => {
+      const arr = ['a', 'b', 'c']
+      const topItem = getTopItem(arr)
+      expect('a').to.equal(topItem)
+    })
+  })
   describe('Projects File', () => {
     beforeEach(() => {
       // import and pass your custom axios instance to this method

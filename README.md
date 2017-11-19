@@ -24,7 +24,8 @@ in the query string or using command-line on standalone mode:
 - **token**: your gitlab token
 - **projectsFile**: a url to file that contains a list of projects you want to monitor, see below how to create it
 - **gitlabciProtocol** (optional): protocol to access gitlabci api. Default: https
-- **hideSuccessCards** (optional): hide cards when change to success status. Default: true
+- **hideSuccessCards** (optional): hide cards when change to success status. Default: false
+- **hideVersion** (optional): hide version of cards. Default: false
 - **interval** (optional): interval, in seconds, that monitor go to gitlab server take a new data. Default 60
 
 ### json projectsFile pattern
