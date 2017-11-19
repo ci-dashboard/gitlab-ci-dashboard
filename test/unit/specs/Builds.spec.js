@@ -31,4 +31,11 @@ describe('Builds.vue', () => {
     expect('bounce-out-top')
     .to.equal(positionClass)
   })
+  it('should show version card when hideVersion is false', () => {
+    const Constructor = Vue.extend(Builds)
+    const vm = new Constructor().$mount()
+    vm.hideVersion = false
+    const show = vm.showVersion()
+    expect(true).to.equal(show)
+  })
 })

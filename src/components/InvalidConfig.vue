@@ -15,6 +15,7 @@
           <li>projectsFile</li>
           <li>gitlabciProtocol (optional)</li>
           <li>hideSuccessCards (optional)</li>
+          <li>hideVersion (optional)</li>
           <li>interval (optional)</li>
         </ul>
         <p>projectsFile json pattern</p>
@@ -32,6 +33,8 @@
       </div>
       <div class="ui bottom attached warning message">
         <p>Ex: http://gitlab-ci-dashboard.example.com?gitlab=gitlab.example.com&token=some-token&projectsFile=http://gitlab-ci-dashboard.example.com/file.json&gitlabciProtocol=http&hideSuccessCards=false</p>
+        <h4>gitlab-ci-monitor compatibility</h4>
+        <p>Ex: http://gitlab-ci-monitor.example.com/?gitlab=gitlab.example.com&token=12345&projects=namespace/project1,namespace/project1/branch,namespace/project2</p>
       </div>
     </div>
   </div>

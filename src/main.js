@@ -60,8 +60,19 @@ export const getProjectByFile = (fileUrl, callback) => {
   })
 }
 
+export const getTopItem = (list) => {
+  if (!Array.isArray(list) || list.length === 0) {
+    return
+  }
+  return list[0]
+}
+
 const INCREASE_ACTION = 'increase'
 const DECREASE_ACTION = 'decrease'
+const DEFAULT_HIDE_SUCCESS_CARDS = false
+const DEFAULT_HIDE_VERSION = false
+const DEFAULT_INTERVAL = 60
+const DEFAULT_GITLABCI_PROTOCOL = 'https'
 
 /* eslint-disable no-new */
 new Vue({
@@ -78,7 +89,8 @@ new Vue({
       projectsParam: null,
       projectsFile: null,
       gitlabciProtocol: 'https',
-      hideSuccessCards: true,
+      hideSuccessCards: DEFAULT_HIDE_SUCCESS_CARDS,
+      hideVersion: DEFAULT_HIDE_VERSION,
       repositoriesParams: [],
       repositories: null,
       onLoading: false,
@@ -122,7 +134,7 @@ new Vue({
         this.projects = data.projects
         this.gitlabciProtocol = data.gitlabciProtocol
         this.hideSuccessCards = data.hideSuccessCards
-        this.hideSuccessCards = data.hideSuccessCards
+        this.hideVersion = data.hideVersion
         this.interval = data.interval
         this.startup()
       })
@@ -141,12 +153,16 @@ new Vue({
       this.ref = getParameterByName('ref')
       this.projectsParam = getParameterByName('projects')
       this.projectsFile = getParameterByName('projectsFile')
-      this.gitlabciProtocol = getParameterByName('gitlabciProtocol') || 'https'
+      this.gitlabciProtocol = getParameterByName('gitlabciProtocol') || DEFAULT_GITLABCI_PROTOCOL
       this.hideSuccessCards = getParameterByName('hideSuccessCards')
       if (this.hideSuccessCards == null) {
-        this.hideSuccessCards = true
+        this.hideSuccessCards = DEFAULT_HIDE_SUCCESS_CARDS
       }
-      this.interval = getParameterByName('interval') || 60
+      this.hideVersion = getParameterByName('hideVersion')
+      if (this.hideVersion == null) {
+        this.hideVersion = DEFAULT_HIDE_VERSION
+      }
+      this.interval = getParameterByName('interval') || DEFAULT_INTERVAL
     },
     loadProjects (repos) {
       if (repos == null) {
@@ -289,6 +305,58 @@ new Vue({
         selectedItem.total--
       }
     },
+    loadBuilds (onBuilds, data, repo, project, tag) {
+      let updated = false
+
+      let build = getTopItem(data)
+      if (!build) {
+        return
+      }
+      let startedFromNow = moment(build.started_at).fromNow()
+
+      onBuilds.forEach((b) => {
+        if (
+          b.project === repo.projectName &&
+          b.branch === repo.branch
+        ) {
+          updated = true
+
+          if (b.status !== build.status) {
+            this.addStatusQueue(b.status, DECREASE_ACTION)
+            this.addStatusQueue(build.status, INCREASE_ACTION)
+          }
+          b.lastStatus = b.status
+          b.status = build.status
+
+          b.id = build.id
+          b.started_at = startedFromNow
+          b.author = build.commit.author_name
+          b.commit_message = build.commit.message
+          b.project_path = project.path_with_namespace
+          b.branch = repo.branch
+          b.tag_name = tag.name
+          b.namespace_name = project.namespace.name
+        }
+      })
+
+      if (!updated) {
+        this.addStatusQueue(build.status, INCREASE_ACTION)
+        const buildToAdd = {
+          project: repo.projectName,
+          id: build.id,
+          status: build.status,
+          lastStatus: '',
+          started_at: startedFromNow,
+          author: build.commit.author_name,
+          commit_message: build.commit.message,
+          project_path: project.path_with_namespace,
+          branch: repo.branch,
+          tag_name: tag.name,
+          namespace_name: project.namespace.name
+        }
+        onBuilds.push(buildToAdd)
+      }
+    },
     fetchBuilds (selectedProjects) {
       const {
         onBuilds
@@ -300,67 +368,22 @@ new Vue({
         repo,
         project
       } = selectedProjects
-      axios.get('/projects/' + project.id + '/repository/branches/' + repo.branch)
+      axios.get(`/projects/${project.id}/repository/branches/${repo.branch}`)
         .then((response) => {
           const lastCommit = response.data.commit.id
-          axios.get('/projects/' + project.id + '/repository/commits/' + lastCommit + '/builds')
-            .then((response) => {
-              let updated = false
-
-              let build = this.filterLastBuild(response.data)
-              if (!build) {
-                return
-              }
-              let startedFromNow = moment(build.started_at).fromNow()
-
-              onBuilds.forEach((b) => {
-                if (
-                  b.project === repo.projectName &&
-                  b.branch === repo.branch
-                ) {
-                  updated = true
-
-                  if (b.status !== build.status) {
-                    this.addStatusQueue(b.status, DECREASE_ACTION)
-                    this.addStatusQueue(build.status, INCREASE_ACTION)
-                  }
-                  b.lastStatus = b.status
-                  b.status = build.status
-
-                  b.id = build.id
-                  b.started_at = startedFromNow
-                  b.author = build.commit.author_name
-                  b.commit_message = build.commit.message
-                  b.project_path = project.path_with_namespace
-                  b.branch = repo.branch
-                }
+          axios.get(`/projects/${project.id}/repository/commits/${lastCommit}/builds`)
+          .then((response) => {
+            const builds = response.data
+            axios.get(`/projects/${project.id}/repository/tags`)
+              .then((response) => {
+                const tag = getTopItem(response.data)
+                this.loadBuilds(onBuilds, builds, repo, project, tag)
               })
-
-              if (!updated) {
-                this.addStatusQueue(build.status, INCREASE_ACTION)
-                const buildToAdd = {
-                  project: repo.projectName,
-                  id: build.id,
-                  status: build.status,
-                  lastStatus: '',
-                  started_at: startedFromNow,
-                  author: build.commit.author_name,
-                  commit_message: build.commit.message,
-                  project_path: project.path_with_namespace,
-                  branch: repo.branch
-                }
-                onBuilds.push(buildToAdd)
-              }
-            })
-            .catch(this.handlerError.bind(this))
+              .catch(this.handlerError.bind(this))
+          })
+          .catch(this.handlerError.bind(this))
         })
         .catch(this.handlerError.bind(this))
-    },
-    filterLastBuild (builds) {
-      if (!Array.isArray(builds) || builds.length === 0) {
-        return
-      }
-      return builds[0]
     }
   },
   template: '' +
@@ -373,6 +396,7 @@ new Vue({
   'v-bind:status="status" ' +
   'v-bind:hideSuccessCards="hideSuccessCards"' +
   'v-bind:interval="interval"' +
+  'v-bind:hideVersion="hideVersion"' +
   '/>',
   components: { App }
 })

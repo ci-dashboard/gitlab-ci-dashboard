@@ -8,7 +8,8 @@ commander.option('--gitlab [gitlab server host]', 'your gitlab server host')
 commander.option('--token [token]', 'gitlab token')
 commander.option('--projectsFile [projectsFile]', 'a url to file that contains a list of projects you want to monitor')
 commander.option('--gitlabciProtocol [gitlabciProtocol]', '(optional): protocol to access gitlabci api. Default: https')
-commander.option('--hideSuccessCards [hideSuccessCards]', '(optional): hide cards when change to success status. Default: true')
+commander.option('--hideSuccessCards [hideSuccessCards]', '(optional): hide cards when change to success status. Default: false')
+commander.option('--hideVersion [hideVersion]', '(optional): hide version of cards. Default: true')
 commander.option('--interval [interval]', '(optional): interval, in seconds, that monitor go to gitlab server take a new data. Default 60')
 
 commander.parse(process.argv)
@@ -19,6 +20,7 @@ const token = commander.token || process.env.TOKEN
 const projectsFile = commander.projectsFile || process.env.PROJECTS_FILE
 const gitlabciProtocol = commander.gitlabciProtocol || process.env.GITLABCI_PROTOCOL || 'https'
 const hideSuccessCards = commander.hideSuccessCards || process.env.HIDE_SUCCESS_CARDS || false
+const hideVersion = commander.hideVersion || process.env.HIDE_VERSION || false
 const interval = commander.interval || process.env.INTERVAL || 60
 
 let projects = []
@@ -34,6 +36,7 @@ if (projectsFile != null) {
       projects,
       gitlabciProtocol,
       hideSuccessCards,
+      hideVersion,
       interval
     }
 

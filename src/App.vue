@@ -10,6 +10,7 @@
           v-bind:sortedBuilds="sortedBuilds"
           v-bind:status="status"
           v-bind:hideSuccessCards="hideSuccessCards"
+          v-bind:hideVersion="hideVersion"
         />
       </div>
       <div class="three wide column">
@@ -46,7 +47,8 @@ export default {
     'sortedBuilds',
     'status',
     'hideSuccessCards',
-    'interval'
+    'interval',
+    'hideVersion'
   ],
   data () {
     return {

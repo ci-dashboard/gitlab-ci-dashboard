@@ -11,9 +11,13 @@
             <div class="header project-name">
               <a target="_blank" v-bind:href="build.project_url">{{ build.project }} ({{ build.branch }})</a>
             </div>
-            <div class="meta">{{ build.author }}</div>
+            <div class="meta">{{ build.namespace_name }}</div>
             <div class="description">
               {{ build.commit_message }}
+            </div>
+            <div class="meta">{{ build.author }}</div>
+            <div v-if="showVersion()" class="ui right floated basic button">
+              <h2>{{ build.tag_name }}</h2>
             </div>
           </div>
           <div class="extra content">
@@ -37,13 +41,16 @@
 <script>
   export default {
     name: 'builds',
-    props: ['onBuilds', 'sortedBuilds', 'hideSuccessCards'],
+    props: ['onBuilds', 'sortedBuilds', 'hideSuccessCards', 'hideVersion'],
     data () {
       return {
         gitlab: ''
       }
     },
     methods: {
+      showVersion () {
+        return !this.hideVersion
+      },
       statusClass (build) {
         return `card ${build.status} ${this.positionClass(build)}`
       },

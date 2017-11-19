@@ -1,12 +1,14 @@
 var projectTemplate = require('./projectTemplate.json')
 var branchTemplate = require('./branchTemplate.json')
 var buildTemplate = require('./buildTemplate.json')
+var tagTemplate = require('./tagTemplate.json')
 
 var projectsData = require('./projectsData')
 
 const projects = []
 const branchs = []
 const builds = []
+const tags = []
 
 const replaceNamespaceProject = (field, data) => {
   return field.replace('NAMESPACE_NAME', data.namespaceName)
@@ -73,14 +75,24 @@ const fillBuild = (data) => {
   return b
 }
 
+const fillTag = (data) => {
+  const t = Object.assign({}, tagTemplate)
+  t.project_id = data.projectId
+  t.name = data.tagName
+
+  return t
+}
+
 projectsData.map((p) => {
   projects.push(fillProject(p))
   branchs.push(fillBranch(p))
   builds.push(fillBuild(p))
+  tags.push(fillTag(p))
 })
 
 module.exports = {
   projects,
   branchs,
-  builds
+  builds,
+  tags
 }

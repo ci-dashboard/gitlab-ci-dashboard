@@ -5,13 +5,15 @@ var data = require('./data')
 const {
   projects,
   branchs,
-  builds
+  builds,
+  tags
 } = data
 
 const counter = {
   projects: 0,
   branchs: 0,
   builds: 0,
+  tags: 0,
   running: 0,
   failed: 0,
   pending: 0,
@@ -89,6 +91,24 @@ app.get('/api/v3/projects/:param1/repository/branches/:param2/:param3', (req, re
   })
   if (branch && branch.length > 0) {
     res.json(branch[0])
+  } else {
+    res.sendStatus(404)
+  }
+})
+
+// https://(...)/api/v3/projects/10/repository/tags
+app.get('/api/v3/projects/:param1/repository/tags', (req, res, next) => {
+  counter.tags++
+  const {
+    param1
+  } = req.params
+  const tag = tags.filter((t) => {
+    return (
+      t.project_id === param1
+    )
+  })
+  if (tag && tag.length > 0) {
+    res.json(tag)
   } else {
     res.sendStatus(404)
   }
