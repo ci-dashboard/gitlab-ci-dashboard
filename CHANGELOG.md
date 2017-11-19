@@ -1,3 +1,7 @@
+# 5.3.0 Simplify Success cards
+- use real infor on mocked server
+- keep only namespace name and version on success cards
+
 # 5.2.0 Last tag (Version) on card
 - Mocked tags on gitlab mocked server
 - Adding Version on cards 
