@@ -325,7 +325,8 @@ new Vue({
           b.commit_message = build.commit.message
           b.project_path = project.path_with_namespace
           b.branch = repo.branch
-          b.tag_message = tag.message
+          b.tag_name = tag.name
+          b.namespace_name = project.namespace.name
         }
       })
 
@@ -340,7 +341,9 @@ new Vue({
           author: build.commit.author_name,
           commit_message: build.commit.message,
           project_path: project.path_with_namespace,
-          branch: repo.branch
+          branch: repo.branch,
+          tag_name: tag.name,
+          namespace_name: project.namespace.name
         }
         onBuilds.push(buildToAdd)
       }
@@ -361,10 +364,11 @@ new Vue({
           const lastCommit = response.data.commit.id
           axios.get(`/projects/${project.id}/repository/commits/${lastCommit}/builds`)
           .then((response) => {
+            const builds = response.data
             axios.get(`/projects/${project.id}/repository/tags`)
               .then((response) => {
                 const tag = filterLastItem(response.data)
-                this.loadBuilds(onBuilds, response.data, repo, project, tag)
+                this.loadBuilds(onBuilds, builds, repo, project, tag)
               })
               .catch(this.handlerError.bind(this))
           })
