@@ -17,7 +17,7 @@
             </div>
             <div class="meta">{{ build.author }}</div>
             <div class="ui right floated basic button">
-              <h3>{{ build.tag_name }}</h3>
+              <h2>{{ build.tag_name }}</h2>
             </div>
           </div>
           <div class="extra content">

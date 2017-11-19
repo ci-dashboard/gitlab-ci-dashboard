@@ -1,6 +1,6 @@
 {
   "name": "gitlab-ci-dashboard",
-  "version": "5.1.0",
+  "version": "5.2.0-alpha.1",
   "description": "Dashboard for monitoring GitLab CI builds. This project is based on gitlab-ci-monitor by globo.com",
   "author": "Emiliano Barbosa <emilianoeloi@gmail.com>",
   "scripts": {
