@@ -140,6 +140,14 @@ If your dashboard using the projectsFile pattern below:
 },
 ```
 
+Run migration command:
+
+```bash
+# migration command
+gitlab-ci-dashboard-migration --projectsFile example.json
+```
+
+
 ## projectsFile creation from gitlab-ci-monitor base project
 
 Take your url dashboard
