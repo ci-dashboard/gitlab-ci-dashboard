@@ -334,7 +334,7 @@ new Vue({
           b.commit_message = build.commit.message
           b.project_path = project.path_with_namespace
           b.branch = repo.branch
-          b.tag_name = tag.name
+          b.tag_name = tag && tag.name
           b.namespace_name = project.namespace.name
         }
       })
@@ -351,7 +351,7 @@ new Vue({
           commit_message: build.commit.message,
           project_path: project.path_with_namespace,
           branch: repo.branch,
-          tag_name: tag.name,
+          tag_name: tag && tag.name,
           namespace_name: project.namespace.name
         }
         onBuilds.push(buildToAdd)

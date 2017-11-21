@@ -108,7 +108,6 @@ app.get('/api/v3/projects/:param1/repository/tags', (req, res, next) => {
       t.name != null
     )
   })
-  console.log('tag', tag)
   res.json(tag)
 })
 
