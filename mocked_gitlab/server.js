@@ -104,14 +104,12 @@ app.get('/api/v3/projects/:param1/repository/tags', (req, res, next) => {
   } = req.params
   const tag = tags.filter((t) => {
     return (
-      t.project_id === param1
+      t.project_id === param1 &&
+      t.name != null
     )
   })
-  if (tag && tag.length > 0) {
-    res.json(tag)
-  } else {
-    res.sendStatus(404)
-  }
+  console.log('tag', tag)
+  res.json(tag)
 })
 
 const statePersistence = {
