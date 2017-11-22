@@ -4,20 +4,20 @@ import Painel from '@/components/Painel'
 describe('Painel.vue', () => {
   it('has a data hook', () => {
     const type = typeof Painel.data
-    expect(type).to.equal('function')
+    expect(type).toEqual('function')
   })
   it('should render correct contents', () => {
     const Constructor = Vue.extend(Painel)
     const vm = new Constructor().$mount()
     expect(vm.localStatus[0].text)
-    .to.equal('success')
+    .toEqual('success')
   })
   it('should return status name: "success"', () => {
     const Constructor = Vue.extend(Painel)
     const vm = new Constructor().$mount()
     vm.status = [{text: 'success'}]
     expect(vm.localStatus[0].text)
-    .to.equal('success')
+    .toEqual('success')
   })
   it('should compute animation styles por mask, filter and spinner', () => {
     const Constructor = Vue.extend(Painel)
@@ -29,10 +29,10 @@ describe('Painel.vue', () => {
     const expectedSpinner = 'rota 5s linear infinite'
 
     expect(expectedFilter)
-    .to.equal(vm.filterAnimation)
+    .toEqual(vm.filterAnimation)
     expect(expectedMask)
-    .to.equal(vm.maskAnimation)
+    .toEqual(vm.maskAnimation)
     expect(expectedSpinner)
-    .to.equal(vm.spinnerAnimation)
+    .toEqual(vm.spinnerAnimation)
   })
 })

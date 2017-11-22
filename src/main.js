@@ -4,6 +4,12 @@ import Vue from 'vue'
 import moment from 'moment'
 import axios from 'axios'
 
+import {
+  getBranch,
+  getBuilds,
+  getTags
+} from '@/gitlab'
+
 import App from './App'
 
 Vue.config.productionTip = false
@@ -368,20 +374,20 @@ new Vue({
         repo,
         project
       } = selectedProjects
-      axios.get(`/projects/${project.id}/repository/branches/${repo.branch}`)
+      getBranch(project.id, repo.branch)
         .then((response) => {
           const lastCommit = response.data.commit.id
-          axios.get(`/projects/${project.id}/repository/commits/${lastCommit}/builds`)
-          .then((response) => {
-            const builds = response.data
-            axios.get(`/projects/${project.id}/repository/tags`)
-              .then((response) => {
-                const tag = getTopItem(response.data)
-                this.loadBuilds(onBuilds, builds, repo, project, tag)
-              })
-              .catch(this.handlerError.bind(this))
-          })
-          .catch(this.handlerError.bind(this))
+          getBuilds(project.id, lastCommit)
+            .then((response) => {
+              const builds = response.data
+              getTags(project.id)
+                .then((response) => {
+                  const tag = getTopItem(response.data)
+                  this.loadBuilds(onBuilds, builds, repo, project, tag)
+                })
+                .catch(this.handlerError.bind(this))
+            })
+            .catch(this.handlerError.bind(this))
         })
         .catch(this.handlerError.bind(this))
     }
