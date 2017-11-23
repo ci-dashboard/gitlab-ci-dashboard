@@ -227,5 +227,17 @@
     "authorName": "Lucas Santos Silva",
     "username": "santoslucas",
     "tagName": "v1.1.0"
+  },
+  {
+    "projectId": "17",
+    "projectName": "politicos",
+    "projectDescription": "API com todos os candidatos Brasileiros!",
+    "namespaceName": "olhoneles",
+    "branchName": "scripts",
+    "commitId": "a072f7ff3e9e87b58af6d78f9ed99948c295f565",
+    "commitMessage": "Initial political party data\n",
+    "authorName": "Marcelo Jorge Vieira",
+    "username": "marcelometal",
+    "tagName": "0.2.0"
   }
 ]
