@@ -18,7 +18,7 @@ describe('main.js', () => {
     it('Should get top item of array', () => {
       const arr = ['a', 'b', 'c']
       const topItem = getTopItem(arr)
-      expect('a').to.equal(topItem)
+      expect('a').toEqual(topItem)
     })
   })
   describe('Projects File', () => {
@@ -33,10 +33,10 @@ describe('main.js', () => {
     })
     it('should be valid projects file pattern', () => {
       const projectDef = mockedProjectDefinition
-      expect('React Native DraftJS Render').to.equal(projectDef.description)
-      expect('globocom').to.equal(projectDef.namespace)
-      expect('react-native-draftjs-render').to.equal(projectDef.project)
-      expect('master').to.equal(projectDef.branch)
+      expect('React Native DraftJS Render').toEqual(projectDef.description)
+      expect('globocom').toEqual(projectDef.namespace)
+      expect('react-native-draftjs-render').toEqual(projectDef.project)
+      expect('master').toEqual(projectDef.branch)
     })
     it('should get valid list of projects to test', (done) => {
       // getProjectByFile('http://localhost:8080/static/file.json', (data) => {
@@ -65,9 +65,9 @@ describe('main.js', () => {
     it('Should load project pattern from url param', () => {
       const projectsParam = 'namespace1/project1/branch1'
       const projects = getProjectsByQuerystring(projectsParam)
-      expect('namespace1').to.equal(projects[0].namespace)
-      expect('project1').to.equal(projects[0].project)
-      expect('branch1').to.equal(projects[0].branch)
+      expect('namespace1').toEqual(projects[0].namespace)
+      expect('project1').toEqual(projects[0].project)
+      expect('branch1').toEqual(projects[0].branch)
     })
   })
   describe('Get querystring params', () => {
@@ -75,32 +75,32 @@ describe('main.js', () => {
     it('Should get non-optional params from url', () => {
       // gitlab
       const gitlab = getParameterByName('gitlab', url)
-      expect('localhost:8089').to.equal(gitlab)
+      expect('localhost:8089').toEqual(gitlab)
 
       // token
       const token = getParameterByName('token', url)
-      expect('_').to.equal(token)
+      expect('_').toEqual(token)
 
       // projectsFile
       const projectsFile = getParameterByName('projectsFile', url)
-      expect('http://localhost:8080/static/file.json').to.equal(projectsFile)
+      expect('http://localhost:8080/static/file.json').toEqual(projectsFile)
 
       // projects
       const projects = getParameterByName('projects', url)
-      expect('namespace1/project1/branch1').to.equal(projects)
+      expect('namespace1/project1/branch1').toEqual(projects)
     })
     it('Should get optional params from url', () => {
       // gitlabciProtocol
       const gitlabciProtocol = getParameterByName('gitlabciProtocol', url)
-      expect('http').to.equal(gitlabciProtocol)
+      expect('http').toEqual(gitlabciProtocol)
 
       // hideSuccessCards
       const hideSuccessCards = getParameterByName('hideSuccessCards', url)
-      expect(false).to.equal(hideSuccessCards)
+      expect(false).toEqual(hideSuccessCards)
 
       // interval
       const interval = getParameterByName('interval', url)
-      expect('5').to.equal(interval)
+      expect('5').toEqual(interval)
     })
   })
 })
