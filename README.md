@@ -1,8 +1,11 @@
 # GitLab CI Dashboard
 
-[![NPM](https://nodei.co/npm/gitlab-ci-dashboard.png)](https://npmjs.org/package/gitlab-ci-dashboard)
+[![npm](https://img.shields.io/npm/v/gitlab-ci-dashboard.svg?style=for-the-badge)](https://www.npmjs.com/package/gitlab-ci-dashboard) [![npm (tag)](https://img.shields.io/npm/v/gitlab-ci-dashboard/next.svg?style=for-the-badge)](https://github.com/emilianoeloi/gitlab-ci-dashboard/releases/latest) [![npm](https://img.shields.io/npm/dw/gitlab-ci-dashboard.svg?style=for-the-badge)]() [![GitHub issues](https://img.shields.io/github/issues/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](https://github.com/emilianoeloi/gitlab-ci-dashboard/issues)  
 
-[![Build Status](https://travis-ci.org/emilianoeloi/gitlab-ci-dashboard.svg?branch=v3.7.0)](https://travis-ci.org/emilianoeloi/gitlab-ci-dashboard) [![codecov](https://codecov.io/gh/emilianoeloi/gitlab-ci-dashboard/branch/master/graph/badge.svg)](https://codecov.io/gh/emilianoeloi/gitlab-ci-dashboard)
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg?style=for-the-badge)](https://travis-ci.org/emilianoeloi/gitlab-ci-dashboard)
+[![Codecov](https://img.shields.io/codecov/c/github/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](https://codecov.io/gh/emilianoeloi/gitlab-ci-dashboard)
+
+[![GitHub license](https://img.shields.io/github/license/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](LICENSE)
 
 Dashboard for monitoring [GitLab CI][gitlab-ci] builds. This project is based on [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor) by globo.com.
 
@@ -180,3 +183,5 @@ https://scotch.io/tutorials/how-to-write-a-unit-test-for-vuejs
 ## License
 
 GitLab CI Dashboard is licensed under the [MIT license](LICENSE).
+
+[![NPM](https://nodei.co/npm/gitlab-ci-dashboard.png)](https://npmjs.org/package/gitlab-ci-dashboard)
