@@ -1,0 +1,18 @@
+stages:
+ - prepare
+ - test
+
+.setupEnvironment:
+ tags:
+   - gitlab
+ stage: prepare
+ script:
+   - "yarn"
+
+validateBuild:
+ tags:
+   - gitlab
+ stage: test
+ script:
+   - "yarn"
+   - "yarn test"
