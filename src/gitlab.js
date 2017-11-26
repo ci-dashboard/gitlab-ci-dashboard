@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const setBaseData = (baseUrl, token, protocol = 'https', apiVersion = '4') => {
+export const setBaseData = (baseUrl, token, protocol = 'https', apiVersion = '3') => {
   axios.defaults.baseURL = `${protocol}://${baseUrl}/api/v${apiVersion}`
   axios.defaults.headers.common['PRIVATE-TOKEN'] = token
 }

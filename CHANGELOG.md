@@ -1,3 +1,6 @@
+# 5.4.0-alpha.4 Add suporte to gitlab api v4
+# 5.4.0-alpha.3 Change tests framework to jest
+
 # 5.3.0 Simplify Success cards
 - use real infor on mocked server
 - keep only namespace name and version on success cards
