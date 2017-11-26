@@ -29,7 +29,7 @@ in the query string or using command-line on standalone mode:
 
 - **gitlab**: your gitlab server address
 - **token**: your gitlab token
-- **projectsFile**: a url to file that contains a list of projects you want to monitor, see below how to create it
+- **projectsFile**: url to file that contains a list of projects you want to monitor, see below how to create it
 - **gitlabciProtocol** (optional): protocol to access gitlabci api. Default: https
 - **hideSuccessCards** (optional): hide cards when change to success status. Default: false
 - **hideVersion** (optional): hide version of cards. Default: false

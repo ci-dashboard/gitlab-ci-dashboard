@@ -10,7 +10,8 @@ import {
   getBuilds,
   getTags,
   getPipelines,
-  getPipeline
+  getPipeline,
+  getCommits
 } from '@/gitlab'
 import {
   getProjectsFromFile
@@ -20,7 +21,6 @@ import {
 } from '@/standalone'
 
 import App from './App'
-import { getPipelines } from './gitlab';
 
 Vue.config.productionTip = false
 
@@ -73,12 +73,94 @@ export const getTopItem = (list) => {
   return list[0]
 }
 
+export const registerLastTag = (lastTags, item) => {
+  if (lastTags == null || item == null) {
+    return
+  }
+  const {
+    projectId,
+    projectName
+  } = item
+  if (!checkLastTag(lastTags, item)) {
+    lastTags.push({
+      projectId,
+      projectName
+    })
+  }
+}
+
+export const checkLastTag = (lastTags, item) => {
+  if (lastTags == null || item == null) {
+    return
+  }
+  const last = lastTags.filter((l) => {
+    return (
+      item.projectId === l.projectId,
+      item.tagName === l.projectName
+    )
+  })
+  return last.length > 0
+}
+
+export const registerLastPipeline = (lastPipelines, item) => {
+  if (lastPipelines == null || item == null) {
+    return
+  }
+  const {
+    projectId,
+    pipelineId,
+    data
+  } = item
+  if (!checkLastPipeline(lastPipelines, item)) {
+    lastPipelines.push({
+      projectId,
+      pipelineId,
+      data
+    })
+  }
+}
+
+export const getLastPipeline = (lastPipelines, item) => {
+  if (lastPipelines == null || item == null) {
+    return
+  }
+  const {
+    projectId,
+    pipelineId
+  } = item
+  const arr = lastPipelines.filter((l) => {
+    return (
+      projectId === l.projectId,
+      pipelineId === l.pipelineId
+    )
+  })
+  return arr.length > 0 ? arr[0].data : null
+}
+
+export const checkLastPipeline = (lastPipelines, item) => {
+  if (lastPipelines == null || item == null) {
+    return
+  }
+  const {
+    projectId,
+    pipelineId
+  } = item
+  const last = lastPipelines.filter((l) => {
+    return (
+      projectId === l.projectId,
+      pipelineId === l.pipelineId
+    )
+  })
+  return last.length > 0
+}
+
 const INCREASE_ACTION = 'increase'
 const DECREASE_ACTION = 'decrease'
 const DEFAULT_HIDE_SUCCESS_CARDS = false
 const DEFAULT_HIDE_VERSION = false
 const DEFAULT_INTERVAL = 60
 const DEFAULT_GITLABCI_PROTOCOL = 'https'
+const DEFAULT_API_VERSION = '3'
 
 /* eslint-disable no-new */
 new Vue({
@@ -87,6 +169,8 @@ new Vue({
     return {
       projects: [],
       onBuilds: [],
+      lastTags: [],
+      lastPipelines: [],
       onPipelines: [],
       nonSuccessBuilds: [],
       statusQueue: [],
@@ -97,6 +181,7 @@ new Vue({
       projectsFile: null,
       gitlabciProtocol: 'https',
       hideSuccessCards: DEFAULT_HIDE_SUCCESS_CARDS,
+      apiVersion: DEFAULT_API_VERSION,
       hideVersion: DEFAULT_HIDE_VERSION,
       repositoriesParams: [],
       repositories: null,
@@ -140,6 +225,7 @@ new Vue({
         this.projects = params.projects
         this.gitlabciProtocol = params.gitlabciProtocol
         this.hideSuccessCards = params.hideSuccessCards
+        this.apiVersion = params.apiVersion
         this.hideVersion = params.hideVersion
         this.interval = params.interval
         this.startup()
@@ -273,7 +359,11 @@ new Vue({
         getProjects(repo.nameWithNamespace)
           .then((response) => {
             this.onLoading = false
-            this.fetchBuilds({repo, project: response.data})
+            if (this.apiVersion === DEFAULT_API_VERSION) {
+              this.fetchBuilds({repo, project: response.data})
+            } else {
+              this.fetchPipelines({repo, project: response.data})
+            }
           })
           .catch(this.handlerError.bind(this))
       })
@@ -363,9 +453,6 @@ new Vue({
       }
     },
     fetchPipelines (selectedProject) {
-      const {
-        onPipelines
-      } = this
       if (!selectedProject) {
         return
       }
@@ -373,16 +460,50 @@ new Vue({
         repo,
         project
       } = selectedProject
-      getPipelines(project.id).then((pipelines) => {
-        const lastPipeline = getTopItem(pipelines)
-        getPipeline(project.id, lastPipeline.id).then((pipeline) => {
-          getTags(project.id)
+      getCommits(project.id, repo.branch).then(({data}) => {
+        const {
+          author_name,
+          message,
+          last_pipeline
+        } = data
+        let lastPipeline = getLastPipeline(this.lastPipelines, {
+          projectId: project.id,
+          pipelineId: last_pipeline.id
+        })
+        getTags(project.id)
           .then((response) => {
             const tag = getTopItem(response.data)
+            if (!lastPipeline) {
+              lastPipeline = last_pipeline
+              getPipeline(project.id, last_pipeline.id)
+                .then((pipeline) => {
+                  registerLastPipeline(this.lastPipelines, {
+                    projectId: project.id,
+                    pipelineId: last_pipeline.id,
+                    data: last_pipeline
+                  })
+                  let b = {}
+                  console.info('V4', lastPipeline)
+                  b.status = lastPipeline.status
+                  b.lastStatus = b.status
+                  b.id = lastPipeline.id
+                  b.started_at = lastPipeline.started_at
+                  b.author = 'b.author'
+                  b.commit_message = message
+                  b.project_path = 'b.project_path'
+                  b.branch = repo.branch
+                  b.tag_name = tag && tag.name
+                  b.namespace_name = project.namespace.name
+                  console.info('b', b)
+                  this.onBuilds.push(b)
+                })
+                .catch(this.handlerError.bind(this))
+            } else {
+              console.info('não ir no pipiline novamente')
+            }
+            // this.loadBuilds(onBuilds, builds, repo, project, tag)
           })
           .catch(this.handlerError.bind(this))
-        })
-        .catch(this.handlerError.bind(this))
       })
       .catch(this.handlerError.bind(this))
     },
