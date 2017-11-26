@@ -45,7 +45,9 @@ describe('main.js', () => {
       const lastArr = []
       const item = {
         projectId: 'A',
-        pipelineId: 'B'
+        pipelineId: 'B',
+        status: 'C',
+        data: 'D'
       }
       registerLastPipeline(lastArr, item)
       expect(lastArr.length).toEqual(1)
@@ -55,11 +57,12 @@ describe('main.js', () => {
       const item = {
         projectId: 'A',
         pipelineId: 'B',
-        data: 'C'
+        status: 'C',
+        data: 'D'
       }
       registerLastPipeline(lastArr, item)
       const data = getLastPipeline(lastArr, item)
-      expect(data).toEqual('C')
+      expect(data).toEqual('D')
     })
   })
   describe('Compatibility Mode', () => {
