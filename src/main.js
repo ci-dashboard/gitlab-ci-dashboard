@@ -484,11 +484,12 @@ new Vue({
                   })
                   let b = {}
                   console.info('V4', lastPipeline)
+                  b.project = repo.projectName
                   b.status = lastPipeline.status
                   b.lastStatus = b.status
                   b.id = lastPipeline.id
                   b.started_at = lastPipeline.started_at
-                  b.author = 'b.author'
+                  b.author = author_name
                   b.commit_message = message
                   b.project_path = 'b.project_path'
                   b.branch = repo.branch
