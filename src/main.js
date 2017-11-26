@@ -2,7 +2,20 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import moment from 'moment'
-import axios from 'axios'
+
+import {
+  setBaseData,
+  getProjects,
+  getBranch,
+  getBuilds,
+  getTags
+} from '@/gitlab'
+import {
+  getProjectsFromFile
+} from '@/projects'
+import {
+  getStandaloneParams
+} from '@/standalone'
 
 import App from './App'
 
@@ -48,16 +61,6 @@ export const getParameterByName = (name, url) => {
     return false
   }
   return parameter
-}
-
-export const getProjectByFile = (fileUrl, callback) => {
-  axios.get(fileUrl)
-  .then((response) => {
-    callback(response.data)
-  })
-  .catch(() => {
-    return []
-  })
 }
 
 export const getTopItem = (list) => {
@@ -125,21 +128,17 @@ new Vue({
   created () {
     this.loadConfig()
     if (this.standalone) {
-      axios.get('/params')
-      .then(({data}) => {
-        this.gitlab = data.gitlab
-        this.token = data.token
-        this.ref = data.ref
+      getStandaloneParams().then((params) => {
+        this.gitlab = params.gitlab
+        this.token = params.token
+        this.ref = params.ref
         this.projectsFile = 'standalone'
-        this.projects = data.projects
-        this.gitlabciProtocol = data.gitlabciProtocol
-        this.hideSuccessCards = data.hideSuccessCards
-        this.hideVersion = data.hideVersion
-        this.interval = data.interval
+        this.projects = params.projects
+        this.gitlabciProtocol = params.gitlabciProtocol
+        this.hideSuccessCards = params.hideSuccessCards
+        this.hideVersion = params.hideVersion
+        this.interval = params.interval
         this.startup()
-      })
-      .catch(() => {
-        return []
       })
     } else {
       this.startup()
@@ -211,7 +210,7 @@ new Vue({
         this.projects = getProjectsByQuerystring(this.projectsParam)
         this.loadProjects(this.projects)
       } else {
-        getProjectByFile(this.projectsFile, this.loadProjects)
+        getProjectsFromFile(this.projectsFile).then(projects => this.loadProjects(projects))
       }
     },
     handlerError (error) {
@@ -252,8 +251,7 @@ new Vue({
         gitlab,
         token
       } = this
-      axios.defaults.baseURL = `${this.gitlabciProtocol}://${gitlab}/api/v3`
-      axios.defaults.headers.common['PRIVATE-TOKEN'] = token
+      setBaseData(this.gitlabciProtocol, gitlab, token)
     },
     fetchProjects (page) {
       const {
@@ -265,7 +263,7 @@ new Vue({
 
       repositories.forEach((repo) => {
         this.onLoading = true
-        axios.get('/projects/' + repo.nameWithNamespace.replace('/', '%2F'))
+        getProjects(repo.nameWithNamespace)
           .then((response) => {
             this.onLoading = false
             this.fetchBuilds({repo, project: response.data})
@@ -368,20 +366,20 @@ new Vue({
         repo,
         project
       } = selectedProjects
-      axios.get(`/projects/${project.id}/repository/branches/${repo.branch}`)
+      getBranch(project.id, repo.branch)
         .then((response) => {
           const lastCommit = response.data.commit.id
-          axios.get(`/projects/${project.id}/repository/commits/${lastCommit}/builds`)
-          .then((response) => {
-            const builds = response.data
-            axios.get(`/projects/${project.id}/repository/tags`)
-              .then((response) => {
-                const tag = getTopItem(response.data)
-                this.loadBuilds(onBuilds, builds, repo, project, tag)
-              })
-              .catch(this.handlerError.bind(this))
-          })
-          .catch(this.handlerError.bind(this))
+          getBuilds(project.id, lastCommit)
+            .then((response) => {
+              const builds = response.data
+              getTags(project.id)
+                .then((response) => {
+                  const tag = getTopItem(response.data)
+                  this.loadBuilds(onBuilds, builds, repo, project, tag)
+                })
+                .catch(this.handlerError.bind(this))
+            })
+            .catch(this.handlerError.bind(this))
         })
         .catch(this.handlerError.bind(this))
     }

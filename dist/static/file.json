@@ -1,5 +1,11 @@
 [
   {
+    "description": "API com todos os candidatos Brasileiros!",
+    "namespace": "olhoneles",
+    "project": "politicos",
+    "branch": "scripts"
+  },
+  {
     "description": "Aplicativo para organizar filmes vistos",
     "namespace": "santoslucas",
     "project": "guarda-filme-android",

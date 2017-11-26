@@ -1,7 +1,7 @@
 <template>
   <div id="gcim-painel" class="ui grid card" style="background-color: white">
     <div class="ui row centered" style="padding-bottom: 2em">
-      <img class="logo" src="./assets/gitlab-logo.svg" />
+      <img class="logo" src="../assets/gitlab-logo.svg" />
     </div>
     <div v-for="s in localStatus" v-bind:key="s.color" class="ui row">
       <div style="margin: 1em">
