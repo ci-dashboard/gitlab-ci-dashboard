@@ -115,6 +115,7 @@ export const registerLastPipeline = (lastPipelines, item) => {
     lastPipelines.push({
       projectId,
       pipelineId,
+      status,
       data
     })
   }
