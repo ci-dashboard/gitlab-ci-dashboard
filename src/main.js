@@ -9,7 +9,6 @@ import {
   getBranch,
   getBuilds,
   getTags,
-  getPipelines,
   getPipeline,
   getCommits
 } from '@/gitlab'
@@ -109,6 +108,7 @@ export const registerLastPipeline = (lastPipelines, item) => {
   const {
     projectId,
     pipelineId,
+    status,
     data
   } = item
   if (!checkLastPipeline(lastPipelines, item)) {
@@ -126,12 +126,14 @@ export const getLastPipeline = (lastPipelines, item) => {
   }
   const {
     projectId,
-    pipelineId
+    pipelineId,
+    status
   } = item
   const arr = lastPipelines.filter((l) => {
     return (
-      projectId === l.projectId,
-      pipelineId === l.pipelineId
+      projectId === l.projectId &&
+      pipelineId === l.pipelineId &&
+      status === l.status
     )
   })
   return arr.length > 0 ? arr[0].data : null
@@ -143,12 +145,14 @@ export const checkLastPipeline = (lastPipelines, item) => {
   }
   const {
     projectId,
-    pipelineId
+    pipelineId,
+    status
   } = item
   const last = lastPipelines.filter((l) => {
     return (
-      projectId === l.projectId,
-      pipelineId === l.pipelineId
+      projectId === l.projectId &&
+      pipelineId === l.pipelineId &&
+      status === l.status
     )
   })
   return last.length > 0
@@ -495,7 +499,6 @@ new Vue({
                   b.branch = repo.branch
                   b.tag_name = tag && tag.name
                   b.namespace_name = project.namespace.name
-                  console.info('b', b)
                   this.onBuilds.push(b)
                 })
                 .catch(this.handlerError.bind(this))
