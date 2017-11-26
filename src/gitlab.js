@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const setBaseData = (protocol, baseUrl, token) => {
-  axios.defaults.baseURL = `${protocol}://${baseUrl}/api/v3`
+  axios.defaults.baseURL = `${protocol}://${baseUrl}/api/v4`
   axios.defaults.headers.common['PRIVATE-TOKEN'] = token
 }
 
@@ -31,6 +31,20 @@ export const getBuilds = (projectId, commitId) => {
     return Promise.reject(new Error('projectId or commitId are empty'))
   }
   return axios.get(`/projects/${projectId}/repository/commits/${commitId}/builds`)
+}
+
+export const getPipelines = (projectId) => {
+  if (projectId == null) {
+    return Promise.reject(new Error('projectId is empty'))
+  }
+  return axios.get(`/projects/${projectId}/pipelines`)
+}
+
+export const getPipeline = (projectId, pipelineId) => {
+  if (projectId == null || pipelineId == null) {
+    return Promise.reject(new Error('projectId or pipelineId are empty'))
+  }
+  return axios.get(`/projects/${projectId}/pipelines/${pipelineId}`)
 }
 
 export const getTags = (projectId) => {
