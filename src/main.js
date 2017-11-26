@@ -72,93 +72,6 @@ export const getTopItem = (list) => {
   return list[0]
 }
 
-export const registerLastTag = (lastTags, item) => {
-  if (lastTags == null || item == null) {
-    return
-  }
-  const {
-    projectId,
-    projectName
-  } = item
-  if (!checkLastTag(lastTags, item)) {
-    lastTags.push({
-      projectId,
-      projectName
-    })
-  }
-}
-
-export const checkLastTag = (lastTags, item) => {
-  if (lastTags == null || item == null) {
-    return
-  }
-  const last = lastTags.filter((l) => {
-    return (
-      item.projectId === l.projectId,
-      item.tagName === l.projectName
-    )
-  })
-  return last.length > 0
-}
-
-export const registerLastPipeline = (lastPipelines, item) => {
-  if (lastPipelines == null || item == null) {
-    return
-  }
-  const {
-    projectId,
-    pipelineId,
-    status,
-    data
-  } = item
-  if (!checkLastPipeline(lastPipelines, item)) {
-    lastPipelines.push({
-      projectId,
-      pipelineId,
-      status,
-      data
-    })
-  }
-}
-
-export const getLastPipeline = (lastPipelines, item) => {
-  if (lastPipelines == null || item == null) {
-    return
-  }
-  const {
-    projectId,
-    pipelineId,
-    status
-  } = item
-  const arr = lastPipelines.filter((l) => {
-    return (
-      projectId === l.projectId &&
-      pipelineId === l.pipelineId &&
-      status === l.status
-    )
-  })
-  return arr.length > 0 ? arr[0].data : null
-}
-
-export const checkLastPipeline = (lastPipelines, item) => {
-  if (lastPipelines == null || item == null) {
-    return
-  }
-  const {
-    projectId,
-    pipelineId,
-    status
-  } = item
-  const last = lastPipelines.filter((l) => {
-    return (
-      projectId === l.projectId &&
-      pipelineId === l.pipelineId &&
-      status === l.status
-    )
-  })
-  return last.length > 0
-}
-
 const INCREASE_ACTION = 'increase'
 const DECREASE_ACTION = 'decrease'
 const DEFAULT_HIDE_SUCCESS_CARDS = false
@@ -471,42 +384,28 @@ new Vue({
           message,
           last_pipeline
         } = data
-        let lastPipeline = getLastPipeline(this.lastPipelines, {
-          projectId: project.id,
-          pipelineId: last_pipeline.id
-        })
         getTags(project.id)
           .then((response) => {
             const tag = getTopItem(response.data)
-            if (!lastPipeline) {
-              lastPipeline = last_pipeline
-              getPipeline(project.id, last_pipeline.id)
-                .then((pipeline) => {
-                  registerLastPipeline(this.lastPipelines, {
-                    projectId: project.id,
-                    pipelineId: last_pipeline.id,
-                    data: last_pipeline
-                  })
-                  let b = {}
-                  console.info('V4', lastPipeline)
-                  b.project = repo.projectName
-                  b.status = lastPipeline.status
-                  b.lastStatus = b.status
-                  b.id = lastPipeline.id
-                  b.started_at = lastPipeline.started_at
-                  b.author = author_name
-                  b.commit_message = message
-                  b.project_path = 'b.project_path'
-                  b.branch = repo.branch
-                  b.tag_name = tag && tag.name
-                  b.namespace_name = project.namespace.name
-                  this.onBuilds.push(b)
-                })
-                .catch(this.handlerError.bind(this))
-            } else {
-              console.info('não ir no pipiline novamente')
-            }
-            // this.loadBuilds(onBuilds, builds, repo, project, tag)
+            getPipeline(project.id, last_pipeline.id)
+              .then((pipeline) => {
+                const lastPipeline = pipeline.data
+                let b = {}
+                console.info('V4', lastPipeline)
+                b.project = repo.projectName
+                b.status = lastPipeline.status
+                b.lastStatus = b.status
+                b.id = lastPipeline.id
+                b.started_at = lastPipeline.started_at
+                b.author = author_name
+                b.commit_message = message
+                b.project_path = 'b.project_path'
+                b.branch = repo.branch
+                b.tag_name = tag && tag.name
+                b.namespace_name = project.namespace.name
+                this.onBuilds.push(b)
+              })
+              .catch(this.handlerError.bind(this))
           })
           .catch(this.handlerError.bind(this))
       })
