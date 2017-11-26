@@ -1,5 +1,24 @@
 import axios from 'axios'
 
+export const setBaseData = (protocol, baseUrl, token) => {
+  axios.defaults.baseURL = `${protocol}://${baseUrl}/api/v3`
+  axios.defaults.headers.common['PRIVATE-TOKEN'] = token
+}
+
+export const getBaseData = () => {
+  return {
+    baseUrl: axios.defaults.baseURL,
+    token: axios.defaults.headers.common['PRIVATE-TOKEN']
+  }
+}
+
+export const getProjects = (nameWithNamespace) => {
+  if (nameWithNamespace == null || nameWithNamespace === '') {
+    return Promise.reject(new Error('nameWithNamespace is empty'))
+  }
+  return axios.get(`/projects/${nameWithNamespace.replace('/', '%2F')}`)
+}
+
 export const getBranch = (projectId, branchName) => {
   if (projectId == null || branchName == null) {
     return Promise.reject(new Error('projectId or branchName are empty'))

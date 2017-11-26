@@ -1,13 +1,34 @@
 import {
+  setBaseData,
+  getBaseData,
+  getProjects,
   getBranch,
   getBuilds,
   getTags
 } from '@/gitlab'
 
 jest.mock('axios', () => ({
+  defaults: {
+    baseUrl: '',
+    headers: {
+      common: {
+        'PRIVATE-TOKEN': ''
+      }
+    }
+  },
   get: (url) => {
     let result = {}
-    if (url.indexOf('branch') > 0) {
+    if (
+      url.indexOf('projects') > 0 &&
+      url.indexOf('branch') === -1 &&
+      url.indexOf('builds') === -1 &&
+      url.indexOf('tags') === -1
+    ) {
+      result = {
+        url,
+        type: 'projects'
+      }
+    } else if (url.indexOf('branch') > 0) {
       result = {
         url,
         type: 'branch'
@@ -27,6 +48,18 @@ jest.mock('axios', () => ({
   }
 }))
 describe('gitlab', () => {
+  test('should set base request data', () => {
+    setBaseData('http', 'gitlab.example.com', '12345')
+    const baseData = getBaseData()
+    expect(baseData.baseUrl).toEqual('http://gitlab.example.com/api/v3')
+    expect(baseData.token).toEqual('12345')
+  })
+  test('should return projecs', (done) => {
+    getProjects('namespace/project').then((data) => {
+      expect(data.type).toEqual('projects')
+      done()
+    })
+  })
   test('should return branch', (done) => {
     getBranch(0, 'branchName').then((data) => {
       expect(data.type).toEqual('branch')
