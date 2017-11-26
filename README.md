@@ -17,6 +17,10 @@ Dashboard for monitoring [GitLab CI][gitlab-ci] builds. This project is based on
 
 [example]: gitlab-ci-dashboard-example.png
 
+## Gitlab support
+
+ - Gitlab: 8.30.4, and 10.1.4
+ - Gitlab [API](https://docs.gitlab.com/ee/api/): V3 and V4
 
 ## Usage
 
