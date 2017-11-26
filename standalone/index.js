@@ -6,7 +6,8 @@ var opn = require('opn')
 commander.option('--port [port]', 'the port to run gitlab-ci-dashboard')
 commander.option('--gitlab [gitlab server host]', 'your gitlab server host')
 commander.option('--token [token]', 'gitlab token')
-commander.option('--projectsFile [projectsFile]', 'a url to file that contains a list of projects you want to monitor')
+commander.option('--apiVersion [apiVersion]', '(optional): gitlab api version. Default: 3')
+commander.option('--projectsFile [projectsFile]', 'an url to file that contains a list of projects you want to monitor')
 commander.option('--gitlabciProtocol [gitlabciProtocol]', '(optional): protocol to access gitlabci api. Default: https')
 commander.option('--hideSuccessCards [hideSuccessCards]', '(optional): hide cards when change to success status. Default: false')
 commander.option('--hideVersion [hideVersion]', '(optional): hide version of cards. Default: true')
@@ -20,6 +21,7 @@ const token = commander.token || process.env.TOKEN
 const projectsFile = commander.projectsFile || process.env.PROJECTS_FILE
 const gitlabciProtocol = commander.gitlabciProtocol || process.env.GITLABCI_PROTOCOL || 'https'
 const hideSuccessCards = commander.hideSuccessCards || process.env.HIDE_SUCCESS_CARDS || false
+const apiVersion = commander.apiVersion || process.env.API_VERSION || 3
 const hideVersion = commander.hideVersion || process.env.HIDE_VERSION || false
 const interval = commander.interval || process.env.INTERVAL || 60
 
@@ -36,6 +38,7 @@ if (projectsFile != null) {
       projects,
       gitlabciProtocol,
       hideSuccessCards,
+      apiVersion,
       hideVersion,
       interval
     }
