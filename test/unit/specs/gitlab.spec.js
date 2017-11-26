@@ -4,7 +4,9 @@ import {
   getProjects,
   getBranch,
   getBuilds,
-  getTags
+  getTags,
+  getPipelines,
+  getPipeline
 } from '@/gitlab'
 
 jest.mock('axios', () => ({
@@ -22,7 +24,8 @@ jest.mock('axios', () => ({
       url.indexOf('projects') > 0 &&
       url.indexOf('branch') === -1 &&
       url.indexOf('builds') === -1 &&
-      url.indexOf('tags') === -1
+      url.indexOf('tags') === -1 &&
+      url.indexOf('pipelines') === -1
     ) {
       result = {
         url,
@@ -43,13 +46,24 @@ jest.mock('axios', () => ({
         url,
         type: 'tags'
       }
+    } else if (url.indexOf('pipelines') > 0) {
+      result = {
+        url,
+        type: 'pipelines'
+      }
     }
     return Promise.resolve(result)
   }
 }))
 describe('gitlab', () => {
   test('should set base request data', () => {
-    setBaseData('http', 'gitlab.example.com', '12345')
+    setBaseData('gitlab.example.com', '12345')
+    const baseData = getBaseData()
+    expect(baseData.baseUrl).toEqual('https://gitlab.example.com/api/v4')
+    expect(baseData.token).toEqual('12345')
+  })
+  test('should set base request data with optional params', () => {
+    setBaseData('gitlab.example.com', '12345', 'http', '3')
     const baseData = getBaseData()
     expect(baseData.baseUrl).toEqual('http://gitlab.example.com/api/v3')
     expect(baseData.token).toEqual('12345')
@@ -92,6 +106,30 @@ describe('gitlab', () => {
   })
   test('should dont return tags', (done) => {
     getTags().catch((err) => {
+      expect(typeof err).toEqual('object')
+      done()
+    })
+  })
+  test('should return pipelines', (done) => {
+    getPipelines(0).then((data) => {
+      expect(data.type).toEqual('pipelines')
+      done()
+    })
+  })
+  test('should dont return pipelines', (done) => {
+    getPipelines().catch((err) => {
+      expect(typeof err).toEqual('object')
+      done()
+    })
+  })
+  test('should return pipeline', (done) => {
+    getPipeline(0, 1).then((data) => {
+      expect(data.type).toEqual('pipelines')
+      done()
+    })
+  })
+  test('should dont return pipeline', (done) => {
+    getPipeline().catch((err) => {
       expect(typeof err).toEqual('object')
       done()
     })
