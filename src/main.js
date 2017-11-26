@@ -8,7 +8,9 @@ import {
   getProjects,
   getBranch,
   getBuilds,
-  getTags
+  getTags,
+  getPipelines,
+  getPipeline
 } from '@/gitlab'
 import {
   getProjectsFromFile
@@ -18,6 +20,7 @@ import {
 } from '@/standalone'
 
 import App from './App'
+import { getPipelines } from './gitlab';
 
 Vue.config.productionTip = false
 
@@ -84,6 +87,7 @@ new Vue({
     return {
       projects: [],
       onBuilds: [],
+      onPipelines: [],
       nonSuccessBuilds: [],
       statusQueue: [],
       status: [],
@@ -154,6 +158,7 @@ new Vue({
       this.projectsFile = getParameterByName('projectsFile')
       this.gitlabciProtocol = getParameterByName('gitlabciProtocol') || DEFAULT_GITLABCI_PROTOCOL
       this.hideSuccessCards = getParameterByName('hideSuccessCards')
+      this.apiVersion = getParameterByName('apiVersion') || '3'
       if (this.hideSuccessCards == null) {
         this.hideSuccessCards = DEFAULT_HIDE_SUCCESS_CARDS
       }
@@ -249,9 +254,11 @@ new Vue({
     setupDefaults () {
       const {
         gitlab,
-        token
+        token,
+        gitlabciProtocol,
+        apiVersion
       } = this
-      setBaseData(this.gitlabciProtocol, gitlab, token)
+      setBaseData(gitlab, token, gitlabciProtocol, apiVersion)
     },
     fetchProjects (page) {
       const {
@@ -354,6 +361,30 @@ new Vue({
         }
         onBuilds.push(buildToAdd)
       }
+    },
+    fetchPipelines (selectedProject) {
+      const {
+        onPipelines
+      } = this
+      if (!selectedProject) {
+        return
+      }
+      const {
+        repo,
+        project
+      } = selectedProject
+      getPipelines(project.id).then((pipelines) => {
+        const lastPipeline = getTopItem(pipelines)
+        getPipeline(project.id, lastPipeline.id).then((pipeline) => {
+          getTags(project.id)
+          .then((response) => {
+            const tag = getTopItem(response.data)
+          })
+          .catch(this.handlerError.bind(this))
+        })
+        .catch(this.handlerError.bind(this))
+      })
+      .catch(this.handlerError.bind(this))
     },
     fetchBuilds (selectedProjects) {
       const {
