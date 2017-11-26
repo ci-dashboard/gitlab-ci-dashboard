@@ -380,14 +380,14 @@ new Vue({
       } = selectedProject
       getCommits(project.id, repo.branch).then(({data}) => {
         const {
-          author_name,
-          message,
-          last_pipeline
+          message
         } = data
+        const authorName = data['author_name']
+        const lastPipelineId = data['last_pipeline'].id
         getTags(project.id)
           .then((response) => {
             const tag = getTopItem(response.data)
-            getPipeline(project.id, last_pipeline.id)
+            getPipeline(project.id, lastPipelineId)
               .then((pipeline) => {
                 const lastPipeline = pipeline.data
                 let b = {}
@@ -397,7 +397,7 @@ new Vue({
                 b.lastStatus = b.status
                 b.id = lastPipeline.id
                 b.started_at = lastPipeline.started_at
-                b.author = author_name
+                b.author = authorName
                 b.commit_message = message
                 b.project_path = 'b.project_path'
                 b.branch = repo.branch

@@ -1,12 +1,7 @@
 import {
   getParameterByName,
   getProjectsByQuerystring,
-  getTopItem,
-  checkLastTag,
-  registerLastTag,
-  checkLastPipeline,
-  registerLastPipeline,
-  getLastPipeline
+  getTopItem
 } from '@/main.js'
 
 describe('main.js', () => {
@@ -15,54 +10,6 @@ describe('main.js', () => {
       const arr = ['a', 'b', 'c']
       const topItem = getTopItem(arr)
       expect('a').toEqual(topItem)
-    })
-    it('should dont indentify last Tag', () => {
-      const lastArr = []
-      const exists = checkLastTag(lastArr, {
-        projectId: 'A',
-        tagName: 'B'
-      })
-      expect(false).toEqual(exists)
-    })
-    it('should register last Tag', () => {
-      const lastArr = []
-      const item = {
-        projectId: 'A',
-        tagName: 'B'
-      }
-      registerLastTag(lastArr, item)
-      expect(lastArr.length).toEqual(1)
-    })
-    it('should dont indentify last Pipeline', () => {
-      const lastArr = []
-      const exists = checkLastPipeline(lastArr, {
-        projectId: 'A',
-        pipelineId: 'B'
-      })
-      expect(false).toEqual(exists)
-    })
-    it('should register last Pipeline', () => {
-      const lastArr = []
-      const item = {
-        projectId: 'A',
-        pipelineId: 'B',
-        status: 'C',
-        data: 'D'
-      }
-      registerLastPipeline(lastArr, item)
-      expect(lastArr.length).toEqual(1)
-    })
-    it('should get last Pipeline', () => {
-      const lastArr = []
-      const item = {
-        projectId: 'A',
-        pipelineId: 'B',
-        status: 'C',
-        data: 'D'
-      }
-      registerLastPipeline(lastArr, item)
-      const data = getLastPipeline(lastArr, item)
-      expect(data).toEqual('D')
     })
   })
   describe('Compatibility Mode', () => {
