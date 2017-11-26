@@ -59,13 +59,13 @@ describe('gitlab', () => {
   test('should set base request data', () => {
     setBaseData('gitlab.example.com', '12345')
     const baseData = getBaseData()
-    expect(baseData.baseUrl).toEqual('https://gitlab.example.com/api/v4')
+    expect(baseData.baseUrl).toEqual('https://gitlab.example.com/api/v3')
     expect(baseData.token).toEqual('12345')
   })
   test('should set base request data with optional params', () => {
-    setBaseData('gitlab.example.com', '12345', 'http', '3')
+    setBaseData('gitlab.example.com', '12345', 'http', '4')
     const baseData = getBaseData()
-    expect(baseData.baseUrl).toEqual('http://gitlab.example.com/api/v3')
+    expect(baseData.baseUrl).toEqual('http://gitlab.example.com/api/v4')
     expect(baseData.token).toEqual('12345')
   })
   test('should return projecs', (done) => {
