@@ -6,7 +6,8 @@ import {
   getBuilds,
   getTags,
   getPipelines,
-  getPipeline
+  getPipeline,
+  getCommits
 } from '@/gitlab'
 
 jest.mock('axios', () => ({
@@ -25,7 +26,8 @@ jest.mock('axios', () => ({
       url.indexOf('branch') === -1 &&
       url.indexOf('builds') === -1 &&
       url.indexOf('tags') === -1 &&
-      url.indexOf('pipelines') === -1
+      url.indexOf('pipelines') === -1 &&
+      url.indexOf('commits') === -1
     ) {
       result = {
         url,
@@ -50,6 +52,11 @@ jest.mock('axios', () => ({
       result = {
         url,
         type: 'pipelines'
+      }
+    } else if (url.indexOf('commits') > 0) {
+      result = {
+        url,
+        type: 'commits'
       }
     }
     return Promise.resolve(result)
@@ -130,6 +137,18 @@ describe('gitlab', () => {
   })
   test('should dont return pipeline', (done) => {
     getPipeline().catch((err) => {
+      expect(typeof err).toEqual('object')
+      done()
+    })
+  })
+  test('should return commit', (done) => {
+    getCommits(0, 1).then((data) => {
+      expect(data.type).toEqual('commits')
+      done()
+    })
+  })
+  test('should dont return commit', (done) => {
+    getCommits().catch((err) => {
       expect(typeof err).toEqual('object')
       done()
     })

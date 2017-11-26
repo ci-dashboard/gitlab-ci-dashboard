@@ -23,7 +23,7 @@ export const getBranch = (projectId, branchName) => {
   if (projectId == null || branchName == null) {
     return Promise.reject(new Error('projectId or branchName are empty'))
   }
-  return axios.get(`/projects/${projectId}/repository/branches/${branchName}`)
+  return axios.get(`/projects/${projectId}/repository/branches/${branchName.replace('/', '%2F')}`)
 }
 
 export const getBuilds = (projectId, commitId) => {
@@ -52,4 +52,11 @@ export const getTags = (projectId) => {
     return Promise.reject(new Error('projectId is empty'))
   }
   return axios.get(`/projects/${projectId}/repository/tags`)
+}
+
+export const getCommits = (projectId, branchName) => {
+  if (projectId == null || branchName == null || branchName === '') {
+    return Promise.reject(new Error('projectId or branchName are empty'))
+  }
+  return axios.get(`/projects/${projectId}/repository/commits/${('' + branchName).replace('/', '%2F')}`)
 }

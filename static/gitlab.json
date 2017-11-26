@@ -3,6 +3,6 @@
 		"description": "",
 		"namespace": "emilianobarbosa",
 		"project": "gitlab-ci-dashboard",
-		"branch": "master"
+		"branch": "feature/api_v4"
 	}
 ]
