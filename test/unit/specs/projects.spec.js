@@ -1,6 +1,9 @@
 import {
-  getProjectsFromFile
+  getProjectsFromFile,
+  getProjectsByQuerystring
 } from '@/projects'
+
+const gitlabCIMonitorURL = 'globocom/react-native-draftjs-render,globo.com/gitlab-ci-monitor'
 
 const projectDef = {
   description: 'React Native DraftJS Render',
@@ -38,6 +41,21 @@ describe('Projects File', () => {
     getProjectsFromFile().catch((err) => {
       expect(typeof err).toEqual('object')
       done()
+    })
+  })
+  describe('Compatibility Mode', () => {
+    it('Should load project pattern from url param', () => {
+      const projectsParam = 'namespace1/project1/branch1'
+      const projects = getProjectsByQuerystring(projectsParam)
+      expect('namespace1').toEqual(projects[0].namespace)
+      expect('project1').toEqual(projects[0].project)
+      expect('branch1').toEqual(projects[0].branch)
+    })
+    it('Should transform gitlab ci pattern in projects', () => {
+      const projects = getProjectsByQuerystring(gitlabCIMonitorURL)
+      expect(2).toEqual(projects.length)
+      expect(projects[1].branch).toEqual('master')
+      expect(projects[0].project).toEqual('react-native-draftjs-render')
     })
   })
 })

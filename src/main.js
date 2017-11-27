@@ -13,7 +13,8 @@ import {
   getCommits
 } from '@/gitlab'
 import {
-  getProjectsFromFile
+  getProjectsFromFile,
+  getProjectsByQuerystring
 } from '@/projects'
 import {
   getStandaloneParams
@@ -22,31 +23,6 @@ import {
 import App from './App'
 
 Vue.config.productionTip = false
-
-export const getProjectsByQuerystring = (projectsParam) => {
-  let newProjects = []
-  const repositories = projectsParam.split(',')
-  for (const x in repositories) {
-    try {
-      const repos = repositories[x].split('/')
-      const namespace = repos[0].trim()
-      const project = repos[1].trim()
-      let branch = 'master'
-      if (repos.length > 2) {
-        branch = repos[2].trim()
-      }
-      newProjects.push({
-        description: '',
-        namespace,
-        project,
-        branch
-      })
-    } catch (err) {
-      console.log(err)
-    }
-  }
-  return newProjects
-}
 
 export const getParameterByName = (name, url) => {
   if (!url) url = window.location.href
@@ -371,6 +347,7 @@ new Vue({
       }
     },
     fetchPipelines (selectedProject) {
+      var updated = false
       if (!selectedProject) {
         return
       }
@@ -390,20 +367,40 @@ new Vue({
             getPipeline(project.id, lastPipelineId)
               .then((pipeline) => {
                 const lastPipeline = pipeline.data
-                let b = {}
-                console.info('V4', lastPipeline)
-                b.project = repo.projectName
-                b.status = lastPipeline.status
-                b.lastStatus = b.status
-                b.id = lastPipeline.id
-                b.started_at = lastPipeline.started_at
-                b.author = authorName
-                b.commit_message = message
-                b.project_path = 'b.project_path'
-                b.branch = repo.branch
-                b.tag_name = tag && tag.name
-                b.namespace_name = project.namespace.name
-                this.onBuilds.push(b)
+                this.onBuilds.forEach((build) => {
+                  if (
+                    build.project === repo.projectName &&
+                    build.branch === repo.branch
+                  ) {
+                    updated = true
+                    build.project = repo.projectName
+                    build.status = lastPipeline.status
+                    build.lastStatus = build.status
+                    build.id = lastPipeline.id
+                    build.started_at = moment(lastPipeline.started_at).fromNow()
+                    build.author = authorName
+                    build.commit_message = message
+                    build.project_path = 'b.project_path'
+                    build.branch = repo.branch
+                    build.tag_name = tag && tag.name
+                    build.namespace_name = project.namespace.name
+                  }
+                })
+                if (!updated) {
+                  let b = {}
+                  b.project = repo.projectName
+                  b.status = lastPipeline.status
+                  b.lastStatus = b.status
+                  b.id = lastPipeline.id
+                  b.started_at = moment(lastPipeline.started_at).fromNow()
+                  b.author = authorName
+                  b.commit_message = message
+                  b.project_path = 'b.project_path'
+                  b.branch = repo.branch
+                  b.tag_name = tag && tag.name
+                  b.namespace_name = project.namespace.name
+                  this.onBuilds.push(b)
+                }
               })
               .catch(this.handlerError.bind(this))
           })
