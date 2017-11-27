@@ -9,3 +9,28 @@ export const getProjectsFromFile = (fileUrl) => {
       return response.data
     })
 }
+
+export const getProjectsByQuerystring = (projectsParam) => {
+  let newProjects = []
+  const repositories = projectsParam.split(',')
+  for (const x in repositories) {
+    try {
+      const repos = repositories[x].split('/')
+      const namespace = repos[0].trim()
+      const project = repos[1].trim()
+      let branch = 'master'
+      if (repos.length > 2) {
+        branch = repos[2].trim()
+      }
+      newProjects.push({
+        description: '',
+        namespace,
+        project,
+        branch
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  return newProjects
+}
