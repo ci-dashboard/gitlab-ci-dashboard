@@ -56,8 +56,9 @@ const DEFAULT_INTERVAL = 60
 const DEFAULT_GITLABCI_PROTOCOL = 'https'
 const DEFAULT_API_VERSION = '3'
 
-/* eslint-disable no-new */
-new Vue({
+const STATUS_SUCCESS = 'success'
+
+var root = new Vue({
   el: '#app',
   data () {
     return {
@@ -73,7 +74,7 @@ new Vue({
       gitlab: null,
       projectsParam: null,
       projectsFile: null,
-      gitlabciProtocol: 'https',
+      gitlabciProtocol: DEFAULT_GITLABCI_PROTOCOL,
       hideSuccessCards: DEFAULT_HIDE_SUCCESS_CARDS,
       apiVersion: DEFAULT_API_VERSION,
       hideVersion: DEFAULT_HIDE_VERSION,
@@ -102,7 +103,7 @@ new Vue({
       })
       if (this.hideSuccessCards) {
         return sorted.filter((s) => {
-          return s.status !== 'success'
+          return s.status !== STATUS_SUCCESS
         })
       }
       return sorted
@@ -451,3 +452,5 @@ new Vue({
   '/>',
   components: { App }
 })
+
+export default root
