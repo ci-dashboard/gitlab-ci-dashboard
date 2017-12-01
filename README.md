@@ -57,7 +57,7 @@ or the branch you have specified.
 
 Standalone Example:
 ```bash
-gitlab-ci-dashboard --gitlab gitlab.example.com --token 2345 --projectFiles ./example.json 
+gitlab-ci-dashboard --gitlab gitlab.example.com --token 2345 --projectsFile ./example.json
 ```
 
 Server hosted Example:
@@ -73,7 +73,7 @@ http://gitlab-ci-dashboard.example.com/?gitlab=gitlab.example.com&token=12345&pr
 npm install -g gitlab-ci-dashboard
 
 # run standalone http server
-gitlab-ci-dashboard --gitlab gitlab.example.com --token 12345 --projectFiles ./file.json 
+gitlab-ci-dashboard --gitlab gitlab.example.com --token 12345 --projectsFile ./file.json
 
 # access https://localhost:8081/?standalone=true on browser
 
