@@ -60,3 +60,7 @@ export const getCommits = (projectId, branchName) => {
   }
   return axios.get(`/projects/${projectId}/repository/commits/${('' + branchName).replace('/', '%2F')}`)
 }
+
+export default {
+  getBaseData
+}
