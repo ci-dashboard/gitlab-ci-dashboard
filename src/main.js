@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import moment from 'moment'
 
-import {
+import gitlabApi, {
   setBaseData,
   getProjects,
   getBranch,
@@ -129,7 +129,7 @@ var root = new Vue({
       }
       this.interval = getParameterByName('interval') || DEFAULT_INTERVAL
     },
-    loadProjects (repos) {
+    loadRepositories (repos) {
       if (repos == null) {
         return
       }
@@ -155,8 +155,11 @@ var root = new Vue({
         }
       }
       this.repositories = repositories
+    },
+    loadProjects (repos) {
+      this.loadRepositories(repos)
 
-      this.setupDefaults()
+      this.setupDefaults(gitlabApi)
       this.fetchProjects()
       setInterval(() => {
         this.handlerError()
@@ -212,14 +215,14 @@ var root = new Vue({
 
       return valid
     },
-    setupDefaults () {
+    setupDefaults (provider) {
       const {
         gitlab,
         token,
         gitlabciProtocol,
         apiVersion
       } = this
-      setBaseData(gitlab, token, gitlabciProtocol, apiVersion)
+      provider.setBaseData(gitlab, token, gitlabciProtocol, apiVersion)
     },
     fetchProjects (page) {
       const {
@@ -402,13 +405,17 @@ var root = new Vue({
       } = selectedProjects
       getBranch(project.id, repo.branch)
         .then((response) => {
+          console.info('AAA', JSON.stringify(response), response.commit)
           const lastCommit = response.data.commit.id
           getBuilds(project.id, lastCommit)
             .then((response) => {
+              console.info('BBB')
               const builds = response.data
               getTags(project.id)
                 .then((response) => {
+                  console.info('CCC')
                   const tag = getTopItem(response.data)
+                  console.info('vai sabrina')
                   this.loadBuilds(onBuilds, builds, repo, project, tag)
                 })
                 .catch(this.handlerError.bind(this))
