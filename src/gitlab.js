@@ -24,7 +24,6 @@ export const getBranch = (projectId, branchName) => {
     return Promise.reject(new Error('projectId or branchName are empty'))
   }
   const b = '' + branchName.replace('/', '%2F')
-  console.info('b', b)
   return axios.get(`/projects/${projectId}/repository/branches/${b}`)
 }
 

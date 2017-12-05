@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import RootMain from '@/main.js'
 
 jest.mock('@/standalone', () => ({
@@ -14,6 +15,16 @@ jest.mock('@/utils', () => ({
       return true
     }
     return param
+  },
+  getTopItem: (param) => {
+    return {
+      id: 0,
+      status: 'running',
+      commit: {
+        author_name: 'Author',
+        message: 'Message'
+      }
+    }
   }
 }))
 
@@ -55,19 +66,31 @@ jest.mock('@/gitlab', () => ({
 const mockedBuilds = [
   {
     id: 1,
-    status: 'running'
+    status: 'running',
+    commit: {
+      author_name: 'Author'
+    }
   },
   {
     id: 3,
-    status: 'success'
+    status: 'success',
+    commit: {
+      author_name: 'Author'
+    }
   },
   {
     id: 4,
-    status: 'failed'
+    status: 'failed',
+    commit: {
+      author_name: 'Author'
+    }
   },
   {
     id: 2,
-    status: 'success'
+    status: 'success',
+    commit: {
+      author_name: 'Author'
+    }
   }
 ]
 
@@ -95,7 +118,11 @@ const mockedRepos = {
 }
 
 const mockedGitlabProject = {
-  id: 1
+  id: 1,
+  path_with_namespace: 'namespace1/project1',
+  namespace: {
+    name: 'namespace1'
+  }
 }
 
 describe('main.js', () => {
@@ -154,10 +181,14 @@ describe('main.js', () => {
       vmMethods.setupDefaults(mockedGitlabApi)
       expect(mockedGitlabApi.setBaseData).toHaveBeenCalled()
     })
-    it('Should fetch builds from branch, bruilds, and tags', () => {
+    it('Should fetch builds from branch, bruilds, and tags', (done) => {
       vmMethods.fetchBuilds({
         repo: mockedRepos,
         project: mockedGitlabProject
+      })
+      Vue.nextTick(() => {
+        expect(vmMethods.onBuilds.length).toEqual(2)
+        done()
       })
     })
   })

@@ -410,7 +410,6 @@ var root = new Vue({
               const builds = response.data
               getTags(project.id)
                 .then((response) => {
-                  console.info('response.data', Array.isArray(response['data']))
                   const tag = getTopItem(response.data)
                   this.loadBuilds(onBuilds, builds, repo, project, tag)
                 })
