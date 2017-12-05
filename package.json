@@ -16,7 +16,7 @@
     "unit": "jest test/unit/specs --coverage",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
-    "build": "node build/build.js",
+    "build": "node build/build.js && cp -R dist/* standalone/",
     "report-coverage": "codecov",
     "server": "http-server ./dist",
     "gitlab-mocked-server": "node mocked_gitlab/server.js"
