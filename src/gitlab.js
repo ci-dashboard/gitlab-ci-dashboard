@@ -23,7 +23,9 @@ export const getBranch = (projectId, branchName) => {
   if (projectId == null || branchName == null) {
     return Promise.reject(new Error('projectId or branchName are empty'))
   }
-  return axios.get(`/projects/${projectId}/repository/branches/${branchName.replace('/', '%2F')}`)
+  const b = '' + branchName.replace('/', '%2F')
+  console.info('b', b)
+  return axios.get(`/projects/${projectId}/repository/branches/${b}`)
 }
 
 export const getBuilds = (projectId, commitId) => {
@@ -62,5 +64,5 @@ export const getCommits = (projectId, branchName) => {
 }
 
 export default {
-  getBaseData
+  setBaseData
 }

@@ -4,7 +4,6 @@ import Vue from 'vue'
 import moment from 'moment'
 
 import gitlabApi, {
-  setBaseData,
   getProjects,
   getBranch,
   getBuilds,
@@ -405,17 +404,14 @@ var root = new Vue({
       } = selectedProjects
       getBranch(project.id, repo.branch)
         .then((response) => {
-          console.info('AAA', JSON.stringify(response), response.commit)
           const lastCommit = response.data.commit.id
           getBuilds(project.id, lastCommit)
             .then((response) => {
-              console.info('BBB')
               const builds = response.data
               getTags(project.id)
                 .then((response) => {
-                  console.info('CCC')
+                  console.info('response.data', Array.isArray(response['data']))
                   const tag = getTopItem(response.data)
-                  console.info('vai sabrina')
                   this.loadBuilds(onBuilds, builds, repo, project, tag)
                 })
                 .catch(this.handlerError.bind(this))

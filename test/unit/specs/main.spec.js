@@ -29,32 +29,24 @@ jest.mock('@/gitlab', () => ({
   ),
   getBuilds: () => (
     Promise.resolve({
-      response: {
-        data: {
-          builds: [
-            {id: 0},
-            {id: 1}
-          ]
-        }
-      }
+      data: [
+        {id: 0},
+        {id: 1}
+      ]
     })
   ),
-  getTags: () => {
+  getTags: () => (
     Promise.resolve({
-      response: {
-        data: [
-          {id: 0},
-          {id: 1}
-        ]
-      }
+      data: [
+        {id: 0},
+        {id: 1}
+      ]
     })
-  },
+  ),
   getProjects: () => {
     Promise.resolve({
-      response: {
-        data: {
-          id: 1
-        }
+      data: {
+        id: 1
       }
     })
   }
