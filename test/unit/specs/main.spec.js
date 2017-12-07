@@ -67,6 +67,7 @@ const mockedBuilds = [
   {
     id: 1,
     status: 'running',
+    started_at: '2017-10-06T17:41:41.000Z',
     commit: {
       author_name: 'Author'
     }
@@ -74,6 +75,7 @@ const mockedBuilds = [
   {
     id: 3,
     status: 'success',
+    started_at: '2017-10-06T17:41:41.000Z',
     commit: {
       author_name: 'Author'
     }
@@ -81,6 +83,7 @@ const mockedBuilds = [
   {
     id: 4,
     status: 'failed',
+    started_at: '2017-10-06T17:41:41.000Z',
     commit: {
       author_name: 'Author'
     }
@@ -88,6 +91,7 @@ const mockedBuilds = [
   {
     id: 2,
     status: 'success',
+    started_at: '2017-10-06T17:41:41.000Z',
     commit: {
       author_name: 'Author'
     }
@@ -123,6 +127,10 @@ const mockedGitlabProject = {
   namespace: {
     name: 'namespace1'
   }
+}
+
+const mockedTag = {
+  name: 'tag1'
 }
 
 describe('main.js', () => {
@@ -181,15 +189,15 @@ describe('main.js', () => {
       vmMethods.setupDefaults(mockedGitlabApi)
       expect(mockedGitlabApi.setBaseData).toHaveBeenCalled()
     })
-    it('Should fetch builds from branch, bruilds, and tags', (done) => {
-      vmMethods.fetchBuilds({
-        repo: mockedRepos,
-        project: mockedGitlabProject
-      })
-      Vue.nextTick(() => {
-        expect(vmMethods.onBuilds.length).toEqual(2)
-        done()
-      })
+    it('Should load Builds', () => {
+      vmMethods.loadBuilds(
+        vmMethods.onBuilds,
+        mockedBuilds,
+        mockedRepos,
+        mockedGitlabProject,
+        mockedTag
+      )
+      expect(vmMethods.onBuilds.length).toEqual(1)
     })
   })
 })

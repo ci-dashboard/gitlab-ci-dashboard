@@ -16,7 +16,6 @@ export const getParameterByName = (name, url) => {
 }
 
 export const getTopItem = (list) => {
-  console.info('list', list)
   if (!Array.isArray(list) || list.length === 0) {
     return
   }

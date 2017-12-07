@@ -286,7 +286,8 @@ var root = new Vue({
       }
       let startedFromNow = moment(build.started_at).fromNow()
 
-      onBuilds.forEach((b) => {
+      for (const index in onBuilds) {
+        const b = onBuilds[index]
         if (
           b.project === repo.projectName &&
           b.branch === repo.branch
@@ -309,7 +310,7 @@ var root = new Vue({
           b.tag_name = tag && tag.name
           b.namespace_name = project.namespace.name
         }
-      })
+      }
 
       if (!updated) {
         this.addStatusQueue(build.status, INCREASE_ACTION)
@@ -391,6 +392,22 @@ var root = new Vue({
       })
       .catch(this.handlerError.bind(this))
     },
+    handlerBranch (onBuilds, repo, project, lastCommit) {
+      getBuilds(project.id, lastCommit)
+      .then((response) => {
+        const builds = response.data
+        this.handlerBuilds.bind(this)(onBuilds, builds, repo, project)
+      })
+      .catch(this.handlerError.bind(this))
+    },
+    handlerBuilds (onBuilds, builds, repo, project) {
+      getTags(project.id)
+        .then((response) => {
+          const tag = getTopItem(response.data)
+          this.loadBuilds.bind(this)(onBuilds, builds, repo, project, tag)
+        })
+        .catch(this.handlerError.bind(this))
+    },
     fetchBuilds (selectedProjects) {
       const {
         onBuilds
@@ -405,17 +422,7 @@ var root = new Vue({
       getBranch(project.id, repo.branch)
         .then((response) => {
           const lastCommit = response.data.commit.id
-          getBuilds(project.id, lastCommit)
-            .then((response) => {
-              const builds = response.data
-              getTags(project.id)
-                .then((response) => {
-                  const tag = getTopItem(response.data)
-                  this.loadBuilds(onBuilds, builds, repo, project, tag)
-                })
-                .catch(this.handlerError.bind(this))
-            })
-            .catch(this.handlerError.bind(this))
+          this.handlerBranch(onBuilds, repo, project, lastCommit)
         })
         .catch(this.handlerError.bind(this))
     }
