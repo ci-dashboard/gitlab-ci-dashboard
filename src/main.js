@@ -157,7 +157,6 @@ var root = new Vue({
     },
     loadProjects (repos) {
       this.loadRepositories(repos)
-
       this.setupDefaults(gitlabApi)
       this.fetchProjects()
       setInterval(() => {
@@ -182,6 +181,7 @@ var root = new Vue({
       }
     },
     handlerError (error) {
+      console.info('err', error)
       if (error == null) {
         this.onError = { message: '' }
         return
@@ -238,6 +238,7 @@ var root = new Vue({
             this.onLoading = false
             if (this.apiVersion === DEFAULT_API_VERSION) {
               this.fetchBuilds({repo, project: response.data})
+                .then(this.loadBuilds.bind(this))
             } else {
               this.fetchPipelines({repo, project: response.data})
             }
@@ -350,6 +351,7 @@ var root = new Vue({
             const tag = getTopItem(response.data)
             getPipeline(project.id, lastPipelineId)
               .then((pipeline) => {
+                console.log('pipeline', pipeline)
                 const lastPipeline = pipeline.data
                 this.onBuilds.forEach((build) => {
                   if (
@@ -357,6 +359,10 @@ var root = new Vue({
                     build.branch === repo.branch
                   ) {
                     updated = true
+                    if (lastPipeline.status !== build.status) {
+                      this.addStatusQueue(lastPipeline.status, DECREASE_ACTION)
+                      this.addStatusQueue(build.status, INCREASE_ACTION)
+                    }
                     build.project = repo.projectName
                     build.status = lastPipeline.status
                     build.lastStatus = build.status
@@ -371,19 +377,20 @@ var root = new Vue({
                   }
                 })
                 if (!updated) {
-                  let b = {}
-                  b.project = repo.projectName
-                  b.status = lastPipeline.status
-                  b.lastStatus = b.status
-                  b.id = lastPipeline.id
-                  b.started_at = moment(lastPipeline.started_at).fromNow()
-                  b.author = authorName
-                  b.commit_message = message
-                  b.project_path = 'b.project_path'
-                  b.branch = repo.branch
-                  b.tag_name = tag && tag.name
-                  b.namespace_name = project.namespace.name
-                  this.onBuilds.push(b)
+                  this.addStatusQueue(lastPipeline.status, INCREASE_ACTION)
+                  let buildToAdd = {}
+                  buildToAdd.project = repo.projectName
+                  buildToAdd.status = lastPipeline.status
+                  buildToAdd.lastStatus = buildToAdd.status
+                  buildToAdd.id = lastPipeline.id
+                  buildToAdd.started_at = moment(lastPipeline.started_at).fromNow()
+                  buildToAdd.author = authorName
+                  buildToAdd.commit_message = message
+                  buildToAdd.project_path = 'buildToAdd.project_path'
+                  buildToAdd.branch = repo.branch
+                  buildToAdd.tag_name = tag && tag.name
+                  buildToAdd.namespace_name = project.namespace.name
+                  this.onBuilds.push(buildToAdd)
                 }
               })
               .catch(this.handlerError.bind(this))
@@ -401,10 +408,10 @@ var root = new Vue({
       .catch(this.handlerError.bind(this))
     },
     handlerBuilds (onBuilds, builds, repo, project) {
-      getTags(project.id)
+      return getTags(project.id)
         .then((response) => {
           const tag = getTopItem(response.data)
-          this.loadBuilds.bind(this)(onBuilds, builds, repo, project, tag)
+          return Promise.resolve(onBuilds, builds, repo, project, tag)
         })
         .catch(this.handlerError.bind(this))
     },
