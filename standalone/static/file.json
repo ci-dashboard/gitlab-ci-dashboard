@@ -1,5 +1,10 @@
 [
   {
+    "description": "Synchronous storage for React Native.",
+    "namespace": "raphaelpor",
+    "project": "sync-storage"
+  },
+  {
     "description": "API com todos os candidatos Brasileiros!",
     "namespace": "olhoneles",
     "project": "politicos",
