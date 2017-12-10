@@ -117,5 +117,17 @@
     "namespace": "globocom",
     "project": "GloboDNS",
     "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "globocom",
+    "project": "wrong",
+    "branch": "master"
+  },
+  {
+    "description": "",
+    "namespace": "globocom",
+    "project": "wrong2",
+    "branch": "master"
   }
 ]
