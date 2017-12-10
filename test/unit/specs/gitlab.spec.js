@@ -10,66 +10,10 @@ import {
   getCommits
 } from '@/gitlab'
 
-jest.mock('axios', () => ({
-  defaults: {
-    baseUrl: '',
-    headers: {
-      common: {
-        'PRIVATE-TOKEN': ''
-      }
-    }
-  },
-  get: (url) => {
-    let result = {}
-    if (
-      url.indexOf('projects') > 0 &&
-      url.indexOf('branch') === -1 &&
-      url.indexOf('builds') === -1 &&
-      url.indexOf('tags') === -1 &&
-      url.indexOf('pipelines') === -1 &&
-      url.indexOf('commits') === -1
-    ) {
-      result = {
-        url,
-        type: 'projects'
-      }
-    } else if (url.indexOf('branch') > 0) {
-      result = {
-        url,
-        type: 'branch'
-      }
-    } else if (url.indexOf('builds') > 0) {
-      result = {
-        url,
-        type: 'builds'
-      }
-    } else if (url.indexOf('tags') > 0) {
-      result = {
-        url,
-        type: 'tags'
-      }
-    } else if (url.indexOf('pipelines') > 0) {
-      result = {
-        url,
-        type: 'pipelines'
-      }
-    } else if (url.indexOf('commits') > 0) {
-      result = {
-        url,
-        type: 'commits'
-      }
-    }
-    return Promise.resolve(result)
-  }
-}))
 jest.mock('fitch', () => ({
   defaults: {
     baseUrl: '',
-    headers: {
-      common: {
-        'PRIVATE-TOKEN': ''
-      }
-    }
+    token: ''
   },
   get: (url) => {
     let result = {}
