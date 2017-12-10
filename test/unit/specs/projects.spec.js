@@ -12,7 +12,7 @@ const projectDef = {
   branch: 'master'
 }
 
-jest.mock('axios', () => ({
+jest.mock('fitch', () => ({
   get: () => {
     return Promise.resolve({data: [{
       description: 'React Native DraftJS Render',

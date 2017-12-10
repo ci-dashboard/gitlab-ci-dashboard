@@ -1,10 +1,10 @@
-import axios from 'axios'
+import fitch from 'fitch'
 
 export const getProjectsFromFile = (fileUrl) => {
   if (fileUrl == null || fileUrl === '') {
     return Promise.reject(new Error('Needs to pass a file url'))
   }
-  return axios.get(fileUrl)
+  return fitch.get(fileUrl)
     .then((response) => {
       return response.data
     })

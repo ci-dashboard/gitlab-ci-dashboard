@@ -1,6 +1,6 @@
 {
   "name": "gitlab-ci-dashboard",
-  "version": "5.4.1",
+  "version": "5.4.2-alpha.2",
   "description": "Dashboard for monitoring GitLab CI builds and pipelines for TV. This project is based on gitlab-ci-monitor by globo.com",
   "author": "Emiliano Barbosa <emilianoeloi@gmail.com>",
   "license": "MIT",
@@ -35,10 +35,10 @@
     "gitlab-ci-dashboard-migration": "./bin/gitlab-ci-dashboard-migration"
   },
   "dependencies": {
-    "axios": "0.17.1",
     "commander": "2.11.0",
     "cors": "2.8.4",
     "express": "4.16.2",
+    "fitch": "^0.11.0",
     "fs": "0.0.1-security",
     "http-server": "0.10.0",
     "json-beautify": "1.0.1",
@@ -48,7 +48,6 @@
   },
   "devDependencies": {
     "autoprefixer": "7.1.2",
-    "axios-mock-adapter": "1.10.0",
     "babel-core": "6.22.1",
     "babel-eslint": "7.1.1",
     "babel-jest": "21.0.2",

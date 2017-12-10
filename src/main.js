@@ -91,7 +91,7 @@ var root = new Vue({
   created () {
     this.loadConfig()
     if (this.standalone) {
-      getStandaloneParams().then((params) => {
+      getStandaloneParams(window.location.origin).then((params) => {
         this.gitlab = params.gitlab
         this.token = params.token
         this.ref = params.ref
@@ -181,7 +181,6 @@ var root = new Vue({
       }
     },
     handlerError (error) {
-      console.info(error)
       if (error == null) {
         this.onError = { message: '' }
         return

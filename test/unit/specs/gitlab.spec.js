@@ -10,14 +10,10 @@ import {
   getCommits
 } from '@/gitlab'
 
-jest.mock('axios', () => ({
+jest.mock('fitch', () => ({
   defaults: {
     baseUrl: '',
-    headers: {
-      common: {
-        'PRIVATE-TOKEN': ''
-      }
-    }
+    token: ''
   },
   get: (url) => {
     let result = {}
@@ -62,6 +58,7 @@ jest.mock('axios', () => ({
     return Promise.resolve(result)
   }
 }))
+
 describe('gitlab', () => {
   test('should set base request data', () => {
     setBaseData('gitlab.example.com', '12345')
@@ -78,6 +75,13 @@ describe('gitlab', () => {
   test('should return projecs', (done) => {
     getProjects('namespace/project').then((data) => {
       expect(data.type).toEqual('projects')
+      done()
+    })
+  })
+  test('should dont return projecs', (done) => {
+    getProjects().catch((err) => {
+      const expected = new Error('nameWithNamespace is empty')
+      expect(err).toEqual(expected)
       done()
     })
   })

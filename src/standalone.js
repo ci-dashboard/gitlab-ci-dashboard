@@ -1,7 +1,7 @@
-import axios from 'axios'
+import fitch from 'fitch'
 
-export const getStandaloneParams = () => {
-  return axios.get('/params')
+export const getStandaloneParams = (baseUrl) => {
+  return fitch.get(`${baseUrl}/params`)
     .then((response) => {
       return response.data
     })

@@ -154,6 +154,18 @@ describe('main.js', () => {
       const arr = vm.sortedBuilds
       expect(arr.length).toEqual(0)
     })
+    it('Should return empty sortedBuilds when builds is null', () => {
+      vm.onBuilds = null
+      const arr = vm.sortedBuilds
+      vm.onBuilds = []
+      expect(arr.length).toEqual(0)
+    })
+    it('Should return same builds when builds are equals', () => {
+      vm.onBuilds = [{id: 1}, {id: 1}]
+      const arr = vm.sortedBuilds
+      vm.onBuilds = []
+      expect(arr.length).toEqual(2)
+    })
   })
   describe('Standalone', () => {
     const vm2 = RootMain.$mount()
