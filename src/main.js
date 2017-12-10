@@ -192,7 +192,11 @@ var root = new Vue({
       }
       this.onError = {
         code: 1,
-        message: 'Something went wrong. Make sure the configuration is ok and your Gitlab is up and running.'
+        message: `
+          Something went wrong.
+          Make sure the configuration is ok and your Gitlab is up and running.
+          Details: ${error.message}
+        `
       }
 
       if (error.message === 'Wrong format') {
