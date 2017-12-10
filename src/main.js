@@ -181,7 +181,6 @@ var root = new Vue({
       }
     },
     handlerError (error) {
-      console.info(error)
       if (error == null) {
         this.onError = { message: '' }
         return
