@@ -7,7 +7,7 @@
 
 [![GitHub license](https://img.shields.io/github/license/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](LICENSE)
 
-Dashboard for monitoring [GitLab CI][gitlab-ci] builds. This project is based on [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor) by globo.com.
+Dashboard for monitoring [GitLab CI][gitlab-ci] builds and pipelines for TV. This project is based on [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor) by globo.com.
 
 
 [gitlab-ci]: https://about.gitlab.com/gitlab-ci/

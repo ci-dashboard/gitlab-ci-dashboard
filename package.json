@@ -1,7 +1,7 @@
 {
   "name": "gitlab-ci-dashboard",
   "version": "5.4.1-alpha.1",
-  "description": "Dashboard for monitoring GitLab CI builds. This project is based on gitlab-ci-monitor by globo.com",
+  "description": "Dashboard for monitoring GitLab CI builds and pipelines for TV. This project is based on gitlab-ci-monitor by globo.com",
   "author": "Emiliano Barbosa <emilianoeloi@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/emilianoeloi/gitlab-ci-dashboard",
@@ -26,7 +26,9 @@
     "ci",
     "gitlab-ci",
     "dashboard",
-    "monitor"
+    "monitor",
+    "pipeline",
+    "tv"
   ],
   "bin": {
     "gitlab-ci-dashboard": "./bin/gitlab-ci-dashboard",
