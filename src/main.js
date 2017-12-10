@@ -181,7 +181,6 @@ var root = new Vue({
       }
     },
     handlerError (error) {
-      console.info('err', error)
       if (error == null) {
         this.onError = { message: '' }
         return
@@ -359,8 +358,8 @@ var root = new Vue({
                   ) {
                     updated = true
                     if (lastPipeline.status !== build.status) {
-                      this.addStatusQueue(lastPipeline.status, DECREASE_ACTION)
-                      this.addStatusQueue(build.status, INCREASE_ACTION)
+                      this.addStatusQueue(build.status, DECREASE_ACTION)
+                      this.addStatusQueue(lastPipeline.status, INCREASE_ACTION)
                     }
                     build.project = repo.projectName
                     build.status = lastPipeline.status
