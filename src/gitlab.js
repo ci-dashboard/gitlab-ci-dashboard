@@ -13,7 +13,6 @@ export const setBaseData = (baseUrl, token, protocol = 'https', apiVersion = '3'
   fitch.preparedGet = (uri) => {
     const url = `${fitch.defaults.baseUrl}${uri}`
     const config = fitch.defaults.config
-    console.info(url, config)
     return fitch.get(url, config)
   }
 }
