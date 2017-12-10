@@ -258,5 +258,18 @@
     "authorName": "Marcelo Jorge Vieira",
     "username": "marcelometal",
     "tagName": "0.2.0"
+  },
+  {
+    "projectId": "18",
+    "pipelineId": "981",
+    "projectName": "sync-storage",
+    "projectDescription": "Synchronous storage for React Native.",
+    "namespaceName": "raphaelpor",
+    "branchName": "master",
+    "commitId": "21132682d6fb73ff1508f4da8b63e69ead7fc911",
+    "commitMessage": "Add yarn.lock\n",
+    "authorName": "Raphael Porto",
+    "username": "raphaelpor",
+    "tagName": "v0.2.2"
   }
 ]
