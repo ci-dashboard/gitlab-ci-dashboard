@@ -243,12 +243,12 @@ app.get('/api/:apiVersion/projects/:projectId/pipelines/:lastPipelineId', (req, 
     )
   })
   if (pipeline && pipeline.length > 0) {
-    stateMachine(pipeline[0], '14', 'running', 15)
+    stateMachine(pipeline[0], '17', 'running', 15)
     stateMachine(pipeline[0], '13', 'failed', 3)
     stateMachine(pipeline[0], '15', 'canceled', 5)
     stateMachine(pipeline[0], '16', 'pending', 10)
-    stateMachine(pipeline[0], '12', 'running', 2)
-    stateMachine(pipeline[0], '17', 'canceled', 3)
+    stateMachine(pipeline[0], '14', 'running', 2)
+    stateMachine(pipeline[0], '12', 'canceled', 3)
     res.json(pipeline)
   } else {
     res.sendStatus(404)

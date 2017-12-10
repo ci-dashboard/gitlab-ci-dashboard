@@ -2,7 +2,7 @@
 	"id": 14397366,
 	"sha": "066fc065b05e50a04ad8de325e1853a2ae597954",
 	"ref": "feature/api_v4",
-	"status": "failed",
+	"status": "success",
 	"before_sha": "066fc065b05e50a04ad8de325e1853a2ae597954",
 	"tag": false,
 	"yaml_errors": null,
