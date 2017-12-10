@@ -57,5 +57,9 @@ describe('Projects File', () => {
       expect(projects[1].branch).toEqual('master')
       expect(projects[0].project).toEqual('react-native-draftjs-render')
     })
+    it('Should return empty projects', () => {
+      const projects = getProjectsByQuerystring('a,b,c')
+      expect(projects.length).toEqual(0)
+    })
   })
 })

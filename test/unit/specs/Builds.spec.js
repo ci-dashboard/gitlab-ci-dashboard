@@ -31,6 +31,16 @@ describe('Builds.vue', () => {
     expect('bounce-out-top')
     .toEqual(positionClass)
   })
+  it('should return class "bounce-in-top" when status isnt success and hideSuccessCards is true', () => {
+    const Constructor = Vue.extend(Builds)
+    const vm = new Constructor().$mount()
+    vm.hideSuccessCards = true
+    const positionClass = vm.positionClass({
+      status: 'failed'
+    })
+    expect('bounce-in-top')
+    .toEqual(positionClass)
+  })
   it('should show version card when hideVersion is false and has tag name', () => {
     const Constructor = Vue.extend(Builds)
     const vm = new Constructor().$mount()

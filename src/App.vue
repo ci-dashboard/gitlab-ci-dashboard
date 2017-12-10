@@ -2,7 +2,6 @@
   <div id="app" class="ui grid">
     <div class="two column row" id="gcim-app">
       <div class="thirteen wide column">
-        <error v-bind:onError="onError" />
         <invalid-config v-bind:onInvalid="onInvalid" />
         <loading v-bind:onLoading="onLoading" />
         <builds
@@ -17,6 +16,7 @@
         <painel
           v-bind:status="status"
           v-bind:interval="interval"
+          v-bind:onError="onError"
         />
       </div>
     </div>
@@ -25,7 +25,6 @@
 
 <script>
 import Painel from './components/Painel'
-import Error from './components/Error'
 import InvalidConfig from './components/InvalidConfig'
 import Loading from './components/Loading'
 import Builds from './components/Builds'
@@ -34,7 +33,6 @@ export default {
   name: 'app',
   components: {
     Painel,
-    Error,
     InvalidConfig,
     Loading,
     Builds

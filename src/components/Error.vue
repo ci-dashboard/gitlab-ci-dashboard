@@ -1,7 +1,9 @@
 <template>
   <div v-show="this.show" class="row" id="gcim-error">
     <div class="eight wide column centered ">
-      <div class="ui red message">{{ this.message }}</div>
+      <div class="ui red message">
+        {{ this.message }}
+      </div>
     </div>
   </div>
 </template>

@@ -20,7 +20,9 @@
               <h1 style="font-size: 1.5em">{{ build.tag_name }}</h1>
             </div>
             <div v-if="isSuccessCard(build) && showVersion(build)" class="ui center floated basic button">
-              <h1 style="font-size: 2.5em">{{ build.tag_name }}</h1>
+              <h1 style="font-size: 2.5em">
+                {{ build.tag_name }}
+              </h1>
             </div>
           </div>
           <div class="extra content">

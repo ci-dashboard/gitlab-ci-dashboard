@@ -26,7 +26,7 @@
     "description": "React Native render for draft.js model",
     "namespace": "globocom",
     "project": "react-native-draftjs-render",
-    "branch": "master"
+    "branch": "develop"
   }
   (...)
 ]

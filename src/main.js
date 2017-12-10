@@ -63,7 +63,8 @@ var root = new Vue({
       onInvalid: false,
       onError: null,
       debug: '',
-      interval: 60
+      interval: 60,
+      wrongProjects: []
     }
   },
   computed: {
@@ -182,21 +183,45 @@ var root = new Vue({
     },
     handlerError (error) {
       if (error == null) {
-        this.onError = { message: '' }
+        this.onError = {
+          code: 0,
+          message: ''
+        }
+        this.wrongProjects = []
         return
       }
-      this.onError = {message: 'Something went wrong. Make sure the configuration is ok and your Gitlab is up and running.'}
+      this.onError = {
+        code: 1,
+        message: 'Something went wrong. Make sure the configuration is ok and your Gitlab is up and running.'
+      }
 
       if (error.message === 'Wrong format') {
-        this.onError = { message: 'Wrong projects format! Try: \'namespace/project\' or \'namespace/project/branch\'' }
+        this.onError = {
+          code: 2,
+          message: 'Wrong projects format! Try: \'namespace/project\' or \'namespace/project/branch\''
+        }
       }
 
       if (error.message === 'Network Error') {
-        this.onError = { message: 'Network Error. Please check the Gitlab domain.' }
+        this.onError = {
+          code: 3,
+          message: 'Network Error. Please check the Gitlab domain.'
+        }
       }
 
       if (error.response && error.response.status === 401) {
-        this.onError = { message: 'Unauthorized Access. Please check your token.' }
+        this.onError = {
+          code: 4,
+          message: 'Unauthorized Access. Please check your token.'
+        }
+      }
+
+      if (error.message === '404 - Not Found.') {
+        this.wrongProjects.push(error.project)
+        this.onError = {
+          code: 5,
+          message: `Project(s) not found: ${this.wrongProjects.map(w => ' ' + w)}`
+        }
       }
     },
     configValid () {
@@ -242,7 +267,10 @@ var root = new Vue({
               this.fetchPipelines({repo, project: response.data})
             }
           })
-          .catch(this.handlerError.bind(this))
+          .catch((err) => {
+            err.project = repo.nameWithNamespace
+            this.handlerError(err)
+          })
       })
     },
     addStatusQueue (status, action) {
