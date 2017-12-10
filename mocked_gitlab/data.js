@@ -70,6 +70,7 @@ const fillCommit = (data) => {
 
   const lastPipeline = Object.assign({}, commit.last_pipeline)
   lastPipeline.ref = data.branchName
+  lastPipeline.id = data.pipelineId
   commit.last_pipeline = lastPipeline
 
   return commit
@@ -100,6 +101,7 @@ const fillBuild = (data) => {
 const fillPipeline = (data) => {
   const p = Object.assign({}, pipelineTemplate)
   p.project_id = data.projectId
+  p.id = data.pipelineId
   p.ref = data.branchName
 
   const user = Object.assign({}, p.user)

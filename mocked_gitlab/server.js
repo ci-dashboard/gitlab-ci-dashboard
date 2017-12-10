@@ -123,6 +123,23 @@ const statePersistence = {
 }
 const buildPersistence = {}
 let lastBuildId = null
+const getNextPipelineId = () => {
+  const next = pipelines.reduce((prev, curr) => (
+    prev['id'] > curr['id'] ? prev : curr
+  ))
+  return ~~next.id + 1
+}
+const updateLastPipelineID = (build) => {
+  const newID = getNextPipelineId()
+  const commit = commits.filter((c) => (
+    ~~c.last_pipeline.id === ~~build.id &&
+    ~~c.project_id === ~~build.project_id
+  ))
+  build.id = newID
+  if (commit && commit.length > 0) {
+    commit[0].last_pipeline.id = newID
+  }
+}
 const incrementBuildId = (build) => {
   if (!buildPersistence[build.projectId]) {
     buildPersistence[build.projectId] = build
@@ -130,7 +147,7 @@ const incrementBuildId = (build) => {
   if (lastBuildId == null) {
     lastBuildId = buildPersistence[build.projectId].id
   }
-  build.id = lastBuildId++
+  updateLastPipelineID(build)
 }
 const updateCommitMessage = ({ status, commit }) => {
   if (commit == null) {
@@ -145,6 +162,7 @@ const updateCommitMessage = ({ status, commit }) => {
   commit.message = `${status} ${commit.message}`
 }
 const stateMachine = (build, projectId, status, div) => {
+
   if (build.project_id === projectId) {
     counter[status]++
     if (counter[status] % div === 0) {
@@ -221,16 +239,16 @@ app.get('/api/:apiVersion/projects/:projectId/pipelines/:lastPipelineId', (req, 
   const pipeline = pipelines.filter((p) => {
     return (
       p.project_id === projectId &&
-      p.id === ~~lastPipelineId
+      ~~p.id === ~~lastPipelineId
     )
   })
   if (pipeline && pipeline.length > 0) {
-    // stateMachine(pipeline[0], '14', 'running', 15)
-    // stateMachine(pipeline[0], '13', 'failed', 3)
-    // stateMachine(pipeline[0], '15', 'canceled', 5)
-    // stateMachine(pipeline[0], '16', 'pending', 10)
-    // stateMachine(pipeline[0], '12', 'running', 2)
-    // stateMachine(pipeline[0], '17', 'canceled', 3)
+    stateMachine(pipeline[0], '14', 'running', 15)
+    stateMachine(pipeline[0], '13', 'failed', 3)
+    stateMachine(pipeline[0], '15', 'canceled', 5)
+    stateMachine(pipeline[0], '16', 'pending', 10)
+    stateMachine(pipeline[0], '12', 'running', 2)
+    stateMachine(pipeline[0], '17', 'canceled', 3)
     res.json(pipeline)
   } else {
     res.sendStatus(404)
