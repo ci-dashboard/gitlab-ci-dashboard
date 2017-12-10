@@ -1,6 +1,7 @@
 [
   {
     "projectId": "5060",
+    "pipelineId": "14397366",
     "projectName": "gitlab-ci-monitor",
     "projectDescription": "A simple dashboard for monitoring GitLab CI builds. Alpha version.",
     "sslUrl": "gitlab@localhost:8089:native/gitlab-ci-monitor.git",
@@ -19,6 +20,7 @@
   },
   {
     "projectId": "0",
+    "pipelineId": "999",
     "projectName": "vscode",
     "projectDescription": "Visual Studio Code",
     "namespaceName": "Microsoft",
@@ -33,6 +35,7 @@
   },
   {
     "projectId": "1",
+    "pipelineId": "998",
     "projectName": "react",
     "projectDescription": "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
     "namespaceName": "facebook",
@@ -47,6 +50,7 @@
   },
   {
     "projectId": "2",
+    "pipelineId": "997",
     "projectName": "breakpad",
     "projectDescription": "Mirror of Google Breakpad project",
     "namespaceName": "google",
@@ -57,6 +61,7 @@
   },
   {
     "projectId": "3",
+    "pipelineId": "996",
     "projectName": "weex",
     "projectDescription": "A framework for building Mobile cross-platform UI",
     "namespaceName": "alibaba",
@@ -70,6 +75,7 @@
   },
   {
     "projectId": "4",
+    "pipelineId": "995",
     "projectName": "vue",
     "projectDescription": "A progressive, incrementally-adoptable JavaScript framework for building UI on the web.",
     "namespaceName": "vuejs",
@@ -82,6 +88,7 @@
   },
   {
     "projectId": "5",
+    "pipelineId": "994",
     "projectName": "cdnjs",
     "projectDescription": "Open Source Web front-end resource CDN for free, managed by @PeterDaveHello",
     "namespaceName": "froala",
@@ -94,6 +101,7 @@
   },
   {
     "projectId": "6",
+    "pipelineId": "993",
     "projectName": "tensorflow",
     "projectDescription": "Computation using data flow graphs for scalable machine learning ",
     "namespaceName": "tensorflow",
@@ -105,6 +113,7 @@
   },
   {
     "projectId": "7",
+    "pipelineId": "992",
     "projectName": "infrastructure-puppet",
     "projectDescription": "Apache Infrastructure Puppet",
     "namespaceName": "apache",
@@ -116,6 +125,7 @@
   },
   {
     "projectId": "8",
+    "pipelineId": "991",
     "projectName": "shadowsocks-libev",
     "projectDescription": "libev port of shadowsocks",
     "namespaceName": "shadowsocks",
@@ -129,6 +139,7 @@
   },
   {
     "projectId": "9",
+    "pipelineId": "990",
     "projectName": "tsuru",
     "projectDescription": "Open source, extensible and Docker-based Platform as a Service (PaaS).",
     "namespaceName": "tsuru",
@@ -142,6 +153,7 @@
   },
   {
     "projectId": "10",
+    "pipelineId": "989",
     "projectName": "thumbor",
     "projectDescription": "thumbor is an open-source photo thumbnail service by globo.com",
     "namespaceName": "thumbor",
@@ -154,6 +166,7 @@
   },
   {
     "projectId": "11",
+    "pipelineId": "988",
     "projectName": "GloboDNS",
     "projectDescription": "Api to manage Bind Name Server",
     "namespaceName": "globocom",
@@ -167,6 +180,7 @@
   },
   {
     "projectId": "12",
+    "pipelineId": "987",
     "projectName": "react-tv",
     "projectDescription": "[WIP] React development for TV (Renderer for low memory applications and Packager for WebOS, Tizen, Orsay)",
     "namespaceName": "raphamorim",
@@ -180,6 +194,7 @@
   },
   {
     "projectId": "13",
+    "pipelineId": "986",
     "projectName": "fitch.js",
     "projectDescription": "A lightweight Promise based HTTP client, using Fetch API.",
     "namespaceName": "raphaelpor",
@@ -193,6 +208,7 @@
   },
   {
     "projectId": "14",
+    "pipelineId": "985",
     "projectName": "hapi-version",
     "projectDescription": "Hapi route versioning using custom header",
     "namespaceName": "corintho",
@@ -205,6 +221,7 @@
   },
   {
     "projectId": "15",
+    "pipelineId": "984",
     "projectName": "react-native-draftjs-render",
     "projectDescription": "React Native render for draft.js model",
     "namespaceName": "globocom",
@@ -218,6 +235,7 @@
   },
   {
     "projectId": "16",
+    "pipelineId": "983",
     "projectName": "guarda-filme-android",
     "projectDescription": "Aplicativo para organizar filmes vistos",
     "namespaceName": "santoslucas",
@@ -230,6 +248,7 @@
   },
   {
     "projectId": "17",
+    "pipelineId": "982",
     "projectName": "politicos",
     "projectDescription": "API com todos os candidatos Brasileiros!",
     "namespaceName": "olhoneles",
