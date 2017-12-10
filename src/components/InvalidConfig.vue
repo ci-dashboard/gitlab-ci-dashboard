@@ -17,6 +17,7 @@
           <li>hideSuccessCards (optional)</li>
           <li>hideVersion (optional)</li>
           <li>interval (optional)</li>
+          <li>apiVersion (optional)</li>
         </ul>
         <p>projectsFile json pattern</p>
         <pre>

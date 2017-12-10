@@ -1,7 +1,7 @@
 [
   {
     "projectId": "5060",
-    "pipelineId": "14397366",
+    "pipelineId": "999",
     "projectName": "gitlab-ci-monitor",
     "projectDescription": "A simple dashboard for monitoring GitLab CI builds. Alpha version.",
     "sslUrl": "gitlab@localhost:8089:native/gitlab-ci-monitor.git",
@@ -20,7 +20,7 @@
   },
   {
     "projectId": "0",
-    "pipelineId": "999",
+    "pipelineId": "70000",
     "projectName": "vscode",
     "projectDescription": "Visual Studio Code",
     "namespaceName": "Microsoft",

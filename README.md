@@ -34,6 +34,7 @@ in the query string or using command-line on standalone mode:
 - **hideSuccessCards** (optional): hide cards when change to success status. Default: false
 - **hideVersion** (optional): hide version of cards. Default: false
 - **interval** (optional): interval, in seconds, that monitor go to gitlab server take a new data. Default 60
+- **apiVersion** (optional): Gitlab API version. Default: 3
 
 ### json projectsFile pattern
 

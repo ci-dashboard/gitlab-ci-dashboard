@@ -181,6 +181,7 @@ var root = new Vue({
       }
     },
     handlerError (error) {
+      console.info(error)
       if (error == null) {
         this.onError = { message: '' }
         return
@@ -398,10 +399,13 @@ var root = new Vue({
       .catch(this.handlerError.bind(this))
     },
     handlerBranch (onBuilds, repo, project, lastCommit) {
-      getBuilds(project.id, lastCommit)
+      return getBuilds(project.id, lastCommit)
       .then((response) => {
         const builds = response.data
-        this.handlerBuilds.bind(this)(onBuilds, builds, repo, project)
+        this.handlerBuilds(onBuilds, builds, repo, project)
+          .then((tag) => {
+            this.loadBuilds(onBuilds, builds, repo, project, tag)
+          })
       })
       .catch(this.handlerError.bind(this))
     },
@@ -409,7 +413,7 @@ var root = new Vue({
       return getTags(project.id)
         .then((response) => {
           const tag = getTopItem(response.data)
-          return Promise.resolve(onBuilds, builds, repo, project, tag)
+          return Promise.resolve(tag)
         })
         .catch(this.handlerError.bind(this))
     },
@@ -424,7 +428,7 @@ var root = new Vue({
         repo,
         project
       } = selectedProjects
-      getBranch(project.id, repo.branch)
+      return getBranch(project.id, repo.branch)
         .then((response) => {
           const lastCommit = response.data.commit.id
           this.handlerBranch(onBuilds, repo, project, lastCommit)
