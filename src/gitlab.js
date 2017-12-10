@@ -1,6 +1,16 @@
 import axios from 'axios'
+import fitch from 'fitch'
 
 export const setBaseData = (baseUrl, token, protocol = 'https', apiVersion = '3') => {
+  fitch.defaults = {
+    baseUrl: `${protocol}://${baseUrl}/api/v${apiVersion}`,
+    token,
+    protocol,
+    apiVersion,
+    config: {
+      headers: { 'PRIVATE-TOKEN': token }
+    }
+  }
   axios.defaults.baseURL = `${protocol}://${baseUrl}/api/v${apiVersion}`
   axios.defaults.headers.common['PRIVATE-TOKEN'] = token
 }
@@ -16,7 +26,9 @@ export const getProjects = (nameWithNamespace) => {
   if (nameWithNamespace == null || nameWithNamespace === '') {
     return Promise.reject(new Error('nameWithNamespace is empty'))
   }
-  return axios.get(`/projects/${nameWithNamespace.replace('/', '%2F')}`)
+  const url = `${fitch.defaults.baseUrl}/projects/${nameWithNamespace.replace('/', '%2F')}`
+  const config = fitch.defaults.config
+  return fitch.get(url, config)
 }
 
 export const getBranch = (projectId, branchName) => {

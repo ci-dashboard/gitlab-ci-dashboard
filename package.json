@@ -39,6 +39,7 @@
     "commander": "2.11.0",
     "cors": "2.8.4",
     "express": "4.16.2",
+    "fitch": "^0.11.0",
     "fs": "0.0.1-security",
     "http-server": "0.10.0",
     "json-beautify": "1.0.1",
