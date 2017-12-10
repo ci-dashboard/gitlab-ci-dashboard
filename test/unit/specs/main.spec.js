@@ -167,10 +167,37 @@ describe('main.js', () => {
       expect(arr.length).toEqual(2)
     })
   })
-  describe('Standalone', () => {
+  describe('handlerError', () => {
     const vm2 = RootMain.$mount()
     it('Should load params from stadalone mode', () => {
       expect(vm2.projectsFile).toEqual('standalone')
+    })
+  })
+  describe('Standalone', () => {
+    const vmError = RootMain.$mount()
+    it('Should reset error when error is null', () => {
+      vmError.handlerError(null)
+      expect(vmError.onError.message).toEqual('')
+    })
+    it('Should return code error 1 as default error', () => {
+      vmError.handlerError({message: 'Generic Error'})
+      expect(vmError.onError.code).toEqual(1)
+    })
+    it('Should return code error 2 when is "Wront format"', () => {
+      vmError.handlerError({message: 'Wrong format'})
+      expect(vmError.onError.code).toEqual(2)
+    })
+    it('Should return code error 3 when is "Network Error"', () => {
+      vmError.handlerError({message: 'Network Error'})
+      expect(vmError.onError.code).toEqual(3)
+    })
+    it('Should return code error 4 when status error is 401', () => {
+      vmError.handlerError({response: {status: 401}})
+      expect(vmError.onError.code).toEqual(4)
+    })
+    it('Should return code error 5 when is "404 - Not Found."', () => {
+      vmError.handlerError({message: '404 - Not Found.'})
+      expect(vmError.onError.code).toEqual(5)
     })
   })
   describe('methods', () => {

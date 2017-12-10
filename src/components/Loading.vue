@@ -1,6 +1,6 @@
 <template>
   <div v-show="loading" class="row" id="gcim-loading">
-    <div class="ui large active centered inline loader"></div>
+    <div class="ui large active centered inline loader" />
   </div>
 </template>
 
