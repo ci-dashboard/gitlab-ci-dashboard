@@ -350,7 +350,7 @@ var root = new Vue({
             const tag = getTopItem(response.data)
             getPipeline(project.id, lastPipelineId)
               .then((pipeline) => {
-                const lastPipeline = pipeline.data[0]
+                const lastPipeline = pipeline.data
                 this.onBuilds.forEach((build) => {
                   if (
                     build.project === repo.projectName &&

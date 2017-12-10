@@ -249,7 +249,7 @@ app.get('/api/:apiVersion/projects/:projectId/pipelines/:lastPipelineId', (req, 
     stateMachine(pipeline[0], '16', 'pending', 10)
     stateMachine(pipeline[0], '14', 'running', 2)
     stateMachine(pipeline[0], '12', 'canceled', 3)
-    res.json(pipeline)
+    res.json(pipeline[0])
   } else {
     res.sendStatus(404)
   }
