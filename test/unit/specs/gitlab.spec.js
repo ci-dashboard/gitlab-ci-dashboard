@@ -81,6 +81,13 @@ describe('gitlab', () => {
       done()
     })
   })
+  test('should dont return projecs', (done) => {
+    getProjects().catch((err) => {
+      const expected = new Error('nameWithNamespace is empty')
+      expect(err).toEqual(expected)
+      done()
+    })
+  })
   test('should return branch', (done) => {
     getBranch(0, 'branchName').then((data) => {
       expect(data.type).toEqual('branch')
