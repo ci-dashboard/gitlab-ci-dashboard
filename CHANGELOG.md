@@ -1,3 +1,5 @@
+# 5.4.4-alpha.3 - Improve error message
+# 5.4.3 - add suppot to gitlab api v4
 # 5.4.0-alpha.4 Add suporte to gitlab api v4
 # 5.4.0-alpha.3 Change tests framework to jest
 
