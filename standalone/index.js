@@ -21,7 +21,7 @@ const token = commander.token || process.env.TOKEN
 const projectsFile = commander.projectsFile || process.env.PROJECTS_FILE
 const gitlabciProtocol = commander.gitlabciProtocol || process.env.GITLABCI_PROTOCOL || 'https'
 const hideSuccessCards = commander.hideSuccessCards || process.env.HIDE_SUCCESS_CARDS || false
-const apiVersion = commander.apiVersion || process.env.API_VERSION || 3
+const apiVersion = commander.apiVersion || process.env.API_VERSION || '3'
 const hideVersion = commander.hideVersion || process.env.HIDE_VERSION || false
 const interval = commander.interval || process.env.INTERVAL || 60
 
