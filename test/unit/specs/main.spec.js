@@ -238,5 +238,18 @@ describe('main.js', () => {
       )
       expect(vmMethods.onBuilds.length).toEqual(1)
     })
+    it('Should create branch link', () => {
+      const mockedProject = {
+        name: 'p1',
+        namespace: {
+          name: 'n1'
+        }
+      }
+      const mockedRepo = {
+        branch: 'b1'
+      }
+      const url = vmMethods.getLinkToBranch(mockedProject, mockedRepo)
+      expect(url).toEqual('gitlabciProtocol://gitlab/n1/p1/tree/b1')
+    })
   })
 })

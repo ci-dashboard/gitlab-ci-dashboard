@@ -9,7 +9,7 @@
         >
           <div class="content">
             <div class="header project-name">
-              <a target="_blank" v-bind:href="build.project_url">{{ build.project }} ({{ build.branch }})</a>
+              <a target="_blank" v-bind:href="build.link_to_branch">{{ build.project }} ({{ build.branch }})</a>
             </div>
             <div class="meta">{{ build.namespace_name }}</div>
             <div v-if="!isSuccessCard(build)" class="description">

@@ -309,6 +309,9 @@ var root = new Vue({
         selectedItem.total--
       }
     },
+    getLinkToBranch (project, repo) {
+      return `${this.gitlabciProtocol}://${this.gitlab}/${project.namespace.name}/${project.name}/tree/${repo.branch}`
+    },
     loadBuilds (onBuilds, data, repo, project, tag) {
       let updated = false
 
@@ -341,6 +344,7 @@ var root = new Vue({
           b.branch = repo.branch
           b.tag_name = tag && tag.name
           b.namespace_name = project.namespace.name
+          b.link_to_branch = this.getLinkToBranch(project, repo)
         }
       }
 
@@ -357,7 +361,8 @@ var root = new Vue({
           project_path: project.path_with_namespace,
           branch: repo.branch,
           tag_name: tag && tag.name,
-          namespace_name: project.namespace.name
+          namespace_name: project.namespace.name,
+          link_to_branch: this.getLinkToBranch(project, repo)
         }
         onBuilds.push(buildToAdd)
       }
@@ -404,6 +409,7 @@ var root = new Vue({
                     build.branch = repo.branch
                     build.tag_name = tag && tag.name
                     build.namespace_name = project.namespace.name
+                    build.link_to_branch = this.getLinkToBranch(project, repo)
                   }
                 })
                 if (!updated) {
@@ -420,6 +426,7 @@ var root = new Vue({
                   buildToAdd.branch = repo.branch
                   buildToAdd.tag_name = tag && tag.name
                   buildToAdd.namespace_name = project.namespace.name
+                  buildToAdd.link_to_branch = this.getLinkToBranch(project, repo)
                   this.onBuilds.push(buildToAdd)
                 }
               })
