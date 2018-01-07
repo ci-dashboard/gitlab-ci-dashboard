@@ -12,6 +12,9 @@ import gitlabApi, {
   getCommits
 } from '@/gitlab'
 import {
+  getConfigFromFile
+} from '@/config'
+import {
   getProjectsFromFile,
   getProjectsByQuerystring
 } from '@/projects'
@@ -41,6 +44,7 @@ var root = new Vue({
   el: '#app',
   data () {
     return {
+      configFile: null,
       projects: [],
       onBuilds: [],
       lastTags: [],
@@ -90,44 +94,70 @@ var root = new Vue({
     }
   },
   created () {
-    this.loadConfig()
-    if (this.standalone) {
-      getStandaloneParams(window.location.origin).then((params) => {
-        this.gitlab = params.gitlab
-        this.token = params.token
-        this.ref = params.ref
-        this.projectsFile = 'standalone'
-        this.projects = params.projects
-        this.gitlabciProtocol = params.gitlabciProtocol
-        this.hideSuccessCards = params.hideSuccessCards
-        this.apiVersion = params.apiVersion
-        this.hideVersion = params.hideVersion
-        this.interval = params.interval
+    this.loadConfig().then(() => {
+      if (this.standalone) {
+        getStandaloneParams(window.location.origin).then((params) => {
+          this.gitlab = params.gitlab
+          this.token = params.token
+          this.ref = params.ref
+          this.projectsFile = 'standalone'
+          this.projects = params.projects
+          this.gitlabciProtocol = params.gitlabciProtocol
+          this.hideSuccessCards = params.hideSuccessCards
+          this.apiVersion = params.apiVersion
+          this.hideVersion = params.hideVersion
+          this.interval = params.interval
+          this.startup()
+        })
+      } else {
         this.startup()
-      })
-    } else {
-      this.startup()
-    }
+      }
+    })
   },
   methods: {
     loadConfig () {
-      this.standalone = getParameterByName('standalone')
-      this.gitlab = getParameterByName('gitlab')
-      this.token = getParameterByName('token')
-      this.ref = getParameterByName('ref')
-      this.projectsParam = getParameterByName('projects')
-      this.projectsFile = getParameterByName('projectsFile')
-      this.gitlabciProtocol = getParameterByName('gitlabciProtocol') || DEFAULT_GITLABCI_PROTOCOL
-      this.hideSuccessCards = getParameterByName('hideSuccessCards')
-      this.apiVersion = getParameterByName('apiVersion') || '3'
-      if (this.hideSuccessCards == null) {
-        this.hideSuccessCards = DEFAULT_HIDE_SUCCESS_CARDS
-      }
-      this.hideVersion = getParameterByName('hideVersion')
-      if (this.hideVersion == null) {
-        this.hideVersion = DEFAULT_HIDE_VERSION
-      }
-      this.interval = getParameterByName('interval') || DEFAULT_INTERVAL
+      this.configFile = getParameterByName('config')
+      return getConfigFromFile(this.configFile)
+        .then(({config, projects}) => {
+          console.info('config', config)
+          this.standalone = config.standalone
+          this.gitlab = config.gitlab
+          this.token = config.token
+          this.ref = config.ref
+          this.projects = projects
+          this.projectsFile = config.projectsFile
+          this.gitlabciProtocol = config.gitlabciProtocol || DEFAULT_GITLABCI_PROTOCOL
+          this.hideSuccessCards = config.hideSuccessCards
+          this.apiVersion = config.apiVersion || DEFAULT_API_VERSION
+          if (this.hideSuccessCards == null) {
+            this.hideSuccessCards = DEFAULT_HIDE_SUCCESS_CARDS
+          }
+          this.hideVersion = config.hideVersion
+          if (this.hideVersion == null) {
+            this.hideVersion = DEFAULT_HIDE_VERSION
+          }
+          this.interval = config.interval || DEFAULT_INTERVAL
+        })
+        .catch(() => {
+          this.standalone = getParameterByName('standalone')
+          this.gitlab = getParameterByName('gitlab')
+          this.token = getParameterByName('token')
+          this.ref = getParameterByName('ref')
+          this.projectsParam = getParameterByName('projects')
+          this.projectsFile = getParameterByName('projectsFile')
+          this.gitlabciProtocol = getParameterByName('gitlabciProtocol') || DEFAULT_GITLABCI_PROTOCOL
+          this.hideSuccessCards = getParameterByName('hideSuccessCards')
+          this.apiVersion = getParameterByName('apiVersion') || DEFAULT_API_VERSION
+          if (this.hideSuccessCards == null) {
+            this.hideSuccessCards = DEFAULT_HIDE_SUCCESS_CARDS
+          }
+          this.hideVersion = getParameterByName('hideVersion')
+          if (this.hideVersion == null) {
+            this.hideVersion = DEFAULT_HIDE_VERSION
+          }
+          this.interval = getParameterByName('interval') || DEFAULT_INTERVAL
+          return Promise.resolve()
+        })
     },
     loadRepositories (repos) {
       if (repos == null) {
@@ -172,9 +202,9 @@ var root = new Vue({
         return
       }
 
-      if (this.standalone) {
+      if (this.standalone || Array.isArray(this.projects)) {
         this.loadProjects(this.projects)
-      } if (this.projectsParam) {
+      } else if (this.projectsParam) {
         this.projects = getProjectsByQuerystring(this.projectsParam)
         this.loadProjects(this.projects)
       } else {
@@ -229,18 +259,20 @@ var root = new Vue({
       }
     },
     configValid () {
-      let valid = true
       const {
         projectsFile,
         token,
         gitlab,
-        projects
+        projects,
+        configFile
       } = this
-      if ((projects == null && projectsFile == null) || token == null || gitlab == null) {
-        valid = false
+      if (configFile) {
+        return true
       }
-
-      return valid
+      if ((projects == null && projectsFile == null) || token == null || gitlab == null) {
+        return false
+      }
+      return true
     },
     setupDefaults (provider) {
       const {

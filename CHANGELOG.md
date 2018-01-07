@@ -1,3 +1,6 @@
+# 6.0.0 alpha - Configure everything in the json file
+
+# 5.5.0 - Enable link to access repository
 # 5.4.4-alpha.3 - Improve error message
 # 5.4.3 - add suppot to gitlab api v4
 # 5.4.0-alpha.4 Add suporte to gitlab api v4

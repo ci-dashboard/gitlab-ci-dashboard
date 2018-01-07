@@ -7,7 +7,7 @@
 
 [![GitHub license](https://img.shields.io/github/license/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](LICENSE)
 
-Dashboard for monitoring [GitLab CI][gitlab-ci] builds and pipelines for TV. This project is based on [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor) by globo.com.
+Dashboard for monitoring [GitLab CI][gitlab-ci] builds and pipelines for TV. This is a fork of [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor).
 
 
 [gitlab-ci]: https://about.gitlab.com/gitlab-ci/
@@ -24,30 +24,47 @@ Dashboard for monitoring [GitLab CI][gitlab-ci] builds and pipelines for TV. Thi
 
 ## Usage
 
-This project runs completely in the browser. It expects a few parameters
-in the query string or using command-line on standalone mode:
+This project can runs completely in the browser with few parameters on querystring or run in standalone mode using command-line, you can use querystring parameters or using all parameters on json config file.
+
+### Parameters
+
+- **config**: path or url to config file
 
 - **gitlab**: your gitlab server address
 - **token**: your gitlab token
-- **projectsFile**: url to file that contains a list of projects you want to monitor, see below how to create it
+- **projectsFile/projects**: 
+  - **using projectsFile**: url to file that contains a list of projects you want to monitor, see below how to create it
+  - **using projects**: list or project you want to moniro, see below how to create it
 - **gitlabciProtocol** (optional): protocol to access gitlabci api. Default: https
 - **hideSuccessCards** (optional): hide cards when change to success status. Default: false
 - **hideVersion** (optional): hide version of cards. Default: false
 - **interval** (optional): interval, in seconds, that monitor go to gitlab server take a new data. Default 60
 - **apiVersion** (optional): Gitlab API version. Default: 3
 
-### json projectsFile pattern
+### json config sample
 
-```
-[
-  {
-    "description": "React Native render for draft.js model",
-    "namespace": "globocom",
-    "project": "react-native-draftjs-render",
-    "branch": "master"
+```json
+{
+  "dashboard": {
+    "config": {
+      "gitlab": "gitlab.example.com",
+      "token": "123456",
+      "gitlabciProtocol": "https",
+      "hideSuccessCards": false,
+      "hideVersion": false,
+      "interval": 60,
+      "apiVersion": 3
+    },
+    "projects": [
+      {
+        "description": "React Native render for draft.js model",
+        "namespace": "globocom",
+        "project": "react-native-draftjs-render",
+        "branch": "master"
+      }
+    ]
   }
-  (...)
-]
+}
 ```
 
 With these parameters, it will try to fetch the list of projects that this
@@ -59,22 +76,34 @@ or the branch you have specified.
 Standalone Example:
 ```bash
 gitlab-ci-dashboard --gitlab gitlab.example.com --token 2345 --projectsFile ./example.json
+
+## or if you using json config file, just:
+
+gitlab-ci-dashboard --config ./config.json
+
 ```
 
 Server hosted Example:
 
-```
+```bash
 http://gitlab-ci-dashboard.example.com/?gitlab=gitlab.example.com&token=12345&projectsFile=http://gitlab-ci-dashboard.example.com/example.json
+
+## or if you using json config file, just:
+
+http://gitlab-ci-dashboard.example.com/?config=http://gitlab-ci-dashboard.example.com/config.json
 ```
 
 ## Standalone
 
-``` bash
+```bash
 # install globally
 npm install -g gitlab-ci-dashboard
 
 # run standalone http server
 gitlab-ci-dashboard --gitlab gitlab.example.com --token 12345 --projectsFile ./file.json
+
+## or if you using json config file, just:
+gitlab-ci-dashboard --config ./config.json
 
 # access https://localhost:8081/?standalone=true on browser
 
@@ -82,7 +111,7 @@ gitlab-ci-dashboard --gitlab gitlab.example.com --token 12345 --projectsFile ./f
 
 ## Server hosted
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -94,7 +123,7 @@ npm run build
 
 ## Available scripts
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -185,6 +214,11 @@ https://scotch.io/tutorials/how-to-write-a-unit-test-for-vuejs
 [Play](http://animista.net/about)
 
 ***Semantic UI:*** User Interface is the language of the web [Semantic UI](https://semantic-ui.com/)
+
+## Another Dashboards
+
+[gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor)
+
 ## License
 
 GitLab CI Dashboard is licensed under the [MIT license](LICENSE).
