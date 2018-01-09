@@ -42,7 +42,7 @@
     "fs": "0.0.1-security",
     "http-server": "0.10.0",
     "json-beautify": "1.0.1",
-    "moment": "2.18.1",
+    "moment": "2.20.1",
     "opn": "5.1.0",
     "vue": "2.5.2"
   },
