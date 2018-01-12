@@ -15,12 +15,11 @@ export const getProjectsByQuerystring = (projectsParam) => {
   const repositories = projectsParam.split(',')
   for (const x in repositories) {
     try {
-      const repos = repositories[x].split('/')
-      const namespace = repos[0].trim()
-      const project = repos[1].trim()
+      const namespace = repositories[x].substring(0, repositories[x].lastIndexOf('/'))
+      let project = repositories[x].substring(repositories[x].lastIndexOf('/') + 1)
       let branch = 'master'
-      if (repos.length > 2) {
-        branch = repos[2].trim()
+      if (project.includes(':')) {
+        [project, branch] = project.split(':')
       }
       newProjects.push({
         description: '',

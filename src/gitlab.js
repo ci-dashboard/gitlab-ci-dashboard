@@ -25,14 +25,14 @@ export const getProjects = (nameWithNamespace) => {
   if (nameWithNamespace == null || nameWithNamespace === '') {
     return Promise.reject(new Error('nameWithNamespace is empty'))
   }
-  return fitch.preparedGet(`/projects/${nameWithNamespace.replace('/', '%2F')}`)
+  return fitch.preparedGet(`/projects/${nameWithNamespace.replace(/\//g, '%2F')}`)
 }
 
 export const getBranch = (projectId, branchName) => {
   if (projectId == null || branchName == null) {
     return Promise.reject(new Error('projectId or branchName are empty'))
   }
-  const b = '' + branchName.replace('/', '%2F')
+  const b = '' + branchName.replace(/\//g, '%2F')
   return fitch.preparedGet(`/projects/${projectId}/repository/branches/${b}`)
 }
 
@@ -68,7 +68,7 @@ export const getCommits = (projectId, branchName) => {
   if (projectId == null || branchName == null || branchName === '') {
     return Promise.reject(new Error('projectId or branchName are empty'))
   }
-  return fitch.preparedGet(`/projects/${projectId}/repository/commits/${('' + branchName).replace('/', '%2F')}`)
+  return fitch.preparedGet(`/projects/${projectId}/repository/commits/${('' + branchName).replace(/\//g, '%2F')}`)
 }
 
 export default {
