@@ -15,6 +15,9 @@ export const getProjectsByQuerystring = (projectsParam) => {
   const repositories = projectsParam.split(',')
   for (const x in repositories) {
     try {
+      if (!repositories[x].includes('/')) {
+        throw Error(`Project pattern isn't correct`)
+      }
       const namespace = repositories[x].substring(0, repositories[x].lastIndexOf('/'))
       let project = repositories[x].substring(repositories[x].lastIndexOf('/') + 1)
       let branch = 'master'
