@@ -27,7 +27,7 @@
           </div>
           <div class="extra content">
             <span class="left floated hashtag build-id">
-              <a target="_blank" v-bind:href="build.project_build_url">
+              <a target="_blank" v-bind:href="build.link_to_branch">
               <i class="hashtag icon"></i>
                 {{ build.id}}
               </a>
