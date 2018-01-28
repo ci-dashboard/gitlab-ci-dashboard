@@ -1,5 +1,9 @@
 #!/bin/sh
 #
+# Copyright (c) 2017, Bengt Brodersen (https://github.com/qoomon)
+#
+# License: MIT
+#
 # scripts/deploy_to_git.sh 'dist' 'https://github.com/emilianoeloi/gitlab-ci-dashboard.git' 'gh-pages'
 set -e
 
