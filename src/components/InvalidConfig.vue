@@ -9,6 +9,9 @@
           Make sure all configs are set.
           The following properties must be defined in the URL.
         </p>
+        <p>
+          For more option of configuration see [README](https://github.com/emilianoeloi/gitlab-ci-dashboard/blob/master/README.md)
+        </p>
         <ul>
           <li>gitlab</li>
           <li>token</li>
@@ -33,9 +36,9 @@
         </pre>
       </div>
       <div class="ui bottom attached warning message">
-        <p>Ex: http://gitlab-ci-dashboard.example.com?gitlab=gitlab.example.com&token=some-token&projectsFile=http://gitlab-ci-dashboard.example.com/file.json&gitlabciProtocol=http&hideSuccessCards=false</p>
+        <p>Ex: https://emilianoeloi.github.io/gitlab-ci-dashboard/?gitlab=gitlab.com&token=w_zZcGZw-8pKxX_qSbWy&projectsFile=https://emilianoeloi.github.io/gitlab-ci-dashboard/static/gitlab.json</p>
         <h4>gitlab-ci-monitor compatibility</h4>
-        <p>Ex: http://gitlab-ci-monitor.example.com/?gitlab=gitlab.example.com&token=12345&projects=namespace/project1,namespace/project1/branch,namespace/project2</p>
+        <p>Ex: https://emilianoeloi.github.io/gitlab-ci-dashboard/?gitlab=gitlab.example.com&token=12345&projects=namespace/project1,namespace/project1/branch,namespace/project2</p>
       </div>
     </div>
   </div>

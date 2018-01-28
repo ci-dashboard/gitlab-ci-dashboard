@@ -7,3 +7,4 @@ script:
   - npm run unit
 after_success:
   - npm run report-coverage
+  
