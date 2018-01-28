@@ -7,10 +7,3 @@ script:
   - npm run unit
 after_success:
   - npm run report-coverage
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: scripts/deploy_to_git.sh 'dist' 'https://github.com/emilianoeloi/gitlab-ci-dashboard.git' 'gh-pages'
-  on:
-    branch: master
-    condition: $TRAVIS_REPO_SLUG = emilianoeloi/gitlab-ci-dashboard
