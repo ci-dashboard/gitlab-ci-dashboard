@@ -19,7 +19,8 @@
     "build": "node build/build.js && cp -R dist/* standalone/",
     "report-coverage": "codecov",
     "server": "http-server ./dist",
-    "gitlab-mocked-server": "node mocked_gitlab/server.js"
+    "gitlab-mocked-server": "node mocked_gitlab/server.js",
+    "deploy": "./scripts/deploy_to_git.sh 'dist' 'https://github.com/emilianoeloi/gitlab-ci-dashboard.git' 'gh-pages'"
   },
   "keywords": [
     "gitlab",
