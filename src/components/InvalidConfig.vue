@@ -10,7 +10,7 @@
           The following properties must be defined in the URL.
         </p>
         <p>
-          For more option of configuration see <a href="https://github.com/emilianoeloi/gitlab-ci-dashboard/blob/master/README.md" target="_blank">README</a>
+          For more option of configuration see the <a href="https://github.com/emilianoeloi/gitlab-ci-dashboard/blob/master/README.md" target="_blank">README</a>
         </p>
         <ul>
           <li>gitlab</li>
