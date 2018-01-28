@@ -45,7 +45,7 @@ var root = new Vue({
   data () {
     return {
       configFile: null,
-      projects: [],
+      projects: null,
       onBuilds: [],
       lastTags: [],
       lastPipelines: [],
@@ -119,7 +119,6 @@ var root = new Vue({
       this.configFile = getParameterByName('config')
       return getConfigFromFile(this.configFile)
         .then(({config, projects}) => {
-          console.info('config', config)
           this.standalone = config.standalone
           this.gitlab = config.gitlab
           this.token = config.token
@@ -138,7 +137,7 @@ var root = new Vue({
           }
           this.interval = config.interval || DEFAULT_INTERVAL
         })
-        .catch(() => {
+        .catch((e) => {
           this.standalone = getParameterByName('standalone')
           this.gitlab = getParameterByName('gitlab')
           this.token = getParameterByName('token')
@@ -202,12 +201,16 @@ var root = new Vue({
         return
       }
 
+      console.info('init')
       if (this.standalone || Array.isArray(this.projects)) {
+        console.info('standalone or this.projes is array')
         this.loadProjects(this.projects)
       } else if (this.projectsParam) {
+        console.info('projectsParam')
         this.projects = getProjectsByQuerystring(this.projectsParam)
         this.loadProjects(this.projects)
       } else {
+        console.info('projects from file')
         getProjectsFromFile(this.projectsFile).then(projects => this.loadProjects(projects))
       }
     },
