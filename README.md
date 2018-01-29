@@ -7,7 +7,7 @@
 
 [![GitHub license](https://img.shields.io/github/license/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](LICENSE)
 
-Dashboard for monitoring [GitLab CI][gitlab-ci] builds and pipelines for TV. This is a fork of [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor).
+Dashboard for monitoring [GitLab CI][gitlab-ci] builds and pipelines for TV. This is a fork from [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor).
 
 
 [gitlab-ci]: https://about.gitlab.com/gitlab-ci/
