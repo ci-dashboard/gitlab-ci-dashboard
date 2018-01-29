@@ -266,13 +266,13 @@ var root = new Vue({
         projectsFile,
         token,
         gitlab,
-        projects,
+        projectsParam,
         configFile
       } = this
       if (configFile) {
         return true
       }
-      if ((projects == null && projectsFile == null) || token == null || gitlab == null) {
+      if ((projectsParam == null && projectsFile == null) || token == null || gitlab == null) {
         return false
       }
       return true
