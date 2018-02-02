@@ -1,3 +1,5 @@
+import {CREATED, MANUAL} from './status'
+
 export const getParameterByName = (name, url) => {
   if (!url) url = window.location.href
   name = name.replace(/[[]]/g, '\\$&')
@@ -19,5 +21,15 @@ export const getTopItem = (list) => {
   if (!Array.isArray(list) || list.length === 0) {
     return
   }
-  return list[0]
+
+  let lastValidEntry
+  return list.reverse().find((entry) => {
+    if ([CREATED, MANUAL].includes(entry.status)) {
+      return false
+    }
+    if (entry.started_at && !entry.finished_at) {
+      return true
+    }
+    lastValidEntry = entry
+  }) || lastValidEntry
 }
