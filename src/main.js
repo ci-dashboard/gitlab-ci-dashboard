@@ -345,7 +345,7 @@ var root = new Vue({
       }
     },
     getLinkToBranch (project, repo) {
-      return `${this.gitlabciProtocol}://${this.gitlab}/${project.namespace.name}/${project.name}/tree/${repo.branch}`
+      return `${this.gitlabciProtocol}://${this.gitlab}/${project.path_with_namespace}/tree/${repo.branch}`
     },
     loadBuilds (onBuilds, data, repo, project, tag) {
       let updated = false

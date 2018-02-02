@@ -245,7 +245,8 @@ describe('main.js', () => {
         name: 'p1',
         namespace: {
           name: 'n1'
-        }
+        },
+        path_with_namespace: 'n1/p1'
       }
       const mockedRepo = {
         branch: 'b1'
