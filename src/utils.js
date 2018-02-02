@@ -27,6 +27,7 @@ export const getTopItem = (list) => {
     if ([CREATED, MANUAL].includes(entry.status)) {
       return false
     }
+
     if (entry.started_at && !entry.finished_at) {
       return true
     }
