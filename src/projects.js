@@ -14,25 +14,25 @@ export const getProjectsByQuerystring = (projectsParam) => {
   let newProjects = []
   const repositories = projectsParam.split(',')
   for (const x in repositories) {
-    try {
       if (!repositories[x].includes('/')) {
-        throw Error(`Project pattern isn't correct`)
+        throw new Error(`Invalid project name`)
       }
-      const namespace = repositories[x].substring(0, repositories[x].lastIndexOf('/'))
-      let project = repositories[x].substring(repositories[x].lastIndexOf('/') + 1)
       let branch = 'master'
-      if (project.includes(':')) {
-        [project, branch] = project.split(':')
+      let projectPath = repositories[x]
+
+      if (projectPath.includes(':')) {
+        [projectPath, branch] = projectPath.split(':')
       }
+
+      const namespace = projectPath.substring(0, projectPath.lastIndexOf('/'))
+      const project = projectPath.substring(projectPath.lastIndexOf('/') + 1)
+
       newProjects.push({
         description: '',
         namespace,
         project,
         branch
       })
-    } catch (err) {
-      console.log(err)
     }
+    return newProjects
   }
-  return newProjects
-}

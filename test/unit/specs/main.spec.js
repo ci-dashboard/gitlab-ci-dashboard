@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import RootMain from '@/main.js'
 
 jest.mock('@/standalone', () => ({

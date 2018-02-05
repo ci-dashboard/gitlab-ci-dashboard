@@ -10,7 +10,7 @@ describe('Builds.vue', () => {
     const Constructor = Vue.extend(Builds)
     const vm = new Constructor().$mount()
     expect(vm.gitlab)
-    .toEqual('')
+      .toEqual('')
   })
   it('should return class "card failed" to failed status', () => {
     const Constructor = Vue.extend(Builds)
@@ -19,7 +19,7 @@ describe('Builds.vue', () => {
       status: 'failed'
     })
     expect('card failed ')
-    .toEqual(statusClass)
+      .toEqual(statusClass)
   })
   it('should return class "bounce-out-top" when status is success and hideSuccessCards is true', () => {
     const Constructor = Vue.extend(Builds)
@@ -29,7 +29,7 @@ describe('Builds.vue', () => {
       status: 'success'
     })
     expect('bounce-out-top')
-    .toEqual(positionClass)
+      .toEqual(positionClass)
   })
   it('should return class "bounce-in-top" when status isnt success and hideSuccessCards is true', () => {
     const Constructor = Vue.extend(Builds)
@@ -39,7 +39,7 @@ describe('Builds.vue', () => {
       status: 'failed'
     })
     expect('bounce-in-top')
-    .toEqual(positionClass)
+      .toEqual(positionClass)
   })
   it('should show version card when hideVersion is false and has tag name', () => {
     const Constructor = Vue.extend(Builds)

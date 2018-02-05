@@ -207,8 +207,12 @@ var root = new Vue({
         this.loadProjects(this.projects)
       } else if (this.projectsParam) {
         console.info('projectsParam')
-        this.projects = getProjectsByQuerystring(this.projectsParam)
-        this.loadProjects(this.projects)
+        try {
+          this.projects = getProjectsByQuerystring(this.projectsParam)
+          this.loadProjects(this.projects)
+        } catch (err) {
+          this.handlerError(err)
+        }
       } else {
         console.info('projects from file')
         getProjectsFromFile(this.projectsFile).then(projects => this.loadProjects(projects))
@@ -469,18 +473,18 @@ var root = new Vue({
           })
           .catch(this.handlerError.bind(this))
       })
-      .catch(this.handlerError.bind(this))
+        .catch(this.handlerError.bind(this))
     },
     handlerBranch (onBuilds, repo, project, lastCommit) {
       return getBuilds(project.id, lastCommit)
-      .then((response) => {
-        const builds = response.data
-        this.handlerBuilds(onBuilds, builds, repo, project)
-          .then((tag) => {
-            this.loadBuilds(onBuilds, builds, repo, project, tag)
-          })
-      })
-      .catch(this.handlerError.bind(this))
+        .then((response) => {
+          const builds = response.data
+          this.handlerBuilds(onBuilds, builds, repo, project)
+            .then((tag) => {
+              this.loadBuilds(onBuilds, builds, repo, project, tag)
+            })
+        })
+        .catch(this.handlerError.bind(this))
     },
     handlerBuilds (onBuilds, builds, repo, project) {
       return getTags(project.id)

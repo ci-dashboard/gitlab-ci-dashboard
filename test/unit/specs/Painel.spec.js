@@ -10,14 +10,14 @@ describe('Painel.vue', () => {
     const Constructor = Vue.extend(Painel)
     const vm = new Constructor().$mount()
     expect(vm.localStatus[0].text)
-    .toEqual('success')
+      .toEqual('success')
   })
   it('should return status name: "success"', () => {
     const Constructor = Vue.extend(Painel)
     const vm = new Constructor().$mount()
     vm.status = [{text: 'success'}]
     expect(vm.localStatus[0].text)
-    .toEqual('success')
+      .toEqual('success')
   })
   it('should compute animation styles por mask, filter and spinner', () => {
     const Constructor = Vue.extend(Painel)
@@ -29,10 +29,10 @@ describe('Painel.vue', () => {
     const expectedSpinner = 'rota 5s linear infinite'
 
     expect(expectedFilter)
-    .toEqual(vm.filterAnimation)
+      .toEqual(vm.filterAnimation)
     expect(expectedMask)
-    .toEqual(vm.maskAnimation)
+      .toEqual(vm.maskAnimation)
     expect(expectedSpinner)
-    .toEqual(vm.spinnerAnimation)
+      .toEqual(vm.spinnerAnimation)
   })
 })

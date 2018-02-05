@@ -13,7 +13,7 @@ describe('Error.vue', () => {
     expect(vm.show)
       .toEqual(true)
     expect(vm.message)
-    .toEqual('error message')
+      .toEqual('error message')
   })
   it('should not show error box when message is empty', () => {
     const Constructor = Vue.extend(Error)
