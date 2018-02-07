@@ -16,7 +16,7 @@
     "unit": "jest --testPathPattern=test/unit/specs --coverage",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
-    "build": "rm -rf standalone dist && mkdir standalone && node build/build.js && cp -R dist/* standalone/",
+    "build": "rm -rf standalone dist && mkdir standalone && node build/build.js && cp -R dist/* standalone/ && cp index.js standalone/",
     "report-coverage": "codecov",
     "server": "http-server ./dist",
     "gitlab-mocked-server": "node mocked_gitlab/server.js",
