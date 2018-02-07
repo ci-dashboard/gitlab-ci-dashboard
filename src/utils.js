@@ -1,4 +1,4 @@
-import {CREATED, MANUAL} from './status'
+import {CREATED, MANUAL, SKIPPED} from './status'
 
 export const getParameterByName = (name, url) => {
   if (!url) url = window.location.href
@@ -24,7 +24,7 @@ export const getTopItem = (list) => {
 
   let lastValidEntry
   return list.reverse().find((entry) => {
-    if ([CREATED, MANUAL].includes(entry.status)) {
+    if ([CREATED, MANUAL, SKIPPED].includes(entry.status)) {
       return false
     }
 
