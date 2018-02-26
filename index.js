@@ -29,13 +29,17 @@ const interval = commander.interval || process.env.INTERVAL || 60
 
 const startServer = (params) => {
   const app = express()
+  app.use(express.static(__dirname + '/'))
   app.use('/', express.static(__dirname + '/'))
-  app.use('/params', (req, res) => {
-    res.json(params)
-  })
+
+  if (params) {
+    app.use('/params', (req, res) => {
+      res.json(params)
+    })
+  }
 
   const server = app.listen(port, () => {
-    const uri = `http://localhost:${server.address().port}/?standalone=true`
+    const uri = `http://localhost:${server.address().port}/${params ? '?standalone=true' : ''}`
     console.log(`The dashboard is now available at ${uri}`)
     opn(uri)
   })
@@ -81,4 +85,6 @@ if (configFile) {
 
     startServer(params)
   })
+} else {
+  startServer()
 }
