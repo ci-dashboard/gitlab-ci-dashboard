@@ -219,6 +219,8 @@ https://scotch.io/tutorials/how-to-write-a-unit-test-for-vuejs
 
 [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor)
 
+[Gitlab CI Monitor](https://github.com/tobiwild/gitlab-ci-monitor)
+
 ## License
 
 GitLab CI Dashboard is licensed under the [MIT license](LICENSE).

@@ -1,3 +1,5 @@
+# 6.2.0 - Added possibility to launch cli application without configuration
+
 # 6.0.0 alpha - Configure everything in the json file
 
 # 5.5.0 - Enable link to access repository
