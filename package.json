@@ -50,6 +50,7 @@
     "json-beautify": "1.0.1",
     "moment": "2.20.1",
     "opn": "5.2.0",
+    "semver-compare": "1.0.0",
     "vue": "2.5.13"
   },
   "devDependencies": {

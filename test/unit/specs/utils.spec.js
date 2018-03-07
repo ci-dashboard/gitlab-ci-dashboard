@@ -1,6 +1,7 @@
 import {
   getParameterByName,
-  getTopItem
+  getTopItem,
+  getTopItemByName
 } from '@/utils'
 
 describe('Utilities', () => {
@@ -9,7 +10,7 @@ describe('Utilities', () => {
     const topItem = getTopItem(arr)
     expect('a').toEqual(topItem)
   })
-  it('Shout return undefined when passa empty array', () => {
+  it('Should return undefined when empty array', () => {
     const arr = []
     const topItem = getTopItem(arr)
     expect(topItem).toEqual(undefined)
@@ -50,5 +51,10 @@ describe('Utilities', () => {
       const hideVersion = getParameterByName('hideVersion', url)
       expect(hideVersion).toBeTruthy()
     })
+  })
+  it('Should return latest tag by name', () => {
+    const arr = ['0.9.0', '0.11.0', '1.0.1']
+    const topItem = getTopItemByName(arr)
+    expect(topItem).toEqual('1.0.1')
   })
 })

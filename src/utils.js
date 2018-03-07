@@ -1,3 +1,5 @@
+const cmp = require('semver-compare')
+
 import {CREATED, MANUAL, SKIPPED} from './status'
 
 export const getParameterByName = (name, url) => {
@@ -33,4 +35,11 @@ export const getTopItem = (list) => {
     }
     lastValidEntry = entry
   }) || lastValidEntry
+}
+
+export const getTopItemByName = (list) => {
+  if (!Array.isArray(list) || list.length === 0) {
+    return
+  }
+  return list.sort(cmp).reverse()[0];
 }

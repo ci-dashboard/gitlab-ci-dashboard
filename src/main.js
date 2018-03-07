@@ -423,7 +423,7 @@ var root = new Vue({
         const lastPipelineId = data['last_pipeline'].id
         getTags(project.id)
           .then((response) => {
-            const tag = getTopItem(response.data)
+            const tag = getTopItemByName(response.data)
             getPipeline(project.id, lastPipelineId)
               .then((pipeline) => {
                 const lastPipeline = pipeline.data
