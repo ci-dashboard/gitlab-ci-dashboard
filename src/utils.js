@@ -1,4 +1,5 @@
-const cmp = require('semver-compare')
+import semverCompare from 'semver-compare'
+import semver from 'semver'
 
 import {CREATED, MANUAL, SKIPPED} from './status'
 
@@ -41,5 +42,17 @@ export const getTopItemByName = (list) => {
   if (!Array.isArray(list) || list.length === 0) {
     return
   }
-  return list.sort(cmp).reverse()[0];
+  const cleanedList = list.map((item) => {
+    let cleaned = item
+    if (semver.valid(item)) {
+      cleaned = semver.clean(item)
+    }
+    return {
+      original: item,
+      cleaned
+    }
+  });
+  return cleanedList.sort((a, b) => {
+    return semverCompare(a.cleaned, b.cleaned)
+  }).reverse()[0].original;
 }

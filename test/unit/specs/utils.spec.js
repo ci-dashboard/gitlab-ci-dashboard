@@ -57,4 +57,14 @@ describe('Utilities', () => {
     const topItem = getTopItemByName(arr)
     expect(topItem).toEqual('1.0.1')
   })
+  it('Should return latest non-semver tag by name', () => {
+    const arr = ['v1.0.1', 'v0.0.1', 'v0.1.0', 'v0.1.1']
+    const topItem = getTopItemByName(arr)
+    expect(topItem).toEqual('v1.0.1')
+  })
+  it('Should return latest weird tag of array', () => {
+    const arr = ['abc_amd_4.3.1', 'mmm_lkj_6.3.1', 'azz_ama_4.3.1']
+    const topItem = getTopItemByName(arr)
+    expect(topItem).toEqual('azz_ama_4.3.1')
+  })
 })
