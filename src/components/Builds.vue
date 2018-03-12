@@ -8,14 +8,17 @@
           v-bind:class="statusClass(build)"
         >
           <div class="content">
-            <div class="header project-name">
-              <a target="_blank" v-bind:href="build.link_to_branch">{{ build.project }} ({{ build.branch }})</a>
-            </div>
+            <h3 v-if="build.description" class="ui header">{{ build.description }}</h3>
+            <a target="_blank" v-bind:href="build.link_to_branch">
+              <h4 class="header project-name">
+                {{ build.project }} ({{ build.branch }})
+              </h4>
+            </a>
             <div class="meta">{{ build.namespace_name }}</div>
             <div v-if="!isSuccessCard(build)" class="description">
               {{ build.commit_message }}
             </div>
-            <div v-if="!isSuccessCard(build)" class="meta">{{ build.author }}</div>
+            <div v-if="!isSuccessCard(build)"><h4>Blame {{ build.author }}</h4></div>
             <div v-if="!isSuccessCard(build) && showVersion(build)" class="ui center floated basic button">
               <h1 style="font-size: 1.5em">{{ build.tag_name }}</h1>
             </div>
@@ -44,6 +47,8 @@
 </template>
 
 <script>
+  import {SUCCESS} from '../status'
+
   export default {
     name: 'builds',
     props: ['onBuilds', 'sortedBuilds', 'hideSuccessCards', 'hideVersion'],
@@ -54,7 +59,7 @@
     },
     methods: {
       isSuccessCard ({status}) {
-        return status === 'success'
+        return status === SUCCESS
       },
       showVersion (build) {
         return !this.hideVersion && build.tag_name != null

@@ -170,14 +170,16 @@ var root = new Vue({
           const {
             namespace,
             project,
-            branch
+            branch,
+            description
           } = repository
           const nameWithNamespace = `${namespace}/${project}`
           const projectName = project
           repositories.push({
             nameWithNamespace,
             projectName,
-            branch: branch || 'master'
+            branch: branch || 'master',
+            description
           })
         } catch (err) {
           this.handlerError.bind(this)({message: 'Wrong format', response: {status: 500}})
@@ -382,8 +384,9 @@ var root = new Vue({
           b.project_path = project.path_with_namespace
           b.branch = repo.branch
           b.tag_name = tag && tag.name
-          b.namespace_name = project.namespace.name
+          b.namespace_name = project.namespace.full_path
           b.link_to_branch = this.getLinkToBranch(project, repo)
+          b.description = repo.description
         }
       }
 
@@ -391,6 +394,7 @@ var root = new Vue({
         this.addStatusQueue(build.status, INCREASE_ACTION)
         const buildToAdd = {
           project: repo.projectName,
+          description: repo.description,
           id: build.id,
           status: build.status,
           lastStatus: '',
@@ -400,7 +404,7 @@ var root = new Vue({
           project_path: project.path_with_namespace,
           branch: repo.branch,
           tag_name: tag && tag.name,
-          namespace_name: project.namespace.name,
+          namespace_name: project.namespace.full_path,
           link_to_branch: this.getLinkToBranch(project, repo)
         }
         onBuilds.push(buildToAdd)
@@ -417,10 +421,11 @@ var root = new Vue({
       } = selectedProject
       getCommits(project.id, repo.branch).then(({data}) => {
         const {
-          message
+          message,
+          author_name: authorName,
+          last_pipeline: {id: lastPipelineId}
         } = data
-        const authorName = data['author_name']
-        const lastPipelineId = data['last_pipeline'].id
+
         getTags(project.id)
           .then((response) => {
             const tag = getTopItemByName(response.data)
@@ -447,7 +452,7 @@ var root = new Vue({
                     build.project_path = 'b.project_path'
                     build.branch = repo.branch
                     build.tag_name = tag && tag.name
-                    build.namespace_name = project.namespace.name
+                    build.namespace_name = project.namespace.full_path
                     build.link_to_branch = this.getLinkToBranch(project, repo)
                   }
                 })
@@ -464,7 +469,7 @@ var root = new Vue({
                   buildToAdd.project_path = 'buildToAdd.project_path'
                   buildToAdd.branch = repo.branch
                   buildToAdd.tag_name = tag && tag.name
-                  buildToAdd.namespace_name = project.namespace.name
+                  buildToAdd.namespace_name = project.namespace.full_path
                   buildToAdd.link_to_branch = this.getLinkToBranch(project, repo)
                   this.onBuilds.push(buildToAdd)
                 }

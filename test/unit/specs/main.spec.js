@@ -59,7 +59,8 @@ jest.mock('@/gitlab', () => ({
         id: 1
       }
     })
-  }
+  },
+  setBaseData: jest.fn()
 }))
 
 const mockedBuilds = [
