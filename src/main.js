@@ -23,7 +23,8 @@ import {
 } from '@/standalone'
 import {
   getParameterByName,
-  getTopItem
+  getTopItem,
+  getTopItemByName
 } from '@/utils'
 
 import App from './App'
