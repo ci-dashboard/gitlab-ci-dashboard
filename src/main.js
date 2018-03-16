@@ -103,10 +103,10 @@ var root = new Vue({
           this.ref = params.ref
           this.projectsFile = 'standalone'
           this.projects = params.projects
-          this.gitlabciProtocol = params.gitlabciProtocol || DEFAULT_GITLABCI_PROTOCOL
-          this.hideSuccessCards = params.hideSuccessCards || DEFAULT_HIDE_VERSION
-          this.apiVersion = params.apiVersion || DEFAULT_API_VERSION
-          this.hideVersion = params.hideVersion || DEFAULT_API_VERSION
+          this.gitlabciProtocol = params.gitlabciProtocol
+          this.hideSuccessCards = params.hideSuccessCards
+          this.apiVersion = params.apiVersion
+          this.hideVersion = params.hideVersion
           this.interval = params.interval || DEFAULT_INTERVAL
           this.startup()
         })
