@@ -68,7 +68,7 @@ var root = new Vue({
       onInvalid: false,
       onError: null,
       debug: '',
-      interval: 60,
+      interval: DEFAULT_INTERVAL,
       wrongProjects: []
     }
   },
@@ -103,11 +103,11 @@ var root = new Vue({
           this.ref = params.ref
           this.projectsFile = 'standalone'
           this.projects = params.projects
-          this.gitlabciProtocol = params.gitlabciProtocol
-          this.hideSuccessCards = params.hideSuccessCards
-          this.apiVersion = params.apiVersion
-          this.hideVersion = params.hideVersion
-          this.interval = params.interval
+          this.gitlabciProtocol = params.gitlabciProtocol || DEFAULT_GITLABCI_PROTOCOL
+          this.hideSuccessCards = params.hideSuccessCards || DEFAULT_HIDE_VERSION
+          this.apiVersion = params.apiVersion || DEFAULT_API_VERSION
+          this.hideVersion = params.hideVersion || DEFAULT_API_VERSION
+          this.interval = params.interval || DEFAULT_INTERVAL
           this.startup()
         })
       } else {
@@ -204,12 +204,9 @@ var root = new Vue({
         return
       }
 
-      console.info('init')
       if (this.standalone || Array.isArray(this.projects)) {
-        console.info('standalone or this.projes is array')
         this.loadProjects(this.projects)
       } else if (this.projectsParam) {
-        console.info('projectsParam')
         try {
           this.projects = getProjectsByQuerystring(this.projectsParam)
           this.loadProjects(this.projects)
@@ -217,7 +214,6 @@ var root = new Vue({
           this.handlerError(err)
         }
       } else {
-        console.info('projects from file')
         getProjectsFromFile(this.projectsFile).then(projects => this.loadProjects(projects))
       }
     },
@@ -426,7 +422,6 @@ var root = new Vue({
           author_name: authorName,
           last_pipeline: {id: lastPipelineId}
         } = data
-
         getTags(project.id)
           .then((response) => {
             const tag = getTopItemByName(response.data)
