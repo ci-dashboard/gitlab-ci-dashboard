@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 dist
+static/config.json
 standalone
 npm-debug.log*
 yarn-debug.log*
