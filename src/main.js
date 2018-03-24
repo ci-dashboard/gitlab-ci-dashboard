@@ -350,6 +350,12 @@ var root = new Vue({
     getLinkToBranch (project, repo) {
       return `${this.gitlabciProtocol}://${this.gitlab}/${project.path_with_namespace}/tree/${repo.branch}`
     },
+    getLinkToPipeline (project, repo, buildId) {
+      return `${this.gitlabciProtocol}://${this.gitlab}/${project.path_with_namespace}/pipelines/${buildId}`
+    },
+    getLinkToJob (project, repo, buildId) {
+      return `${this.gitlabciProtocol}://${this.gitlab}/${project.path_with_namespace}/-/jobs/${buildId}`
+    },
     loadBuilds (onBuilds, data, repo, project, tag) {
       let updated = false
 
@@ -383,6 +389,7 @@ var root = new Vue({
           b.tag_name = tag && tag.name
           b.namespace_name = project.namespace.full_path
           b.link_to_branch = this.getLinkToBranch(project, repo)
+          b.link_to_build = this.getLinkToJob(project, repo, build.id)
           b.description = repo.description
         }
       }
@@ -402,7 +409,8 @@ var root = new Vue({
           branch: repo.branch,
           tag_name: tag && tag.name,
           namespace_name: project.namespace.full_path,
-          link_to_branch: this.getLinkToBranch(project, repo)
+          link_to_branch: this.getLinkToBranch(project, repo),
+          link_to_build : this.getLinkToJob(project, repo, build.id)
         }
         onBuilds.push(buildToAdd)
       }
@@ -450,6 +458,7 @@ var root = new Vue({
                     build.tag_name = tag && tag.name
                     build.namespace_name = project.namespace.full_path
                     build.link_to_branch = this.getLinkToBranch(project, repo)
+                    build.link_to_build = this.getLinkToPipeline(project, repo, lastPipeline.id)
                   }
                 })
                 if (!updated) {
@@ -467,6 +476,7 @@ var root = new Vue({
                   buildToAdd.tag_name = tag && tag.name
                   buildToAdd.namespace_name = project.namespace.full_path
                   buildToAdd.link_to_branch = this.getLinkToBranch(project, repo)
+                  buildToAdd.link_to_build = this.getLinkToPipeline(project, repo, lastPipeline.id)
                   this.onBuilds.push(buildToAdd)
                 }
               })
