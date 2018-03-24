@@ -254,5 +254,49 @@ describe('main.js', () => {
       const url = vmMethods.getLinkToBranch(mockedProject, mockedRepo)
       expect(url).toEqual('gitlabciProtocol://gitlab/n1/p1/tree/b1')
     })
+    it('Should create pipeline link', () => {
+      const mockedProject = {
+        name: 'p1',
+        namespace: {
+          name: 'n1'
+        },
+        path_with_namespace: 'n1/p1'
+      }
+      const mockedRepo = {
+        branch: 'b1'
+      }
+      const mockedBuild = {
+        id: 1,
+        status: 'running',
+        started_at: '2017-10-06T17:41:41.000Z',
+        commit: {
+          author_name: 'Author'
+        }
+      }
+      const url = vmMethods.getLinkToPipeline(mockedProject, mockedRepo, mockedBuild.id)
+      expect(url).toEqual('gitlabciProtocol://gitlab/n1/p1/pipelines/1')
+    })
+    it('Should create job link', () => {
+      const mockedProject = {
+        name: 'p1',
+        namespace: {
+          name: 'n1'
+        },
+        path_with_namespace: 'n1/p1'
+      }
+      const mockedRepo = {
+        branch: 'b1'
+      }
+      const mockedBuild = {
+        id: 1,
+        status: 'running',
+        started_at: '2017-10-06T17:41:41.000Z',
+        commit: {
+          author_name: 'Author'
+        }
+      }
+      const url = vmMethods.getLinkToJob(mockedProject, mockedRepo, mockedBuild.id)
+      expect(url).toEqual('gitlabciProtocol://gitlab/n1/p1/-/jobs/1')
+    })
   })
 })

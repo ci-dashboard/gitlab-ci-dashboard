@@ -30,7 +30,7 @@
           </div>
           <div class="extra content">
             <span class="left floated hashtag build-id">
-              <a target="_blank" v-bind:href="build.link_to_branch">
+              <a target="_blank" v-bind:href="build.link_to_build">
               <i class="hashtag icon"></i>
                 {{ build.id}}
               </a>
