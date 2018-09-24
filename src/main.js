@@ -24,7 +24,7 @@ import {
 import {
   getParameterByName,
   getTopItem,
-  getTopItemByName
+  getTopTagName
 } from '@/utils'
 
 import App from './App'
@@ -432,7 +432,7 @@ var root = new Vue({
         } = data
         getTags(project.id)
           .then((response) => {
-            const tag = getTopItemByName(response.data)
+            const tag = getTopTagName(response.data)
             getPipeline(project.id, lastPipelineId)
               .then((pipeline) => {
                 const lastPipeline = pipeline.data

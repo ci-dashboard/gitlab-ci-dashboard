@@ -1,7 +1,7 @@
 import {
   getParameterByName,
   getTopItem,
-  getTopItemByName
+  getTopTagName
 } from '@/utils'
 
 describe('Utilities', () => {
@@ -53,18 +53,18 @@ describe('Utilities', () => {
     })
   })
   it('Should return latest tag by name', () => {
-    const arr = ['0.9.0', '0.11.0', '1.0.1']
-    const topItem = getTopItemByName(arr)
+    const list = [{name: '0.9.0'},{name: '0.11.0'},{name: '1.0.1'}] 
+    const topItem = getTopTagName(list)
     expect(topItem).toEqual('1.0.1')
   })
   it('Should return latest tag by name with v prefix', () => {
-    const arr = ['v0.9.0', 'v0.11.0', 'v1.0.1']
-    const topItem = getTopItemByName(arr)
+    const list = [{name: 'v0.9.0'},{name: 'v1.0.1'}] 
+    const topItem = getTopTagName(list)
     expect(topItem).toEqual('v1.0.1')
   })
   it('Should return latest tag by name with v prefix and suffixes', () => {
-    const arr = ['v0.9.0-alpha', 'v0.11.0-beta', 'v0.11.0-alpha']
-    const topItem = getTopItemByName(arr)
+    const list = [{name: 'v0.9.0-alpha'},{name: 'v0.11.0-beta'},{name: 'v0.11.0-alpha'}] 
+    const topItem = getTopTagName(list)
     expect(topItem).toEqual('v0.11.0-beta')
   })
 })
