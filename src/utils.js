@@ -38,11 +38,14 @@ export const getTopItem = (list) => {
   }) || lastValidEntry
 }
 
-export const getTopItemByName = (list) => {
-  if (Array.isArray(list) && list.length !== 0 && !list[0].name) {
+export const getTopTagName = (list) => {
+  if (!Array.isArray(list) || list.length === 0) {
     return
   }
 
-  const latestVersion = sort.desc(list.filter(item => semverRegex().test(item.name)).map(item => item.name)).shift()
-  return list.find(item => item.name === latestVersion)
+  var sortedTags = sort.desc(list.map(function (tag) {
+    return tag.name;
+  }));
+  
+  return sortedTags[0]
 }
