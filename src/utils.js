@@ -37,9 +37,14 @@ export const getTopItem = (list) => {
   }) || lastValidEntry
 }
 
-export const getTopItemByName = (list) => {
+export const getTopTagName = (list) => {
   if (!Array.isArray(list) || list.length === 0) {
     return
   }
-  return sort.desc(list).shift()
+
+  var sortedTags = sort.desc(list.map(function (tag) {
+    return tag.name;
+  }));
+  
+  return sortedTags[0]
 }
