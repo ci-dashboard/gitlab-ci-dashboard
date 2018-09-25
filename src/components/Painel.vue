@@ -1,5 +1,5 @@
 <template>
-  <div id="gcim-painel" class="ui grid card" style="background-color: white">
+  <div id="gcim-painel" class="ui grid card" style="background-color: white; width: 100%">
     <div class="ui row centered" style="padding-bottom: 2em">
       <img class="logo" src="../assets/gitlab-logo.svg" />
     </div>
@@ -9,7 +9,7 @@
     <div v-for="s in localStatus" v-bind:key="s.color" class="ui row">
       <div style="margin: 1em">
         <span style="font-size: 5em">{{ s.total }}</span>
-        <span style="font-size: 1.1em;" v-bind:style="{ color: s.color }">{{ s.text.toUpperCase() }}</span>
+        <b style="font-size: 1.1em;" v-bind:style="{ color: s.color }">{{ s.displayName.toUpperCase() }}</b>
       </div>
     </div>
     <div class="ui row centered">
@@ -58,7 +58,7 @@ export default {
           return ps
         }
         const arr = this.status.filter((s) => {
-          return s.text === ps.text
+          return s.text === ps.status
         })
         if (arr.length > 0) {
           const foundStatus = arr[0]
@@ -81,27 +81,38 @@ export default {
     return {
       painelStatus: [
         {
-          text: 'success',
-          color: '#00ad68',
+          status: 'success',
+          displayName: 'success',
+          color: '#00bf4f',
           total: 0
         },
         {
-          text: 'failed',
+          status: 'manual',
+          displayName: 'Awaiting manual action',
+          color: '#6ac19f',
+          total: 0
+        },
+        {
+          status: 'failed',
+          displayName: 'failed',
           color: '#e7484d',
           total: 0
         },
         {
-          text: 'running',
+          status: 'running',
+          displayName: 'running',
           color: '#2d9fd8',
           total: 0
         },
         {
-          text: 'pending',
+          status: 'pending',
+          displayName: 'pending',
           color: '#ffb541',
           total: 0
         },
         {
-          text: 'canceled',
+          status: 'canceled',
+          displayName: 'canceled',
           color: '#aaaaaa',
           total: 0
         }

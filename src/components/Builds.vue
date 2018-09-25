@@ -10,15 +10,19 @@
           <div class="content">
             <h3 v-if="build.description" class="ui header">{{ build.description }}</h3>
             <a target="_blank" v-bind:href="build.link_to_branch">
-              <h4 class="header project-name">
+              <h3 class="header project-name">
                 {{ build.project }} ({{ build.branch }})
-              </h4>
+              </h3>
             </a>
             <div class="meta">{{ build.namespace_name }}</div>
-            <div v-if="!isSuccessCard(build)" class="description">
+            <b>Commit:</b>
+            <div class="description">
               {{ build.commit_message }}
             </div>
-            <div v-if="!isSuccessCard(build)"><h4>Blame {{ build.author }}</h4></div>
+            <b>Author:</b>
+            <div class="description">
+              {{ build.author }}
+            </div>
             <div v-if="!isSuccessCard(build) && showVersion(build)" class="ui center floated basic button">
               <h1 style="font-size: 1.5em">{{ build.tag_name }}</h1>
             </div>
