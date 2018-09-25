@@ -1,7 +1,5 @@
-build
 config
 mocked_gitlab
-src
 test
 .babelrc
 .editorconfig
