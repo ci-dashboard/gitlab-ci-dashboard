@@ -9,14 +9,14 @@ describe('Painel.vue', () => {
   it('should render correct contents', () => {
     const Constructor = Vue.extend(Painel)
     const vm = new Constructor().$mount()
-    expect(vm.localStatus[0].text)
+    expect(vm.localStatus[0].status)
       .toEqual('success')
   })
   it('should return status name: "success"', () => {
     const Constructor = Vue.extend(Painel)
     const vm = new Constructor().$mount()
     vm.status = [{text: 'success'}]
-    expect(vm.localStatus[0].text)
+    expect(vm.localStatus[0].status)
       .toEqual('success')
   })
   it('should compute animation styles por mask, filter and spinner', () => {

@@ -430,8 +430,12 @@ body {
   box-shadow: none !important;
 }
 
+.ui.card, .ui.cards>.card.manual {
+  background-color: #6ac19f;
+}
+
 .ui.card, .ui.cards>.card.success {
-  background-color: #00AD68;
+  background-color: #00bf4f;
 }
 
 .ui.card, .ui.cards>.card.failed {
