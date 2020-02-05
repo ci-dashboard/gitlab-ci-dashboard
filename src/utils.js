@@ -1,4 +1,5 @@
 import sort from 'semver-sort'
+import semverRegex from 'semver-regex'
 
 import {CREATED, MANUAL, SKIPPED} from './status'
 
@@ -38,8 +39,10 @@ export const getTopItem = (list) => {
 }
 
 export const getTopItemByName = (list) => {
-  if (!Array.isArray(list) || list.length === 0) {
+  if (Array.isArray(list) && list.length !== 0 && !list[0].name) {
     return
   }
-  return sort.desc(list).shift()
+
+  const latestVersion = sort.desc(list.filter(item => semverRegex().test(item.name)).map(item => item.name)).shift()
+  return list.find(item => item.name === latestVersion)
 }
