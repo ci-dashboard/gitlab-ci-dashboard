@@ -1,4 +1,5 @@
 import sort from 'semver-sort'
+import semverRegex from 'semver-regex'
 
 import {CREATED, MANUAL, SKIPPED} from './status'
 
