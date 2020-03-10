@@ -1,0 +1,12 @@
+[
+	{
+		"description": "Build apps using React Ape",
+    	"namespace": "raphamorim",
+    	"project": "react-ape"
+	},
+	{
+		"description": "O app oficial do CocoaHeads Brasil (em desenvolvimento) ",
+		"namespace": "CocoaHeadsBrasil",
+		"project": "CocoaHeadsApp"
+	}
+]
