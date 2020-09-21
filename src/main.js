@@ -425,15 +425,12 @@ var root = new Vue({
         project
       } = selectedProject
       getCommits(project.id, repo.branch).then(({data}) => {
-        const {
-          message,
-          author_name: authorName,
-          last_pipeline: {id: lastPipelineId}
-        } = data
+        const { message, author_name: authorName, last_pipeline } = data
         getTags(project.id)
           .then((response) => {
             const tag = getTopTagName(response.data)
-            getPipeline(project.id, lastPipelineId)
+              if (!last_pipeline) return response
+              getPipeline(project.id, last_pipeline.id)
               .then((pipeline) => {
                 const lastPipeline = pipeline.data
                 this.onBuilds.forEach((build) => {
