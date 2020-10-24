@@ -3,7 +3,9 @@
   "version": "6.4.6",
   "description": "Dashboard for monitoring GitLab CI builds and pipelines for TV. This project is based on gitlab-ci-monitor by globo.com",
   "author": "Emiliano Barbosa <emilianoeloi@gmail.com>",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@emilianoeloi"
+  },
   "contributors": [
     {
       "name": "Marek Ganko",
