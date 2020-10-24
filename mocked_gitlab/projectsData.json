@@ -303,5 +303,23 @@
     "authorEmail": "",
     "username": "BasThomas",
     "tagName": "v1.0.1"
+  },
+  {
+    "projectId": "21",
+    "pipelineId": "984",
+    "projectName": "secDevLabs",
+    "projectDescription": "A laboratory for learning secure web and mobile development in a practical manner.",
+    "sslUrl": "user@github.com:globocom/secDevLabs.git",
+    "httpUrl": "https://github.com//globocom/secDevLabs.git",
+    "webUrl": "https://github.com//globocom/secDevLabs",
+    "namespaceName": "globocom",
+    "namespaceAvatar": "",
+    "branchName": "master",
+    "commitId": "9803067f4d271be54c97cdfc03425b143cba85d3",
+    "commitMessage": "check-sec: add support to check if apps a1/sstype and a4/vinijr-blog\n",
+    "commitParentId": "94f55846dfbc01b8a902cac5245289717437950a",
+    "authorName": "Alexandre Barreiro Neto",
+    "authorEmail": "alexandrebn01@gmail.com",
+    "username": "alexandreBN"
   }
 ]
