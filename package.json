@@ -1,6 +1,6 @@
 {
   "name": "gitlab-ci-dashboard",
-  "version": "6.4.5",
+  "version": "6.4.6",
   "description": "Dashboard for monitoring GitLab CI builds and pipelines for TV. This project is based on gitlab-ci-monitor by globo.com",
   "author": "Emiliano Barbosa <emilianoeloi@gmail.com>",
   "contributors": [
@@ -14,11 +14,11 @@
     }
   ],
   "license": "MIT",
-  "homepage": "https://github.com/emilianoeloi/gitlab-ci-dashboard",
-  "bugs": "https://github.com/emilianoeloi/gitlab-ci-dashboard/issues",
+  "homepage": "https://github.com/ci-dashboard/gitlab-ci-dashboard",
+  "bugs": "https://github.com/ci-dashboard/gitlab-ci-dashboard/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/emilianoeloi/gitlab-ci-dashboard"
+    "url": "https://github.com/ci-dashboard/gitlab-ci-dashboard"
   },
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
