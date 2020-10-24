@@ -201,7 +201,7 @@ app.get('/api/:apiVersion/projects/:projectId/repository/commits/:commitId/build
     stateMachine(build[0], '15', 'canceled', 5)
     stateMachine(build[0], '16', 'pending', 10)
     stateMachine(build[0], '12', 'running', 2)
-    stateMachine(build[0], '17', 'canceled', 3)
+    stateMachine(build[0], '21', 'canceled', 3)
     res.json(build)
   } else {
     res.sendStatus(404)

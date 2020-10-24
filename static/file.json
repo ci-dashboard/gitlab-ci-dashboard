@@ -129,5 +129,11 @@
     "namespace": "globocom",
     "project": "wrong2",
     "branch": "master"
+  },
+  {
+    "description": "A laboratory for learning secure web and mobile development in a practical manner.",
+    "namespace": "globocom",
+    "project": "secDevLabs",
+    "branch": "master"
   }
 ]
