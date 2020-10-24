@@ -1,6 +1,6 @@
 # GitLab CI Dashboard
 
-[![npm](https://img.shields.io/npm/v/gitlab-ci-dashboard.svg?style=for-the-badge)](https://www.npmjs.com/package/gitlab-ci-dashboard) [![npm (tag)](https://img.shields.io/npm/v/gitlab-ci-dashboard/next.svg?style=for-the-badge)](https://github.com/emilianoeloi/gitlab-ci-dashboard/releases/tag/v6.3.0-rc.2) [![npm](https://img.shields.io/npm/dw/gitlab-ci-dashboard.svg?style=for-the-badge)]() [![GitHub issues](https://img.shields.io/github/issues/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](https://github.com/emilianoeloi/gitlab-ci-dashboard/issues)  
+[![npm](https://img.shields.io/npm/v/gitlab-ci-dashboard.svg?style=for-the-badge)](https://www.npmjs.com/package/gitlab-ci-dashboard) [![npm (tag)](https://img.shields.io/npm/v/gitlab-ci-dashboard/next.svg?style=for-the-badge)](https://github.com/emilianoeloi/gitlab-ci-dashboard/releases/tag/v6.4.5-alpha.1) [![npm](https://img.shields.io/npm/dw/gitlab-ci-dashboard.svg?style=for-the-badge)]() [![GitHub issues](https://img.shields.io/github/issues/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](https://github.com/emilianoeloi/gitlab-ci-dashboard/issues)  
 
 [![Travis](https://img.shields.io/travis/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](https://travis-ci.org/emilianoeloi/gitlab-ci-dashboard)
 [![Codecov](https://img.shields.io/codecov/c/github/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](https://codecov.io/gh/emilianoeloi/gitlab-ci-dashboard)
@@ -113,10 +113,10 @@ gitlab-ci-dashboard --config ./config.json
 
 ```bash
 # install dependencies
-npm install
+yarn install
 
 # build for production with minification
-npm run build
+yarn build
 
 # Copy content of dist folder to your server
 ```
@@ -128,38 +128,38 @@ npm run build
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+yarn dev
 
 # build for production with minification
-npm run build
+yarn build
 
 # run http server to access the monitor
-npm run server
+yarn server
 
 # run http server to access mocked gitlab-ci api
-npm run gitlab-mocked-server
+yarn gitlab-mocked-server
 
 # build for production and view the bundle analyzer report
-npm run build --report
+yarn build --report
 
 # run unit tests
-npm run unit
+yarn unit
 
 # run e2e tests
-npm run e2e
+yarn e2e
 
 # run all tests
-npm test
+yarn test
 ```
 
 ## How to develop
 
 ```bash
 # run dev
-npm run dev
+yarn dev
 
 # run gitlab-ci mock server
-npm run gitlab-mocked-server
+yarn gitlab-mocked-server
 
 # open on browser
 http://localhost:8080/?gitlab=localhost:8089&token=_&projectsFile=http://localhost:8080/static/file.json&gitlabciProtocol=http&interval=5
