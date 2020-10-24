@@ -1,14 +1,16 @@
-# 6.5.0-alpha.1 | 24/10/2020
+# 6.4.5 | 24/10/2020
 
-***Quebra de Contrato***
+***Breach of contract***
+
 N/A
 
-***Concertar***
+***Fix***
 
 * Cannot find property 'id' of undefined when run as Standalone using --config parameter [3a7c9961](https://github.com/ci-dashboard/gitlab-ci-dashboard/commit/3a7c9961c0001e8f8365a0c739fdfae38e9d32e6)
 
 
-***Adicionando***
+***Add***
+
 N/A
 
 ----
