@@ -1,12 +1,16 @@
 {
   "name": "gitlab-ci-dashboard",
-  "version": "6.4.5-alpha.1",
+  "version": "6.4.5",
   "description": "Dashboard for monitoring GitLab CI builds and pipelines for TV. This project is based on gitlab-ci-monitor by globo.com",
   "author": "Emiliano Barbosa <emilianoeloi@gmail.com>",
   "contributors": [
     {
       "name": "Marek Ganko",
       "url": "https://github.com/marek-ganko"
+    },
+    {
+      "name": "Sajjad Shirazy",
+      "url": "https://github.com/sajjad-shirazy"
     }
   ],
   "license": "MIT",
