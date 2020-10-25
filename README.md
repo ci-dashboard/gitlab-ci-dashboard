@@ -32,7 +32,7 @@ This project can runs completely in the browser with few parameters on querystri
 
 - **gitlab**: your gitlab server address
 - **token**: your gitlab token
-- **projectsFile/projects**: 
+- **projectsFile/projects**:
   - **using projectsFile**: url to file that contains a list of projects you want to monitor, see below how to create it
   - **using projects**: list or project you want to moniro, see below how to create it
 - **gitlabciProtocol** (optional): protocol to access gitlabci api. Default: https
@@ -40,6 +40,13 @@ This project can runs completely in the browser with few parameters on querystri
 - **hideVersion** (optional): hide version of cards. Default: false
 - **interval** (optional): interval, in seconds, that monitor go to gitlab server take a new data. Default 60
 - **apiVersion** (optional): Gitlab API version. Default: 3
+
+Of note, for this service to work it exposes an unauthenticated endpoint `/params` that includes
+your Gitlab API token. **To ensure this is kept secret (as it should be), you should make sure to
+host this application in a fashion that it's only accessible to a local / private network.** If the
+application is hosted at at a publicly accessible address, anyone can hit the `/params` endpoint and
+obtain your Gitlab API token. This would allow that third party to make requests to your Gitlab
+server on your behalf, potentially leaking sensitive information (like your source code).
 
 ### json config sample
 
@@ -164,7 +171,7 @@ yarn gitlab-mocked-server
 # open on browser
 http://localhost:8080/?gitlab=localhost:8089&token=_&projectsFile=http://localhost:8080/static/file.json&gitlabciProtocol=http&interval=5
 
-``` 
+```
 
 ## projectsFile migration from versions earlier to 5.x
 
@@ -203,11 +210,11 @@ gitlab-ci-dashboard-migration --querystring http://gitlab-ci-monitor.example.com
 
 The ***projects.json*** would be created
 
-## Using 
+## Using
 
 ***VueJS:*** For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-***Tests*** How to Write A Unit Test for Vue.js 
+***Tests*** How to Write A Unit Test for Vue.js
 https://scotch.io/tutorials/how-to-write-a-unit-test-for-vuejs
 
 ***Animista:*** ANIMISTA IS A PLACE WHERE YOU CAN PLAY WITH A COLLECTION OF PRE-MADE CSS ANIMATIONS, TWEAK THEM AND GET ONLY THOSE YOU WILL ACTUALLY USE.
