@@ -1,11 +1,11 @@
 # GitLab CI Dashboard
 
-[![npm](https://img.shields.io/npm/v/gitlab-ci-dashboard.svg?style=for-the-badge)](https://www.npmjs.com/package/gitlab-ci-dashboard) [![npm (tag)](https://img.shields.io/npm/v/gitlab-ci-dashboard/next.svg?style=for-the-badge)](https://github.com/emilianoeloi/gitlab-ci-dashboard/releases/tag/v6.4.5-alpha.1) [![npm](https://img.shields.io/npm/dw/gitlab-ci-dashboard.svg?style=for-the-badge)]() [![GitHub issues](https://img.shields.io/github/issues/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](https://github.com/emilianoeloi/gitlab-ci-dashboard/issues)  
+[![npm](https://img.shields.io/npm/v/gitlab-ci-dashboard.svg?)](https://www.npmjs.com/package/gitlab-ci-dashboard) [![npm (tag)](https://img.shields.io/npm/v/gitlab-ci-dashboard/next.svg?)](https://github.com/emilianoeloi/gitlab-ci-dashboard/releases/tag/v6.4.5-alpha.1) [![npm](https://img.shields.io/npm/dw/gitlab-ci-dashboard.svg?)]() [![GitHub issues](https://img.shields.io/github/issues/emilianoeloi/gitlab-ci-dashboard.svg?)](https://github.com/emilianoeloi/gitlab-ci-dashboard/issues)  
 
-![Node.js CI](https://github.com/emilianoeloi/confirmados/workflows/Node.js%20CI/badge.svg)
-[![codecov](https://codecov.io/gh/ci-dashboard/gitlab-ci-dashboard/branch/master/graph/badge.svg?token=hr3q4zgwIV)](undefined)
+![Node.js CI](https://github.com/emilianoeloi/confirmados/workflows/Node.js%20CI/badge.svg?)
+[![codecov](https://codecov.io/gh/ci-dashboard/gitlab-ci-dashboard/branch/master/graph/badge.svg?token=hr3q4zgwIV&)](undefined)
 
-[![GitHub license](https://img.shields.io/github/license/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](LICENSE)
+[![GitHub license](https://img.shields.io/github/license/emilianoeloi/gitlab-ci-dashboard.svg?)](LICENSE)
 
 Dashboard for monitoring [GitLab CI][gitlab-ci] builds and pipelines for TV. This is a fork from [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor).
 
