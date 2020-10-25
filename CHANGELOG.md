@@ -1,3 +1,20 @@
+# 6.4.7 | 25/10/2020
+
+***Breach of contract***
+
+N/A
+
+***Fix***
+
+N/A
+
+
+***Add***
+
+* Fix #12; Add docs detailing the need for network security. [c218d490](https://github.com/ci-dashboard/gitlab-ci-dashboard/commit/c218d49085bc80e66a461a16572adeb388be6f72)
+
+----
+
 # 6.4.5 | 24/10/2020
 
 ***Breach of contract***
