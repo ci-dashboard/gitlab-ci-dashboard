@@ -2,8 +2,8 @@
 
 [![npm](https://img.shields.io/npm/v/gitlab-ci-dashboard.svg?style=for-the-badge)](https://www.npmjs.com/package/gitlab-ci-dashboard) [![npm (tag)](https://img.shields.io/npm/v/gitlab-ci-dashboard/next.svg?style=for-the-badge)](https://github.com/emilianoeloi/gitlab-ci-dashboard/releases/tag/v6.4.5-alpha.1) [![npm](https://img.shields.io/npm/dw/gitlab-ci-dashboard.svg?style=for-the-badge)]() [![GitHub issues](https://img.shields.io/github/issues/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](https://github.com/emilianoeloi/gitlab-ci-dashboard/issues)  
 
-[![Travis](https://img.shields.io/travis/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](https://travis-ci.org/emilianoeloi/gitlab-ci-dashboard)
-[![Codecov](https://img.shields.io/codecov/c/github/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](https://codecov.io/gh/emilianoeloi/gitlab-ci-dashboard)
+![Node.js CI](https://github.com/emilianoeloi/confirmados/workflows/Node.js%20CI/badge.svg)
+[![codecov](https://codecov.io/gh/ci-dashboard/gitlab-ci-dashboard/branch/master/graph/badge.svg?token=hr3q4zgwIV)](undefined)
 
 [![GitHub license](https://img.shields.io/github/license/emilianoeloi/gitlab-ci-dashboard.svg?style=for-the-badge)](LICENSE)
 
