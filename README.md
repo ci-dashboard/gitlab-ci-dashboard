@@ -1,4 +1,4 @@
-# GitLab CI Dashboard
+# 📊GitLab CI Dashboard
 
 [![npm](https://img.shields.io/npm/v/gitlab-ci-dashboard.svg?)](https://www.npmjs.com/package/gitlab-ci-dashboard) [![npm (tag)](https://img.shields.io/npm/v/gitlab-ci-dashboard/next.svg?)](https://github.com/emilianoeloi/gitlab-ci-dashboard/releases/tag/v6.4.5-alpha.1) [![npm](https://img.shields.io/npm/dw/gitlab-ci-dashboard.svg?)]() [![GitHub issues](https://img.shields.io/github/issues/emilianoeloi/gitlab-ci-dashboard.svg?)](https://github.com/emilianoeloi/gitlab-ci-dashboard/issues)  
 
