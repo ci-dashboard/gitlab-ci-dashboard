@@ -56,7 +56,7 @@
     "fitch": "0.11.0",
     "fs": "0.0.1-security",
     "json-beautify": "1.0.1",
-    "moment": "2.20.1",
+    "moment": "2.29.2",
     "opn": "5.2.0",
     "semver-regex": "1.0.0",
     "semver-sort": "0.0.4",
