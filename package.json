@@ -52,7 +52,7 @@
   "dependencies": {
     "commander": "2.13.0",
     "cors": "2.8.4",
-    "express": "4.16.2",
+    "express": "4.17.3",
     "fitch": "0.11.0",
     "fs": "0.0.1-security",
     "json-beautify": "1.0.1",
