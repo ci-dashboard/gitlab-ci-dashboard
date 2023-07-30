@@ -36,6 +36,15 @@ export const getBranch = (projectId, branchName) => {
   return fitch.preparedGet(`/projects/${projectId}/repository/branches/${b}`)
 }
 
+export const getBranches = (branches) => {
+  if (branches == null || branches.length === 0) {
+    return Promise.reject(new Error('branches are empty'))
+  }
+  return Promise.all(branches.map((branch) => {
+    return getBranch(branch.projectId, branch.name)
+  }))
+}
+
 export const getBuilds = (projectId, commitId) => {
   if (projectId == null || commitId == null) {
     return Promise.reject(new Error('projectId or commitId are empty'))
