@@ -1,5 +1,11 @@
 <template>
-  <div id="app" class="ui grid">
+  <div id="app" class="ui grid" :class="{ 'dark-mode': isDarkMode }">
+    <div class="theme-toggle-container">
+      <button @click="toggleDarkMode" class="theme-toggle-btn" :title="isDarkMode ? 'Light Mode' : 'Dark Mode'">
+        <span v-if="isDarkMode">☀️</span>
+        <span v-else>🌙</span>
+      </button>
+    </div>
     <div class="two column row" id="gcim-app">
       <div class="thirteen wide column">
         <invalid-config v-bind:onInvalid="onInvalid" />
@@ -50,7 +56,21 @@ export default {
   ],
   data () {
     return {
-      projects: []
+      projects: [],
+      isDarkMode: false
+    }
+  },
+  mounted () {
+    // Load dark mode preference from localStorage
+    const savedMode = localStorage.getItem('darkMode')
+    if (savedMode !== null) {
+      this.isDarkMode = savedMode === 'true'
+    }
+  },
+  methods: {
+    toggleDarkMode () {
+      this.isDarkMode = !this.isDarkMode
+      localStorage.setItem('darkMode', this.isDarkMode.toString())
     }
   }
 }
@@ -400,6 +420,58 @@ export default {
 
 body {
   background:#3C454D;
+  transition: background 0.3s ease;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background: #1a1a1a;
+}
+
+.dark-mode body {
+  background: #1a1a1a;
+}
+
+.dark-mode .ui.card,
+.dark-mode .ui.cards>.card {
+  background-color: #2d2d2d;
+}
+
+.dark-mode .project-name {
+  color: #e0e0e0 !important;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.95);
 }
 
 .logo {
@@ -431,23 +503,28 @@ body {
 }
 
 .ui.card, .ui.cards>.card.success {
-  background-color: #00AD68;
+  background-color: #00C853;
+  color: #fff;
 }
 
 .ui.card, .ui.cards>.card.failed {
-  background-color: #E7484D;
+  background-color: #D32F2F;
+  color: #fff;
 }
 
 .ui.card, .ui.cards>.card.pending {
-  background-color: #FFB541;
+  background-color: #FF9800;
+  color: #000;
 }
 
 .ui.card, .ui.cards>.card.running{
-  background-color: #2d9fd8;
+  background-color: #1976D2;
+  color: #fff;
 }
 
 .ui.card, .ui.cards>.card.canceled{
-  background-color: #aaaaaa;
+  background-color: #757575;
+  color: #fff;
 }
 .slide-in-top {
 	-webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;

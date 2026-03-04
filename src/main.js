@@ -24,7 +24,8 @@ import {
 import {
   getParameterByName,
   getTopItem,
-  getTopTagName
+  getTopTagName,
+  retryWithBackoff
 } from '@/utils'
 
 import App from './App'
@@ -37,7 +38,7 @@ const DEFAULT_HIDE_SUCCESS_CARDS = false
 const DEFAULT_HIDE_VERSION = false
 const DEFAULT_INTERVAL = 60
 const DEFAULT_GITLABCI_PROTOCOL = 'https'
-const DEFAULT_API_VERSION = '3'
+const DEFAULT_API_VERSION = '4'
 
 const STATUS_SUCCESS = 'success'
 
@@ -299,10 +300,10 @@ var root = new Vue({
 
       repositories.forEach((repo) => {
         this.onLoading = true
-        getProjects(repo.nameWithNamespace)
+        retryWithBackoff(() => getProjects(repo.nameWithNamespace))
           .then((response) => {
             this.onLoading = false
-            if (this.apiVersion === DEFAULT_API_VERSION) {
+            if (this.apiVersion === '3') {
               this.fetchBuilds({repo, project: response.data})
                 .then(this.loadBuilds.bind(this))
             } else {
@@ -310,6 +311,7 @@ var root = new Vue({
             }
           })
           .catch((err) => {
+            this.onLoading = false
             err.project = repo.nameWithNamespace
             this.handlerError(err)
           })
@@ -450,7 +452,7 @@ var root = new Vue({
                     build.started_at = moment(lastPipeline.started_at).fromNow()
                     build.author = authorName
                     build.commit_message = message
-                    build.project_path = 'b.project_path'
+                    build.project_path = project.path_with_namespace
                     build.branch = repo.branch
                     build.tag_name = tag && tag.name
                     build.namespace_name = project.namespace.full_path
@@ -468,7 +470,7 @@ var root = new Vue({
                   buildToAdd.started_at = moment(lastPipeline.started_at).fromNow()
                   buildToAdd.author = authorName
                   buildToAdd.commit_message = message
-                  buildToAdd.project_path = 'buildToAdd.project_path'
+                  buildToAdd.project_path = project.path_with_namespace
                   buildToAdd.branch = repo.branch
                   buildToAdd.tag_name = tag && tag.name
                   buildToAdd.namespace_name = project.namespace.full_path

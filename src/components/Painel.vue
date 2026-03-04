@@ -82,27 +82,27 @@ export default {
       painelStatus: [
         {
           text: 'success',
-          color: '#00ad68',
+          color: '#00C853',
           total: 0
         },
         {
           text: 'failed',
-          color: '#e7484d',
+          color: '#D32F2F',
           total: 0
         },
         {
           text: 'running',
-          color: '#2d9fd8',
+          color: '#1976D2',
           total: 0
         },
         {
           text: 'pending',
-          color: '#ffb541',
+          color: '#FF9800',
           total: 0
         },
         {
           text: 'canceled',
-          color: '#aaaaaa',
+          color: '#757575',
           total: 0
         }
       ]

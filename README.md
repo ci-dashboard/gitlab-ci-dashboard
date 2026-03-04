@@ -19,8 +19,34 @@ Dashboard for monitoring [GitLab CI][gitlab-ci] builds and pipelines for TV. Thi
 
 ## Gitlab support
 
- - Gitlab: 8.30.4, and 10.1.4
- - Gitlab [API](https://docs.gitlab.com/ee/api/): V3 and V4
+ - Gitlab: 8.30.4, 10.1.4, and newer versions
+ - Gitlab [API](https://docs.gitlab.com/ee/api/): V3 (deprecated) and V4 (default)
+
+## Recent Improvements (v6.6.0+)
+
+### 🐛 Bug Fixes
+- Fixed critical bug where `project_path` was hardcoded as string literals
+- Improved API version handling logic
+
+### ⬆️ Dependency Updates
+- Updated Vue.js from 2.5.13 to 2.7.16 (latest Vue 2.x)
+- Updated all dependencies to latest compatible versions
+- Improved security by updating packages with known vulnerabilities
+- Updated minimum Node.js requirement to 14.0.0
+
+### 🎨 UI Improvements
+- **Dark Mode**: Added toggle button for dark/light theme with localStorage persistence
+- **Better Color Contrast**: Improved accessibility with higher contrast colors
+  - Success: #00C853 (brighter green)
+  - Failed: #D32F2F (deeper red)
+  - Running: #1976D2 (clearer blue)
+  - Pending: #FF9800 (vibrant orange)
+  - Canceled: #757575 (neutral gray)
+- Smooth transitions between themes
+
+### 🚀 Features
+- **Retry Logic**: Automatic retry with exponential backoff for network errors
+- **Default API v4**: Changed default GitLab API version from v3 to v4
 
 ## Usage
 
@@ -39,7 +65,7 @@ This project can runs completely in the browser with few parameters on querystri
 - **hideSuccessCards** (optional): hide cards when change to success status. Default: false
 - **hideVersion** (optional): hide version of cards. Default: false
 - **interval** (optional): interval, in seconds, that monitor go to gitlab server take a new data. Default 60
-- **apiVersion** (optional): Gitlab API version. Default: 3
+- **apiVersion** (optional): Gitlab API version (3 or 4). Default: 4 (recommended)
 
 Of note, for this service to work it exposes an unauthenticated endpoint `/params` that includes
 your Gitlab API token. **To ensure this is kept secret (as it should be), you should make sure to
@@ -60,7 +86,7 @@ server on your behalf, potentially leaking sensitive information (like your sour
       "hideSuccessCards": false,
       "hideVersion": false,
       "interval": 60,
-      "apiVersion": 3
+      "apiVersion": 4
     },
     "projects": [
       {
