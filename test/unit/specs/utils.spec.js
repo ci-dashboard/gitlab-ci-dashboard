@@ -53,17 +53,17 @@ describe('Utilities', () => {
     })
   })
   it('Should return latest tag by name', () => {
-    const arr = [{name:'0.9.0'}, {name:'0.11.0'}, {name:'1.0.1'}]
+    const arr = [{ name: '0.9.0' }, { name: '0.11.0' }, { name: '1.0.1' }]
     const topItem = getTopTagName(arr)
     expect(topItem).toEqual('1.0.1')
   })
   it('Should return latest tag by name with v prefix', () => {
-    const arr = [{name:'v0.9.0'}, {name:'v0.11.0'}, {name:'v1.0.1'}]
+    const arr = [{ name: 'v0.9.0' }, { name: 'v0.11.0' }, { name: 'v1.0.1' }]
     const topItem = getTopTagName(arr)
     expect(topItem).toEqual('v1.0.1')
   })
   it('Should return latest tag by name with v prefix and suffixes', () => {
-    const arr = [{name:'v0.9.0-alpha'}, {name:'v0.11.0-beta'}, {name:'v0.11.0-alpha'}]
+    const arr = [{ name: 'v0.9.0-alpha' }, { name: 'v0.11.0-beta' }, { name: 'v0.11.0-alpha' }]
     const topItem = getTopTagName(arr)
     expect(topItem).toEqual('v0.11.0-beta')
   })
@@ -73,17 +73,17 @@ describe('Utilities', () => {
     expect(topItem).toEqual(undefined)
   })
   it('Should return undefined for only one tag name which is not proper semver', () => {
-    const arr = [{name:'not-a-semver'}]
+    const arr = [{ name: 'not-a-semver' }]
     const topItem = getTopTagName(arr)
     expect(topItem).toEqual('not-a-semver')
   })
   it('Should return latest tag by name with v prefix', () => {
-    const list = [{name: 'v0.9.0'},{name: 'v1.0.1'}] 
+    const list = [{ name: 'v0.9.0' }, { name: 'v1.0.1' }]
     const topItem = getTopTagName(list)
     expect(topItem).toEqual('v1.0.1')
   })
   it('Should return latest tag by name with v prefix and suffixes', () => {
-    const list = [{name: 'v0.9.0-alpha'},{name: 'v0.11.0-beta'},{name: 'v0.11.0-alpha'}] 
+    const list = [{ name: 'v0.9.0-alpha' }, { name: 'v0.11.0-beta' }, { name: 'v0.11.0-alpha' }]
     const topItem = getTopTagName(list)
     expect(topItem).toEqual('v0.11.0-beta')
   })

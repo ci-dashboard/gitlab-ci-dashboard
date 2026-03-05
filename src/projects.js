@@ -11,28 +11,28 @@ export const getProjectsFromFile = (fileUrl) => {
 }
 
 export const getProjectsByQuerystring = (projectsParam) => {
-  let newProjects = []
+  const newProjects = []
   const repositories = projectsParam.split(',')
   for (const x in repositories) {
-      if (!repositories[x].includes('/')) {
-        throw new Error(`Invalid project name`)
-      }
-      let branch = 'master'
-      let projectPath = repositories[x]
-
-      if (projectPath.includes(':')) {
-        [projectPath, branch] = projectPath.split(':')
-      }
-
-      const namespace = projectPath.substring(0, projectPath.lastIndexOf('/'))
-      const project = projectPath.substring(projectPath.lastIndexOf('/') + 1)
-
-      newProjects.push({
-        description: '',
-        namespace,
-        project,
-        branch
-      })
+    if (!repositories[x].includes('/')) {
+      throw new Error('Invalid project name')
     }
-    return newProjects
+    let branch = 'master'
+    let projectPath = repositories[x]
+
+    if (projectPath.includes(':')) {
+      [projectPath, branch] = projectPath.split(':')
+    }
+
+    const namespace = projectPath.substring(0, projectPath.lastIndexOf('/'))
+    const project = projectPath.substring(projectPath.lastIndexOf('/') + 1)
+
+    newProjects.push({
+      description: '',
+      namespace,
+      project,
+      branch
+    })
   }
+  return newProjects
+}

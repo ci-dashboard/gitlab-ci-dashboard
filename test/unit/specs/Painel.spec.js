@@ -15,7 +15,7 @@ describe('Painel.vue', () => {
   it('should return status name: "success"', () => {
     const Constructor = Vue.extend(Painel)
     const vm = new Constructor().$mount()
-    vm.status = [{text: 'success'}]
+    vm.status = [{ text: 'success' }]
     expect(vm.localStatus[0].text)
       .toEqual('success')
   })

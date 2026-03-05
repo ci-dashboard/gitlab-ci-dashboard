@@ -41,7 +41,7 @@ const DEFAULT_API_VERSION = '3'
 
 const STATUS_SUCCESS = 'success'
 
-var root = new Vue({
+const root = new Vue({
   el: '#app',
   data () {
     return {
@@ -119,7 +119,7 @@ var root = new Vue({
     loadConfig () {
       this.configFile = getParameterByName('config')
       return getConfigFromFile(this.configFile)
-        .then(({config, projects}) => {
+        .then(({ config, projects }) => {
           this.standalone = config.standalone
           this.gitlab = config.gitlab
           this.token = config.token
@@ -183,7 +183,7 @@ var root = new Vue({
             description
           })
         } catch (err) {
-          this.handlerError.bind(this)({message: 'Wrong format', response: {status: 500}})
+          this.handlerError.bind(this)({ message: 'Wrong format', response: { status: 500 } })
         }
       }
       this.repositories = repositories
@@ -303,10 +303,10 @@ var root = new Vue({
           .then((response) => {
             this.onLoading = false
             if (this.apiVersion === DEFAULT_API_VERSION) {
-              this.fetchBuilds({repo, project: response.data})
+              this.fetchBuilds({ repo, project: response.data })
                 .then(this.loadBuilds.bind(this))
             } else {
-              this.fetchPipelines({repo, project: response.data})
+              this.fetchPipelines({ repo, project: response.data })
             }
           })
           .catch((err) => {
@@ -359,11 +359,11 @@ var root = new Vue({
     loadBuilds (onBuilds, data, repo, project, tag) {
       let updated = false
 
-      let build = getTopItem(data)
+      const build = getTopItem(data)
       if (!build) {
         return
       }
-      let startedFromNow = moment(build.started_at).fromNow()
+      const startedFromNow = moment(build.started_at).fromNow()
 
       for (const index in onBuilds) {
         const b = onBuilds[index]
@@ -410,13 +410,13 @@ var root = new Vue({
           tag_name: tag && tag.name,
           namespace_name: project.namespace.full_path,
           link_to_branch: this.getLinkToBranch(project, repo),
-          link_to_build : this.getLinkToJob(project, repo, build.id)
+          link_to_build: this.getLinkToJob(project, repo, build.id)
         }
         onBuilds.push(buildToAdd)
       }
     },
     fetchPipelines (selectedProject) {
-      var updated = false
+      let updated = false
       if (!selectedProject) {
         return
       }
@@ -424,13 +424,13 @@ var root = new Vue({
         repo,
         project
       } = selectedProject
-      getCommits(project.id, repo.branch).then(({data}) => {
+      getCommits(project.id, repo.branch).then(({ data }) => {
         const { message, author_name: authorName, last_pipeline } = data
         getTags(project.id)
           .then((response) => {
             const tag = getTopTagName(response.data)
-              if (!last_pipeline) return response
-              getPipeline(project.id, last_pipeline.id)
+            if (!last_pipeline) return response
+            getPipeline(project.id, last_pipeline.id)
               .then((pipeline) => {
                 const lastPipeline = pipeline.data
                 this.onBuilds.forEach((build) => {
@@ -460,7 +460,7 @@ var root = new Vue({
                 })
                 if (!updated) {
                   this.addStatusQueue(lastPipeline.status, INCREASE_ACTION)
-                  let buildToAdd = {}
+                  const buildToAdd = {}
                   buildToAdd.project = repo.projectName
                   buildToAdd.status = lastPipeline.status
                   buildToAdd.lastStatus = buildToAdd.status

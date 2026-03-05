@@ -4,11 +4,13 @@ import {
 
 jest.mock('fitch', () => ({
   get: () => {
-    return Promise.resolve({data: {
-      gitlab: 'gitlab.example.com',
-      token: '12345',
-      projectsFile: 'standalone'
-    }})
+    return Promise.resolve({
+      data: {
+        gitlab: 'gitlab.example.com',
+        token: '12345',
+        projectsFile: 'standalone'
+      }
+    })
   }
 }))
 

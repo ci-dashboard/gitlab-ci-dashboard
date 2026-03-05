@@ -47,32 +47,32 @@
 </template>
 
 <script>
-  import {SUCCESS} from '../status'
+import { SUCCESS } from '../status'
 
-  export default {
-    name: 'builds',
-    props: ['onBuilds', 'sortedBuilds', 'hideSuccessCards', 'hideVersion'],
-    data () {
-      return {
-        gitlab: ''
-      }
+export default {
+  name: 'builds',
+  props: ['onBuilds', 'sortedBuilds', 'hideSuccessCards', 'hideVersion'],
+  data () {
+    return {
+      gitlab: ''
+    }
+  },
+  methods: {
+    isSuccessCard ({ status }) {
+      return status === SUCCESS
     },
-    methods: {
-      isSuccessCard ({status}) {
-        return status === SUCCESS
-      },
-      showVersion (build) {
-        return !this.hideVersion && build.tag_name != null
-      },
-      statusClass (build) {
-        return `card ${build.status} ${this.positionClass(build)}`
-      },
-      positionClass ({ lastStatus, status }) {
-        if (!this.hideSuccessCards) {
-          return ''
-        }
-        return status === 'success' ? 'bounce-out-top' : 'bounce-in-top'
+    showVersion (build) {
+      return !this.hideVersion && build.tag_name != null
+    },
+    statusClass (build) {
+      return `card ${build.status} ${this.positionClass(build)}`
+    },
+    positionClass ({ lastStatus, status }) {
+      if (!this.hideSuccessCards) {
+        return ''
       }
+      return status === 'success' ? 'bounce-out-top' : 'bounce-in-top'
     }
   }
+}
 </script>

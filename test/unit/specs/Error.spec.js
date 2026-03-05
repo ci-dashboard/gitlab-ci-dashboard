@@ -9,7 +9,7 @@ describe('Error.vue', () => {
   it('should render correct contents', () => {
     const Constructor = Vue.extend(Error)
     const vm = new Constructor().$mount()
-    vm.onError = {message: 'error message'}
+    vm.onError = { message: 'error message' }
     expect(vm.show)
       .toEqual(true)
     expect(vm.message)
@@ -18,7 +18,7 @@ describe('Error.vue', () => {
   it('should not show error box when message is empty', () => {
     const Constructor = Vue.extend(Error)
     const vm = new Constructor().$mount()
-    vm.onError = {message: ''}
+    vm.onError = { message: '' }
     expect(vm.show)
       .toEqual(false)
   })

@@ -40,16 +40,16 @@ jest.mock('@/gitlab', () => ({
   getBuilds: () => (
     Promise.resolve({
       data: [
-        {id: 0},
-        {id: 1}
+        { id: 0 },
+        { id: 1 }
       ]
     })
   ),
   getTags: () => (
     Promise.resolve({
       data: [
-        {id: 0},
-        {id: 1}
+        { id: 0 },
+        { id: 1 }
       ]
     })
   ),
@@ -161,7 +161,7 @@ describe('main.js', () => {
       expect(arr.length).toEqual(0)
     })
     it('Should return same builds when builds are equals', () => {
-      vm.onBuilds = [{id: 1}, {id: 1}]
+      vm.onBuilds = [{ id: 1 }, { id: 1 }]
       const arr = vm.sortedBuilds
       vm.onBuilds = []
       expect(arr.length).toEqual(2)
@@ -180,23 +180,23 @@ describe('main.js', () => {
       expect(vmError.onError.message).toEqual('')
     })
     it('Should return code error 1 as default error', () => {
-      vmError.handlerError({message: 'Generic Error'})
+      vmError.handlerError({ message: 'Generic Error' })
       expect(vmError.onError.code).toEqual(1)
     })
     it('Should return code error 2 when is "Wront format"', () => {
-      vmError.handlerError({message: 'Wrong format'})
+      vmError.handlerError({ message: 'Wrong format' })
       expect(vmError.onError.code).toEqual(2)
     })
     it('Should return code error 3 when is "Network Error"', () => {
-      vmError.handlerError({message: 'Network Error'})
+      vmError.handlerError({ message: 'Network Error' })
       expect(vmError.onError.code).toEqual(3)
     })
     it('Should return code error 4 when status error is 401', () => {
-      vmError.handlerError({response: {status: 401}})
+      vmError.handlerError({ response: { status: 401 } })
       expect(vmError.onError.code).toEqual(4)
     })
     it('Should return code error 5 when is "404 - Not Found."', () => {
-      vmError.handlerError({message: '404 - Not Found.'})
+      vmError.handlerError({ message: '404 - Not Found.' })
       expect(vmError.onError.code).toEqual(5)
     })
   })

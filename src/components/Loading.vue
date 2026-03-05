@@ -5,14 +5,14 @@
 </template>
 
 <script>
-  export default {
-    name: 'loading',
-    props: ['onLoading'],
-    data () {
-      return {
-        loadingText: '',
-        loading: false
-      }
+export default {
+  name: 'loading',
+  props: ['onLoading'],
+  data () {
+    return {
+      loadingText: '',
+      loading: false
     }
   }
+}
 </script>

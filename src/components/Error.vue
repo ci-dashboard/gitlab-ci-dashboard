@@ -9,16 +9,16 @@
 </template>
 
 <script>
-  export default {
-    name: 'error',
-    props: ['onError'],
-    computed: {
-      show () {
-        return (this.onError && this.onError.message != null && this.onError.message !== '')
-      },
-      message () {
-        return this.onError && this.onError.message ? this.onError.message : ''
-      }
+export default {
+  name: 'error',
+  props: ['onError'],
+  computed: {
+    show () {
+      return (this.onError && this.onError.message != null && this.onError.message !== '')
+    },
+    message () {
+      return this.onError && this.onError.message ? this.onError.message : ''
     }
   }
+}
 </script>

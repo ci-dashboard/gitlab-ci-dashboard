@@ -1,33 +1,35 @@
 import {
-  getConfigFromFile,
+  getConfigFromFile
 } from '@/config'
 
 jest.mock('fitch', () => ({
   get: (url) => {
     if (url === 'http://host.domain/valid_config.json') {
-      return Promise.resolve({data: {
-        dashboard: {
-          config: {
-            gitlab: 'gitlab.example.com',
-            token: '123456',
-            gitlabciProtocol: 'https',
-            hideSuccessCards: false,
-            hideVersion: false,
-            interval: 60,
-            apiVersion: 3
-          },
-          projects: [
-            {
-              description: 'React Native render for draft.js model',
-              namespace: 'globocom',
-              project: 'react-native-draftjs-render',
-              branch: 'master'
-            }
-          ]
+      return Promise.resolve({
+        data: {
+          dashboard: {
+            config: {
+              gitlab: 'gitlab.example.com',
+              token: '123456',
+              gitlabciProtocol: 'https',
+              hideSuccessCards: false,
+              hideVersion: false,
+              interval: 60,
+              apiVersion: 3
+            },
+            projects: [
+              {
+                description: 'React Native render for draft.js model',
+                namespace: 'globocom',
+                project: 'react-native-draftjs-render',
+                branch: 'master'
+              }
+            ]
+          }
         }
-      }})
+      })
     } else {
-      return Promise.resolve({data: null})
+      return Promise.resolve({ data: null })
     }
   }
 }))

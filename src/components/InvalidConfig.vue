@@ -45,13 +45,13 @@
 </template>
 
 <script>
-  export default {
-    name: 'invalid-config',
-    props: ['onInvalid'],
-    data () {
-      return {
-        headerText: 'Invalid Configuration'
-      }
+export default {
+  name: 'invalid-config',
+  props: ['onInvalid'],
+  data () {
+    return {
+      headerText: 'Invalid Configuration'
     }
   }
+}
 </script>

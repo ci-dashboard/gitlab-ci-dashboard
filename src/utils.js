@@ -1,13 +1,13 @@
 import sort from 'semver-sort'
 import semverRegex from 'semver-regex'
 
-import {CREATED, MANUAL, SKIPPED} from './status'
+import { CREATED, MANUAL, SKIPPED } from './status'
 
 export const getParameterByName = (name, url) => {
   if (!url) url = window.location.href
   name = name.replace(/[[]]/g, '\\$&')
-  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
-  var results = regex.exec(url)
+  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+  const results = regex.exec(url)
   if (!results) return null
   if (!results[2]) return ''
   const parameter = decodeURIComponent(results[2].replace(/\+/g, ' '))
@@ -43,9 +43,9 @@ export const getTopTagName = (list) => {
     return
   }
 
-  var sortedTags = sort.desc(list.map(function (tag) {
-    return tag.name;
-  }));
-  
+  const sortedTags = sort.desc(list.map(function (tag) {
+    return tag.name
+  }))
+
   return sortedTags[0]
 }

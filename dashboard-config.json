@@ -1,0 +1,24 @@
+{
+  "dashboard": {
+    "config": {
+      "gitlab": "gitlab.globoi.com",
+      "token": "JU16Up1HMrjNUNCYP7hh3286MQp1OjEzdQk.01.0z12t2pcs",
+      "gitlabciProtocol": "https",
+      "hideSuccessCards": false,
+      "hideVersion": false,
+      "interval": 60,
+      "apiVersion": 4
+    },
+    "projects": [
+      {
+        "description": "React Native render for draft.js model",
+        "namespace": "native",
+        "project": "native-sdk-ios",
+        "branch": "develop"
+      }
+    ]
+  }
+}
+
+
+?gitlab=gitlab.globoi.com&token=JU16Up1HMrjNUNCYP7hh3286MQp1OjEzdQk.01.0z12t2pcs&projectsFile=https://emilianoeloi.github.io/gitlab-ci-dashboard/static/gitlab.json
