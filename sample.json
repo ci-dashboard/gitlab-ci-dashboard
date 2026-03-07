@@ -1,0 +1,96 @@
+
+## 
+{
+    "id": "20327e8f4abcb170a42874c8623ab753126f2ebe",
+    "short_id": "20327e8f",
+    "created_at": "2017-10-06T14:40:36.000-03:00",
+    "parent_ids": [
+        "24e2fd4c0e3f33cd31f4f9388cdb5db3789eb0b5"
+    ],
+    "title": "MINERVA",
+    "message": "MINERVA\n",
+    "author_name": "Emiliano Barbosa",
+    "author_email": "emilianoeloi@gmail.com",
+    "authored_date": "2017-10-06T14:40:36.000-03:00",
+    "committer_name": "Emiliano Barbosa",
+    "committer_email": "emilianoeloi@gmail.com",
+    "committed_date": "2017-10-06T14:40:36.000-03:00",
+    "trailers": {},
+    "extended_trailers": {},
+    "web_url": "https://gitlab.globoi.com/native/gitlab-ci-monitor/-/commit/20327e8f4abcb170a42874c8623ab753126f2ebe",
+    "stats": {
+        "additions": 42,
+        "deletions": 69,
+        "total": 111
+    },
+    "status": "success",
+    "project_id": 5060,
+    "last_pipeline": {
+        "id": 28428,
+        "iid": null,
+        "project_id": 5060,
+        "sha": "20327e8f4abcb170a42874c8623ab753126f2ebe",
+        "ref": "hackday",
+        "status": "success",
+        "source": "unknown",
+        "created_at": "2017-10-06T14:41:38.000-03:00",
+        "updated_at": "2017-10-06T14:46:40.000-03:00",
+        "web_url": "https://gitlab.globoi.com/native/gitlab-ci-monitor/-/pipelines/28428"
+    }
+}
+
+{
+    "id": "1feb8384c80ce17ba85890fc12a1f506535e9b3c",
+    "short_id": "1feb8384",
+    "created_at": "2026-03-05T20:33:07.000+00:00",
+    "parent_ids": [
+        "4e6ace90580b960e60410c244fbefbdfadbf4d43"
+    ],
+    "title": "bump 24.10.0",
+    "message": "bump 24.10.0\n",
+    "author_name": "Bitrise CI",
+    "author_email": "noreply@bitrise.io",
+    "authored_date": "2026-03-05T20:33:07.000+00:00",
+    "committer_name": "Bitrise CI",
+    "committer_email": "noreply@bitrise.io",
+    "committed_date": "2026-03-05T20:33:07.000+00:00",
+    "trailers": {},
+    "extended_trailers": {},
+    "web_url": "https://gitlab.globoi.com/native/native-sdk-ios/-/commit/1feb8384c80ce17ba85890fc12a1f506535e9b3c",
+    "stats": {
+        "additions": 2,
+        "deletions": 2,
+        "total": 4
+    },
+    "status": null,
+    "project_id": 8349,
+    "last_pipeline": null
+}
+
+{
+    "id": "525086f4c8ba8b767a4a54fdef364637c7252ea3",
+    "short_id": "525086f4",
+    "created_at": "2026-03-06T13:02:29.000+00:00",
+    "parent_ids": [
+        "75a8916916a666f1a5b7d212650ca684599ab7b2"
+    ],
+    "title": "[BUMP] version: 4.14.0",
+    "message": "[BUMP] version: 4.14.0\n",
+    "author_name": "Bitrise CI",
+    "author_email": "noreply@bitrise.io",
+    "authored_date": "2026-03-06T13:02:29.000+00:00",
+    "committer_name": "Bitrise CI",
+    "committer_email": "noreply@bitrise.io",
+    "committed_date": "2026-03-06T13:02:29.000+00:00",
+    "trailers": {},
+    "extended_trailers": {},
+    "web_url": "https://gitlab.globoi.com/globoui/globo-ui-ios/-/commit/525086f4c8ba8b767a4a54fdef364637c7252ea3",
+    "stats": {
+        "additions": 3,
+        "deletions": 3,
+        "total": 6
+    },
+    "status": null,
+    "project_id": 35532,
+    "last_pipeline": null
+}

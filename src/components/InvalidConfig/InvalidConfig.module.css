@@ -1,0 +1,43 @@
+.container {
+  max-width: 600px;
+  margin: 2em auto;
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 0.95em;
+  color: #333;
+}
+
+.header {
+  background: #e8e8e8;
+  padding: 0.75em 1em;
+  font-weight: 700;
+  font-size: 1em;
+}
+
+.body {
+  background: #fff;
+  padding: 1em 1.25em;
+}
+
+.body ul {
+  padding-left: 1.5em;
+}
+
+.pre {
+  background: #f5f5f5;
+  padding: 0.75em;
+  border-radius: 4px;
+  font-size: 0.85em;
+  overflow-x: auto;
+}
+
+.example {
+  background: #fffbe6;
+  border-top: 1px solid #e8d44d;
+  padding: 0.75em 1.25em;
+  font-size: 0.85em;
+}
+
+.example code {
+  word-break: break-all;
+}

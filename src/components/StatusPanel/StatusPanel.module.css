@@ -1,0 +1,128 @@
+.panel {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 0.75em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  min-height: 100%;
+}
+
+.logoRow {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1em;
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+  display: block;
+  margin-top: 10px;
+}
+
+.errorRow {
+  padding: 0 0.25em;
+}
+
+.statusRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  padding: 0.1em 0.5em;
+}
+
+.statusCount {
+  font-size: 3em;
+  font-weight: 400;
+  line-height: 1;
+  color: #333;
+}
+
+.statusLabel {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+/* --- Pie timer --- */
+.timerRow {
+  display: flex;
+  justify-content: center;
+  padding: 0.5em;
+}
+
+.wrapper {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: white;
+  box-sizing: border-box;
+}
+
+.wrapper * {
+  box-sizing: border-box;
+}
+
+.pie {
+  width: 50%;
+  height: 100%;
+  transform-origin: 100% 50%;
+  position: absolute;
+  background: #fc6d26;
+  border: 5px solid #fca326;
+}
+
+.spinner {
+  border-radius: 100% 0 0 100% / 50% 0 0 50%;
+  z-index: 200;
+  border-right: none;
+}
+
+.filler {
+  border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+  left: 50%;
+  opacity: 0;
+  z-index: 100;
+  border-left: none;
+}
+
+.mask {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  background: inherit;
+  opacity: 1;
+  z-index: 300;
+}
+
+/* --- Footer --- */
+.footerRow {
+  text-align: center;
+  margin-top: auto;
+  padding-top: 0.5em;
+}
+
+.footerRow h5 {
+  margin: 0;
+  font-size: 0.75em;
+}
+
+.footerRow a {
+  color: #555;
+  text-decoration: none;
+}
+
+.footerRow a:hover {
+  text-decoration: underline;
+}
+
+/* --- Keyframes for pie spinner --- */
+@keyframes rota {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes opa {
+  0%        { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}

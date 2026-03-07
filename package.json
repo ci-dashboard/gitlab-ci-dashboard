@@ -1,6 +1,6 @@
 {
   "name": "gitlab-ci-dashboard",
-  "version": "6.5.2",
+  "version": "7.0.0",
   "description": "📊 Dashboard for monitoring GitLab CI builds and pipelines for TV. This project is based on gitlab-ci-monitor by globo.com",
   "author": "Emiliano Barbosa <emilianoeloi@gmail.com>",
   "contributors": [
@@ -25,16 +25,19 @@
     "url": "https://github.com/ci-dashboard/gitlab-ci-dashboard"
   },
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "unit": "jest --testPathPattern=test/unit/specs --coverage",
-    "test": "npm run unit",
-    "lint": "eslint --ext .js,.vue src test/unit/specs",
-    "build": "rm -rf standalone dist && mkdir standalone && node build/build.js && cp -R dist/* standalone/ && cp index.js standalone/",
-    "report-coverage": "codecov",
-    "server": "http-server ./dist",
-    "gitlab-mocked-server": "node mocked_gitlab/server.js",
-    "deploy": "yarn build && ./scripts/deploy_to_git.sh 'dist' `git config --get remote.origin.url` 'gh-pages'"
+    "dev": "vite",
+    "build": "tsc -p tsconfig.app.json --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "server": "tsx server/index.ts",
+    "gitlab-mocked-server": "node mocked_gitlab/server.js"
   },
   "keywords": [
     "gitlab",
@@ -50,96 +53,43 @@
     "gitlab-ci-dashboard-migration": "./bin/gitlab-ci-dashboard-migration"
   },
   "dependencies": {
-    "commander": "2.13.0",
-    "cors": "2.8.4",
-    "express": "4.16.2",
-    "fitch": "0.11.0",
-    "fs": "0.0.1-security",
-    "json-beautify": "1.0.1",
-    "moment": "2.20.1",
-    "opn": "5.2.0",
-    "semver-regex": "1.0.0",
-    "semver-sort": "0.0.4",
-    "vue": "2.5.13"
+    "commander": "^12.0.0",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "express": "^4.21.0",
+    "open": "^10.0.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "semver": "^7.6.0"
   },
   "devDependencies": {
-    "autoprefixer": "7.2.5",
-    "babel-core": "6.26.0",
-    "babel-eslint": "8.2.1",
-    "babel-jest": "22.1.0",
-    "babel-loader": "7.1.2",
-    "babel-plugin-transform-runtime": "6.23.0",
-    "babel-preset-env": "1.6.1",
-    "babel-preset-stage-2": "6.24.1",
-    "babel-register": "6.26.0",
-    "chalk": "2.3.0",
-    "codecov": "3.7.1",
-    "copy-webpack-plugin": "4.3.1",
-    "css-loader": "0.28.9",
-    "eslint": "4.18.2",
-    "eslint-config-standard": "11.0.0-beta.0",
-    "eslint-friendly-formatter": "3.0.0",
-    "eslint-loader": "1.9.0",
-    "eslint-plugin-html": "4.0.2",
-    "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-node": "5.2.1",
-    "eslint-plugin-promise": "3.6.0",
-    "eslint-plugin-standard": "3.0.1",
-    "eventsource-polyfill": "0.9.6",
-    "extract-text-webpack-plugin": "3.0.2",
-    "file-loader": "1.1.6",
-    "friendly-errors-webpack-plugin": "1.6.1",
-    "html-webpack-plugin": "2.30.1",
-    "http-server": "0.11.1",
-    "jest": "22.1.4",
-    "moxios": "0.4.0",
-    "node-notifier": "8.0.1",
-    "optimize-css-assets-webpack-plugin": "3.2.0",
-    "ora": "1.4.0",
-    "portfinder": "1.0.13",
-    "postcss-import": "11.0.0",
-    "postcss-loader": "2.1.0",
-    "rimraf": "2.6.2",
-    "semver": "5.5.0",
-    "shelljs": "0.8.1",
-    "sinon": "4.2.2",
-    "url-loader": "0.6.2",
-    "vue-jest": "2.0.1",
-    "vue-loader": "14.1.1",
-    "vue-style-loader": "3.1.2",
-    "vue-template-compiler": "2.5.13",
-    "webpack": "3.10.0",
-    "webpack-bundle-analyzer": "3.3.2",
-    "webpack-dev-server": "2.11.1",
-    "webpack-merge": "4.1.1"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "vue"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
-    },
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
-    },
-    "setupFiles": [
-      "<rootDir>/test/unit/setup"
-    ],
-    "coverageDirectory": "<rootDir>/test/unit/coverage",
-    "collectCoverageFrom": [
-      "src/**/*.{js,vue}",
-      "!**/node_modules/**"
-    ],
-    "verbose": true,
-    "testURL": "http://localhost/"
+    "@eslint/js": "^9.20.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.5.0",
+    "@types/cors": "^2.8.0",
+    "@types/express": "^4.17.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@types/semver": "^7.5.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "@vitest/coverage-v8": "^3.0.0",
+    "eslint": "^9.20.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.0",
+    "jsdom": "^25.0.0",
+    "prettier": "^3.5.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.24.0",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.0"
   },
   "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 18.0.0",
+    "npm": ">= 10.0.0"
   },
   "browserslist": [
     "> 1%",
