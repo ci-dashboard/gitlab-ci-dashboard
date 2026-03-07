@@ -1,0 +1,11 @@
+:root {
+  --color-success: #00ad68;
+  --color-failed: #e7484d;
+  --color-running: #2d9fd8;
+  --color-pending: #ffb541;
+  --color-canceled: #aaaaaa;
+  --color-created: #a5673f;
+
+  --color-bg: #3c454d;
+  --font-family: 'Roboto', sans-serif;
+}

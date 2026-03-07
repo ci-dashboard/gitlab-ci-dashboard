@@ -1,0 +1,57 @@
+@import './variables.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  font-family: var(--font-family), 'Helvetica Neue', Arial, sans-serif;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ---- Loader spin ---- */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Build card entry/exit animations ---- */
+@keyframes slide-in-top {
+  0%   { transform: translateY(-1000px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounce-out-top {
+  0%   { transform: translateY(0); animation-timing-function: ease-out; }
+  5%   { transform: translateY(-30px); animation-timing-function: ease-in; }
+  15%  { transform: translateY(0); animation-timing-function: ease-out; }
+  25%  { transform: translateY(-38px); animation-timing-function: ease-in; }
+  38%  { transform: translateY(0); animation-timing-function: ease-out; }
+  52%  { transform: translateY(-75px); animation-timing-function: ease-in; }
+  70%  { transform: translateY(0); animation-timing-function: ease-out; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(-800px); opacity: 0; }
+}
+
+@keyframes bounce-in-top {
+  0%   { transform: translateY(-500px); animation-timing-function: ease-in; opacity: 0; }
+  38%  { transform: translateY(0); animation-timing-function: ease-out; opacity: 1; }
+  55%  { transform: translateY(-65px); animation-timing-function: ease-in; }
+  72%  { transform: translateY(0); animation-timing-function: ease-out; }
+  81%  { transform: translateY(-28px); animation-timing-function: ease-in; }
+  90%  { transform: translateY(0); animation-timing-function: ease-out; }
+  95%  { transform: translateY(-8px); animation-timing-function: ease-in; }
+  100% { transform: translateY(0); animation-timing-function: ease-out; }
+}
+
+@keyframes flip-horizontal-bottom {
+  0%   { transform: rotateX(0); }
+  100% { transform: rotateX(-180deg); }
+}

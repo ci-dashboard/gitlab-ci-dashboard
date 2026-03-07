@@ -1,0 +1,109 @@
+.buildSection {
+  margin: 1em 0 1em 1em;
+}
+
+.cardGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+/* --- Base card --- */
+.card {
+  background-color: #555;
+  border-radius: 6px;
+  overflow: hidden;
+  min-width: 200px;
+  max-width: 320px;
+  flex: 1 1 220px;
+  box-shadow: none;
+  color: #fff;
+}
+
+/* --- Status colors --- */
+.success  { background-color: var(--color-success); }
+.failed   { background-color: var(--color-failed); }
+.running  { background-color: var(--color-running); }
+.pending  { background-color: var(--color-pending); }
+.canceled { background-color: var(--color-canceled); }
+.created  { background-color: var(--color-created); }
+.skipped  { background-color: var(--color-created); }
+.manual   { background-color: var(--color-created); }
+
+/* --- Card sections --- */
+.content {
+  padding: 0.75em 1em;
+}
+
+.extra {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 0.8em;
+  opacity: 0.85;
+}
+
+/* --- Content elements --- */
+.description {
+  margin: 0 0 0.25em;
+  font-size: 1em;
+}
+
+.projectName {
+  margin: 0 0 0.25em;
+  color: #fff;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+  font-size: 0.95em;
+}
+
+.projectLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.namespace {
+  font-size: 0.8em;
+  opacity: 0.8;
+  margin-bottom: 0.4em;
+}
+
+.commitMessage {
+  font-size: 0.85em;
+  margin-bottom: 0.25em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.blame {
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.versionBadge {
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  padding: 0.1em 0.5em;
+  margin-top: 0.4em;
+}
+
+.buildId a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.buildId a:hover {
+  opacity: 0.7;
+}
+
+/* --- Animation classes (controlled by hideSuccessCards) --- */
+.bounceInTop {
+  animation: bounce-in-top 1.1s both;
+}
+
+.bounceOutTop {
+  animation: bounce-out-top 1.5s both;
+}

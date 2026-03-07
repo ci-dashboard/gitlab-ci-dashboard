@@ -1,0 +1,27 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  gap: 0;
+}
+
+.mainContent {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 1em;
+}
+
+.sidebar {
+  flex: 0 0 220px;
+  min-width: 180px;
+  padding: 0.5em;
+}
+
+@media (max-width: 600px) {
+  .layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    flex: none;
+    width: 100%;
+  }
+}

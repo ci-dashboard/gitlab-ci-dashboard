@@ -1,54 +1,77 @@
-# 📊GitLab CI Dashboard
+# 📊 GitLab CI Dashboard
 
-[![npm](https://img.shields.io/npm/v/gitlab-ci-dashboard.svg?)](https://www.npmjs.com/package/gitlab-ci-dashboard) [![npm (tag)](https://img.shields.io/npm/v/gitlab-ci-dashboard/next.svg?)](https://github.com/emilianoeloi/gitlab-ci-dashboard/releases/tag/v6.4.5-alpha.1) [![npm](https://img.shields.io/npm/dw/gitlab-ci-dashboard.svg?)]() [![GitHub issues](https://img.shields.io/github/issues/emilianoeloi/gitlab-ci-dashboard.svg?)](https://github.com/emilianoeloi/gitlab-ci-dashboard/issues)  
+[![GitHub license](https://img.shields.io/github/license/emilianoeloi/gitlab-ci-dashboard.svg)](LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/emilianoeloi/gitlab-ci-dashboard.svg)](https://github.com/emilianoeloi/gitlab-ci-dashboard/issues)
 
-![Node.js CI](https://github.com/emilianoeloi/confirmados/workflows/Node.js%20CI/badge.svg?)
-[![codecov](https://codecov.io/gh/ci-dashboard/gitlab-ci-dashboard/branch/master/graph/badge.svg?token=hr3q4zgwIV&)](undefined)
+Dashboard for monitoring [GitLab CI](https://about.gitlab.com/gitlab-ci/) builds and pipelines.
+Migrated in v7.0 to **React 18 + TypeScript 5 + Vite 6**.
 
-[![GitHub license](https://img.shields.io/github/license/emilianoeloi/gitlab-ci-dashboard.svg?)](LICENSE)
+![Example](gitlab-ci-dashboard-example.png)
 
-Dashboard for monitoring [GitLab CI][gitlab-ci] builds and pipelines for TV. This is a fork from [gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor).
+---
 
+## Requirements
 
-[gitlab-ci]: https://about.gitlab.com/gitlab-ci/
+- **Node.js** 18 or 22
+- **npm** 10+
 
+---
 
-![Example][example]
+## Quick start
 
-[example]: gitlab-ci-dashboard-example.png
+```bash
+npm install
+npm run dev
+# → http://localhost:5173
+```
 
-## Gitlab support
+Open the browser and append query parameters (see [Parameters](#parameters)):
 
- - Gitlab: 8.30.4, and 10.1.4
- - Gitlab [API](https://docs.gitlab.com/ee/api/): V3 and V4
+```
+http://localhost:5173/?gitlab=gitlab.example.com&token=12345&projectsFile=http://localhost:5173/static/file.json&gitlabciProtocol=http&interval=5
+```
+
+---
+
+## GitLab support
+
+- GitLab 8.30+ and 10.1+
+- GitLab [API](https://docs.gitlab.com/ee/api/) V3 and V4
+
+---
 
 ## Usage
 
-This project can runs completely in the browser with few parameters on querystring or run in standalone mode using command-line, you can use querystring parameters or using all parameters on json config file.
+The dashboard can run in two modes:
+
+| Mode | How |
+|------|-----|
+| **Browser** | Open the built app with query parameters or a `?config=` URL |
+| **Standalone** | Run `npm run server` with CLI flags — opens a local HTTP server automatically |
 
 ### Parameters
 
-- **config**: path or url to config file
+| Parameter | Required | Default | Description |
+|-----------|----------|---------|-------------|
+| `gitlab` | yes | — | GitLab server host (e.g. `gitlab.example.com`) |
+| `token` | yes | — | GitLab personal access token |
+| `projects` | * | — | Comma-separated list: `namespace/project:branch,...` |
+| `projectsFile` | * | — | URL to a JSON file containing project list |
+| `config` | * | — | URL to a full JSON config file |
+| `gitlabciProtocol` | no | `https` | `http` or `https` |
+| `apiVersion` | no | `3` | `3` or `4` |
+| `hideSuccessCards` | no | `false` | Hide cards when they turn green |
+| `hideVersion` | no | `false` | Hide version tag badge on cards |
+| `interval` | no | `60` | Polling interval in seconds |
+| `standalone` | no | `false` | Fetch config from server's `/params` endpoint |
 
-- **gitlab**: your gitlab server address
-- **token**: your gitlab token
-- **projectsFile/projects**:
-  - **using projectsFile**: url to file that contains a list of projects you want to monitor, see below how to create it
-  - **using projects**: list or project you want to moniro, see below how to create it
-- **gitlabciProtocol** (optional): protocol to access gitlabci api. Default: https
-- **hideSuccessCards** (optional): hide cards when change to success status. Default: false
-- **hideVersion** (optional): hide version of cards. Default: false
-- **interval** (optional): interval, in seconds, that monitor go to gitlab server take a new data. Default 60
-- **apiVersion** (optional): Gitlab API version. Default: 3
+\* One of `projects`, `projectsFile`, or `config` is required.
 
-Of note, for this service to work it exposes an unauthenticated endpoint `/params` that includes
-your Gitlab API token. **To ensure this is kept secret (as it should be), you should make sure to
-host this application in a fashion that it's only accessible to a local / private network.** If the
-application is hosted at at a publicly accessible address, anyone can hit the `/params` endpoint and
-obtain your Gitlab API token. This would allow that third party to make requests to your Gitlab
-server on your behalf, potentially leaking sensitive information (like your source code).
+---
 
-### json config sample
+## Config file (JSON)
+
+Pass `?config=<url>` to load all settings from a single JSON file:
 
 ```json
 {
@@ -64,9 +87,9 @@ server on your behalf, potentially leaking sensitive information (like your sour
     },
     "projects": [
       {
-        "description": "React Native render for draft.js model",
-        "namespace": "globocom",
-        "project": "react-native-draftjs-render",
+        "description": "My project",
+        "namespace": "mygroup",
+        "project": "my-project",
         "branch": "master"
       }
     ]
@@ -74,162 +97,143 @@ server on your behalf, potentially leaking sensitive information (like your sour
 }
 ```
 
-With these parameters, it will try to fetch the list of projects that this
-token has access. Then, it will filter the list by the **projects** parameter
-and show only the ones that have builds (i.e., that have GitLab CI enabled).
-Finally, it will show the status from the most recent build in **master**
-or the branch you have specified.
-
-Standalone Example:
-```bash
-gitlab-ci-dashboard --gitlab gitlab.example.com --token 2345 --projectsFile ./example.json
-
-## or if you using json config file, just:
-
-gitlab-ci-dashboard --config ./config.json
+Browser URL example:
 
 ```
-
-Server hosted Example:
-
-```bash
-http://gitlab-ci-dashboard.example.com/?gitlab=gitlab.example.com&token=12345&projectsFile=http://gitlab-ci-dashboard.example.com/example.json
-
-## or if you using json config file, just:
-
-http://gitlab-ci-dashboard.example.com/?config=http://gitlab-ci-dashboard.example.com/config.json
+http://localhost:5173/?config=http://example.com/dashboard-config.json
 ```
 
-## Standalone
+---
+
+## Server-hosted (browser mode)
+
+Build and copy the output to any static web server:
 
 ```bash
-# install globally
-npm install -g gitlab-ci-dashboard
-
-# run standalone http server
-gitlab-ci-dashboard --gitlab gitlab.example.com --token 12345 --projectsFile ./file.json
-
-## or if you using json config file, just:
-gitlab-ci-dashboard --config ./config.json
-
-# access https://localhost:8081/?standalone=true on browser
-
+npm run build        # outputs to dist/
+# Copy dist/ to your server
 ```
 
-## Server hosted
+Then open with query params:
+
+```
+http://my-dashboard.example.com/?gitlab=gitlab.example.com&token=12345&projectsFile=http://my-dashboard.example.com/projects.json
+```
+
+---
+
+## Standalone mode
+
+Run a local HTTP server that serves the dashboard and exposes a `/params` endpoint
+so the browser can pick up the config automatically.
+
+**⚠️ The `/params` endpoint exposes your GitLab token — only use on private/local networks.**
 
 ```bash
-# install dependencies
-yarn install
+# 1. Build the app first
+npm run build
 
-# build for production with minification
-yarn build
+# 2. Start with inline parameters
+npm run server -- --gitlab gitlab.example.com --token 12345 --projectsFile ./projects.json
 
-# Copy content of dist folder to your server
+# 3. Or use a config file
+npm run server -- --config ./dashboard-config.json
+
+# → Opens http://localhost:8081/?standalone=true automatically
 ```
+
+### Server CLI options
+
+```
+--port <port>               Port (default: 8081, or $PORT)
+--gitlab <host>             GitLab host (or $GITLAB)
+--token <token>             GitLab token (or $TOKEN)
+--config <path>             JSON config file path (or $CONFIG)
+--projectsFile <path>       Path/URL to projects JSON (or $PROJECTS_FILE)
+--gitlabciProtocol <proto>  http|https (default: https, or $GITLABCI_PROTOCOL)
+--apiVersion <version>      3|4 (default: 3, or $API_VERSION)
+--hideSuccessCards          Hide success cards (or $HIDE_SUCCESS_CARDS=true)
+--hideVersion               Hide version badges (or $HIDE_VERSION=true)
+--interval <seconds>        Polling interval (default: 60, or $INTERVAL)
+```
+
+All options also accept **environment variables** (shown in parentheses above).
+
+---
 
 ## Available scripts
 
 ```bash
-# install dependencies
-yarn install
+# Install dependencies
+npm install
 
-# serve with hot reload at localhost:8080
-yarn dev
+# Dev server with hot reload → http://localhost:5173
+npm run dev
 
-# build for production with minification
-yarn build
+# Type-check + production build → dist/
+npm run build
 
-# run http server to access the monitor
-yarn server
+# Preview the production build locally
+npm run preview
 
-# run http server to access mocked gitlab-ci api
-yarn gitlab-mocked-server
+# Standalone server (requires a prior npm run build)
+npm run server
 
-# build for production and view the bundle analyzer report
-yarn build --report
+# Run tests (Vitest)
+npm run test
+npm run test:watch
+npm run test:coverage
 
-# run unit tests
-yarn unit
+# Lint (ESLint 9)
+npm run lint
+npm run lint:fix
 
-# run e2e tests
-yarn e2e
+# Format (Prettier)
+npm run format
+npm run format:check
 
-# run all tests
-yarn test
+# TypeScript type-check only
+npm run typecheck
+
+# Legacy Vue 2 scripts (kept for reference)
+npm run legacy:dev
+npm run legacy:build
+npm run legacy:test
 ```
+
+---
 
 ## How to develop
 
 ```bash
-# run dev
-yarn dev
+# Start the Vite dev server
+npm run dev
 
-# run gitlab-ci mock server
-yarn gitlab-mocked-server
+# In another terminal, start the mocked GitLab CI API (optional)
+npm run gitlab-mocked-server
 
-# open on browser
-http://localhost:8080/?gitlab=localhost:8089&token=_&projectsFile=http://localhost:8080/static/file.json&gitlabciProtocol=http&interval=5
-
+# Open with mocked API
+http://localhost:5173/?gitlab=localhost:8089&token=_&projectsFile=http://localhost:5173/static/file.json&gitlabciProtocol=http&interval=5
 ```
 
-## projectsFile migration from versions earlier to 5.x
+---
 
-If your dashboard is using the projectsFile pattern below:
+## Stack
 
-```json
-{
-  "nameWithNamespace": "native/gitlab-ci-monitor",
-  "projectName": "gitlab-ci-monitor",
-  "branch": "hackday"
-},
-```
+| Layer | Technology |
+|-------|-----------|
+| UI | React 18 + TypeScript 5 |
+| Build | Vite 6 + @vitejs/plugin-react-swc |
+| Tests | Vitest 3 + React Testing Library 16 |
+| Linting | ESLint 9 flat config + typescript-eslint |
+| Formatting | Prettier 3 |
+| Styles | CSS Modules + CSS custom properties |
+| HTTP | native `fetch` |
+| Dates | date-fns v4 |
+| Versions | semver v7 |
 
-Run migration command:
-
-```bash
-# migration command
-gitlab-ci-dashboard-migration --projectsFile example.json
-```
-
-
-## projectsFile creation from gitlab-ci-monitor base project
-
-Take your url dashboard
-
-```html
-http://gitlab-ci-monitor.example.com/?gitlab=gitlab.example.com&token=12345&projects=namespace/project1,namespace/project1/branch,namespace/project2
-```
-
-Run migration command:
-
-```bash
-# migration command
-gitlab-ci-dashboard-migration --querystring http://gitlab-ci-monitor.example.com/?gitlab=gitlab.example.com&token=12345&projects=namespace/project1,namespace/project1/branch,namespace/project2
-```
-
-The ***projects.json*** would be created
-
-## Using
-
-***VueJS:*** For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
-***Tests*** How to Write A Unit Test for Vue.js
-https://scotch.io/tutorials/how-to-write-a-unit-test-for-vuejs
-
-***Animista:*** ANIMISTA IS A PLACE WHERE YOU CAN PLAY WITH A COLLECTION OF PRE-MADE CSS ANIMATIONS, TWEAK THEM AND GET ONLY THOSE YOU WILL ACTUALLY USE.
-[Play](http://animista.net/about)
-
-***Semantic UI:*** User Interface is the language of the web [Semantic UI](https://semantic-ui.com/)
-
-## Another Dashboards
-
-[gitlab-ci-monitor](https://github.com/globocom/gitlab-ci-monitor)
-
-[Gitlab CI Monitor](https://github.com/tobiwild/gitlab-ci-monitor)
+---
 
 ## License
 
 GitLab CI Dashboard is licensed under the [MIT license](LICENSE).
-
-[![NPM](https://nodei.co/npm/gitlab-ci-dashboard.png)](https://npmjs.org/package/gitlab-ci-dashboard)

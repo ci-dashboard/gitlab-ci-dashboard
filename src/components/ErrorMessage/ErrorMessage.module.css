@@ -1,0 +1,12 @@
+.container {
+  background-color: #9b2335;
+  color: #fff;
+  border-radius: 4px;
+  padding: 0.75em 1em;
+  font-size: 0.9em;
+}
+
+.message {
+  margin: 0;
+  white-space: pre-wrap;
+}

@@ -1,18 +1,56 @@
 stages:
- - prepare
- - test
+  - validate
+  - test
+  - build
 
-.setupEnvironment:
- tags:
-   - gitlab
- stage: prepare
- script:
-   - "yarn"
+default:
+  image: node:18-slim
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules/
+  before_script:
+    - npm ci --legacy-peer-deps
 
-validateBuild:
- tags:
-   - gitlab
- stage: test
- script:
-   - "yarn"
-   - "yarn test"
+# ── Validate ──────────────────────────────────────────────────────────────────
+
+lint:
+  stage: validate
+  script:
+    - npm run lint
+  allow_failure: false
+
+typecheck:
+  stage: validate
+  script:
+    - npm run typecheck
+  allow_failure: false
+
+# ── Test ──────────────────────────────────────────────────────────────────────
+
+unit-tests:
+  stage: test
+  script:
+    - npm run test:coverage
+  coverage: '/All files\s+\|\s+(\d+\.?\d*)/'
+  artifacts:
+    when: always
+    paths:
+      - coverage/
+    expire_in: 7 days
+
+# ── Build ─────────────────────────────────────────────────────────────────────
+
+build:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+  only:
+    - master
+    - tags
