@@ -1,13 +1,21 @@
-build
-config
-mocked_gitlab
-src
-test
-.babelrc
+# Source (not needed — dist/ and server-dist/ are the compiled outputs)
+src/
+server/
+tests/
+
+# Dev tooling
+.github/
+.gitlab/
+coverage/
+mocked_gitlab/
+scripts/
+tsconfig*.json
+vite.config.ts
+eslint.config.mjs
+.nvmrc
+.prettierrc
 .editorconfig
-.eslintignore
-.eslintrc.js
 .gitignore
-.postcssrc.js
-.travis.yml
-gitlab-ci-dashboard-example
+.DS_Store
+gitlab-ci-dashboard-example.png
+sample.json

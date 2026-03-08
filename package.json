@@ -1,6 +1,6 @@
 {
   "name": "gitlab-ci-dashboard",
-  "version": "7.0.0",
+  "version": "7.0.0-alpha.1",
   "description": "📊 Dashboard for monitoring GitLab CI builds and pipelines for TV. This project is based on gitlab-ci-monitor by globo.com",
   "author": "Emiliano Barbosa <emilianoeloi@gmail.com>",
   "contributors": [
@@ -22,11 +22,13 @@
   "bugs": "https://github.com/ci-dashboard/gitlab-ci-dashboard/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ci-dashboard/gitlab-ci-dashboard"
+    "url": "git+https://github.com/ci-dashboard/gitlab-ci-dashboard.git"
   },
   "scripts": {
     "dev": "vite",
     "build": "tsc -p tsconfig.app.json --noEmit && vite build",
+    "build:server": "tsc -p tsconfig.server.json",
+    "prepublishOnly": "npm run build && npm run build:server && npm test",
     "preview": "vite preview",
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "test": "vitest run",
@@ -49,18 +51,23 @@
     "tv"
   ],
   "bin": {
-    "gitlab-ci-dashboard": "./bin/gitlab-ci-dashboard",
-    "gitlab-ci-dashboard-migration": "./bin/gitlab-ci-dashboard-migration"
+    "gitlab-ci-dashboard": "bin/gitlab-ci-dashboard",
+    "gitlab-ci-dashboard-migration": "bin/gitlab-ci-dashboard-migration"
   },
+  "files": [
+    "dist/",
+    "server-dist/",
+    "bin/",
+    "migration/",
+    "static/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
   "dependencies": {
     "commander": "^12.0.0",
-    "cors": "^2.8.5",
-    "date-fns": "^4.1.0",
     "express": "^4.21.0",
-    "open": "^10.0.0",
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0",
-    "semver": "^7.6.0"
+    "open": "^10.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",
@@ -68,7 +75,6 @@
     "@testing-library/jest-dom": "^6.6.0",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.5.0",
-    "@types/cors": "^2.8.0",
     "@types/express": "^4.17.0",
     "@types/node": "^22.0.0",
     "@types/react": "^18.3.0",
@@ -76,11 +82,15 @@
     "@types/semver": "^7.5.0",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "@vitest/coverage-v8": "^3.0.0",
+    "date-fns": "^4.1.0",
     "eslint": "^9.20.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.0",
     "jsdom": "^25.0.0",
     "prettier": "^3.5.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "semver": "^7.6.0",
     "tsx": "^4.0.0",
     "typescript": "^5.8.0",
     "typescript-eslint": "^8.24.0",
