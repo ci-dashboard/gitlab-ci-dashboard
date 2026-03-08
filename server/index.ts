@@ -1,11 +1,8 @@
 import { Command } from 'commander'
 import express from 'express'
 import { readFile } from 'node:fs/promises'
-import { resolve, dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { resolve } from 'node:path'
 import open from 'open'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
 
 interface ServerParams {
   gitlab?: string

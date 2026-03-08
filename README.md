@@ -1,7 +1,12 @@
 # 📊 GitLab CI Dashboard
 
-[![GitHub license](https://img.shields.io/github/license/emilianoeloi/gitlab-ci-dashboard.svg)](LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/emilianoeloi/gitlab-ci-dashboard.svg)](https://github.com/emilianoeloi/gitlab-ci-dashboard/issues)
+[![npm (latest)](https://img.shields.io/npm/v/gitlab-ci-dashboard/latest?label=npm%20stable&color=brightgreen)](https://www.npmjs.com/package/gitlab-ci-dashboard)
+[![npm (alpha)](https://img.shields.io/npm/v/gitlab-ci-dashboard/alpha?label=npm%20alpha&color=orange)](https://www.npmjs.com/package/gitlab-ci-dashboard?activeTab=versions)
+[![npm downloads](https://img.shields.io/npm/dm/gitlab-ci-dashboard.svg)](https://www.npmjs.com/package/gitlab-ci-dashboard)
+[![Node.js](https://img.shields.io/node/v/gitlab-ci-dashboard)](https://nodejs.org)
+[![GitHub license](https://img.shields.io/github/license/ci-dashboard/gitlab-ci-dashboard.svg)](LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/ci-dashboard/gitlab-ci-dashboard.svg)](https://github.com/ci-dashboard/gitlab-ci-dashboard/issues)
+[![Publish to npm](https://img.shields.io/github/actions/workflow/status/ci-dashboard/gitlab-ci-dashboard/npm-publish.yml?label=publish)](https://github.com/ci-dashboard/gitlab-ci-dashboard/actions/workflows/npm-publish.yml)
 
 Dashboard for monitoring [GitLab CI](https://about.gitlab.com/gitlab-ci/) builds and pipelines.
 Migrated in v7.0 to **React 18 + TypeScript 5 + Vite 6**.
@@ -194,11 +199,6 @@ npm run format:check
 
 # TypeScript type-check only
 npm run typecheck
-
-# Legacy Vue 2 scripts (kept for reference)
-npm run legacy:dev
-npm run legacy:build
-npm run legacy:test
 ```
 
 ---
@@ -237,3 +237,11 @@ http://localhost:5173/?gitlab=localhost:8089&token=_&projectsFile=http://localho
 ## License
 
 GitLab CI Dashboard is licensed under the [MIT license](LICENSE).
+
+---
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/gitlab-ci-dashboard">
+    <img src="https://img.shields.io/npm/v/gitlab-ci-dashboard?style=for-the-badge&label=gitlab-ci-dashboard&logo=npm&color=orange" alt="gitlab-ci-dashboard on npm" />
+  </a>
+</p>

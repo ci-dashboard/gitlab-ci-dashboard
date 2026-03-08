@@ -4,7 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default tseslint.config(
-  { ignores: ['dist', 'node_modules', 'coverage', 'build', 'standalone', 'test', 'src/**/*.js', 'src/**/*.vue', 'mocked_gitlab', 'migration', '*.mjs'] },
+  { ignores: ['dist', 'server-dist', 'node_modules', 'coverage', 'build', 'standalone', 'test', 'src/**/*.js', 'src/**/*.vue', 'mocked_gitlab', 'migration', '*.mjs'] },
   js.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   {
